@@ -78,7 +78,7 @@ Input2は下記から選択可能です。ALU Input2 Selectを用いて選択し
 |[6:3]|Register Write Enable|
 |[2:1]|RAM Address Select|
 |[0]|RAM Write Enable
-## ALU Input1 Select and ALU bypass
+### ALU Input1 Select and ALU bypass
 ALUのInput1の選択、Input1をALUに入力せずそのままレジスタの入力側にバイパスするかどうかを決定します。ALU Input1 Select and ALU bypassの仕様は次の通りです。
 
 |bit|意味|
@@ -100,7 +100,7 @@ ALU Input1 Selectの仕様は次の通りです。
 |1|0|0|1|Input1=オペランド|
 |X|X|X|X|禁止|
 
-## ALU Input2 Select
+### ALU Input2 Select
 ALUのInput2の選択を行います。仕様は次の通りです。
 |bit12|bit11|bit10|意味|
 |:--:|:--:|:--:|:--:|
@@ -113,7 +113,7 @@ ALUのInput2の選択を行います。仕様は次の通りです。
 |1|1|0|Input2=SP register|
 |1|1|1|Input2=オペランド|
 |X|X|X|禁止|
-## ALU function select
+### ALU function select
 与えられた二つの入力に対し、どのような算術演算を実行するか選択します。仕様は次の通りです。
 bit9|bit8|bit7|意味|
 :--:|:--:|:--:|:--:|
@@ -125,7 +125,7 @@ bit9|bit8|bit7|意味|
 |1|0|1|NOT Input1|
 |1|1|0|Input1 XOR Input2|
 |1|1|1|Input1 ÷ Input2
-## Register Write Enable
+### Register Write Enable
 レジスタへの値書き込みを制御します。仕様は次の通りです。
 |bit6|bit5|bit4|bit3|意味|
 |:--:|:--:|:--:|:--:|:--:|
@@ -138,13 +138,13 @@ bit9|bit8|bit7|意味|
 |0|1|1|1|SP register書き込み有効|
 |1|1|1|1|全レジスタ書き込み無効|
 |X|X|X|X|禁止|
-## RAM Address Select
+### RAM Address Select
 RAMアドレス端子へどの信号を入力するか選択します。仕様は次の通りです。
-|bit8|bit7|意味|
+|bit2|bit1|意味|
 |:--:|:--:|:--:|
 |0|0|PC|
 |0|1|A register|
 |1|0|オペランド|
 |1|1|禁止|
-## RAM Write Enable
+### RAM Write Enable
 RAM Write Enableが0b1のとき、次のクロック立ち上がりでBレジスタの値をRAM Address Selectで選択された信号のアドレス値に書き込みます。0b0のときは、次のクロック立ち上がりで何もしません。
