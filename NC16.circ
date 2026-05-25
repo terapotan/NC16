@@ -145,9 +145,6 @@
       <a name="fanout" val="5"/>
       <a name="incoming" val="5"/>
     </comp>
-    <comp lib="0" loc="(2480,1410)" name="Clock">
-      <a name="appearance" val="NewPins"/>
-    </comp>
     <comp lib="0" loc="(250,900)" name="Splitter">
       <a name="appear" val="right"/>
       <a name="facing" val="south"/>
