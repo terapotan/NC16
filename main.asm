@@ -2,6 +2,13 @@
 
 in a
 main:
-    add a,1
+    cmp a,0x0005
+    jz suc
+    mov a,0xff00
     out a
-    jmp main
+    hlt
+
+suc:
+    mov a,0xffff
+    out a
+    hlt

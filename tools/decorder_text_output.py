@@ -42,6 +42,9 @@ xx100001000aaaabbbb 0bbbb0000000aaaa000 # mov r1, r2
 # mov r1, [a]
 xx100001000aaaa0111 010000000000aaaa010 # mov r1, [a]
 
+# mov r1, opd
+xx100001000aaaa1111 001110000000aaaa000 # mov r1, opd
+
 # mov r1, [opd]
 xx100001000aaaa0111 010000000000aaaa100 # mov r1, [opd]
 

@@ -62,6 +62,7 @@
     mov {r1: regs},{r2: regs} => 0x08 @ r1 @ r2 @ 0x0000
     mov {r1: regs},[a]         => 0x08 @ r1 @ 0x7 @ 0x0000
     mov {r1: regs},[{opd: u16}] => 0x08 @ r1 @ 0x7 @ opd
+    mov {r1: regs},{opd: u16} => 0x08 @ r1 @ 0xf @ opd
     
     ; メモリ書き込みはBレジスタ固定仕様
     mov [a],b                 => 0x08 @ 0x7 @ 0x1 @ 0x0000

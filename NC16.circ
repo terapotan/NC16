@@ -70,13 +70,8 @@
     <a name="appearance" val="logisim_evolution"/>
     <a name="circuit" val="main"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
-    <a name="simulationFrequency" val="8.0"/>
-    <comp lib="0" loc="(1130,2350)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="radix" val="16"/>
-      <a name="width" val="16"/>
-    </comp>
-    <comp lib="0" loc="(1470,1570)" name="Splitter">
+    <a name="simulationFrequency" val="32.0"/>
+    <comp lib="0" loc="(1080,1100)" name="Splitter">
       <a name="facing" val="north"/>
       <a name="fanout" val="16"/>
       <a name="incoming" val="16"/>
@@ -98,6 +93,11 @@
       <a name="fanout" val="4"/>
       <a name="incoming" val="4"/>
     </comp>
+    <comp lib="0" loc="(1730,300)" name="Splitter">
+      <a name="facing" val="north"/>
+      <a name="fanout" val="16"/>
+      <a name="incoming" val="16"/>
+    </comp>
     <comp lib="0" loc="(1810,1310)" name="Splitter"/>
     <comp lib="0" loc="(1870,1430)" name="Splitter">
       <a name="facing" val="west"/>
@@ -114,12 +114,6 @@
       <a name="facing" val="west"/>
       <a name="fanout" val="19"/>
       <a name="incoming" val="19"/>
-    </comp>
-    <comp lib="0" loc="(2030,300)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-    </comp>
-    <comp lib="0" loc="(2030,340)" name="Pin">
-      <a name="appearance" val="NewPins"/>
     </comp>
     <comp lib="0" loc="(2140,1290)" name="Splitter">
       <a name="fanout" val="19"/>
@@ -151,9 +145,17 @@
       <a name="fanout" val="5"/>
       <a name="incoming" val="5"/>
     </comp>
+    <comp lib="0" loc="(2480,1410)" name="Clock">
+      <a name="appearance" val="NewPins"/>
+    </comp>
     <comp lib="0" loc="(250,900)" name="Splitter">
       <a name="appear" val="right"/>
       <a name="facing" val="south"/>
+      <a name="fanout" val="16"/>
+      <a name="incoming" val="16"/>
+    </comp>
+    <comp lib="0" loc="(2570,320)" name="Splitter">
+      <a name="facing" val="north"/>
       <a name="fanout" val="16"/>
       <a name="incoming" val="16"/>
     </comp>
@@ -224,6 +226,11 @@
       <a name="fanout" val="16"/>
       <a name="incoming" val="16"/>
     </comp>
+    <comp lib="0" loc="(970,1570)" name="Splitter">
+      <a name="facing" val="north"/>
+      <a name="fanout" val="16"/>
+      <a name="incoming" val="16"/>
+    </comp>
     <comp lib="1" loc="(1700,1450)" name="NOT Gate">
       <a name="facing" val="west"/>
     </comp>
@@ -240,7 +247,7 @@
       <a name="in_width" val="19"/>
       <a name="label" val="Instruction_Decorder"/>
       <a name="out_width" val="19"/>
-      <a name="table">xx0xxxxxxxxxxxxxxxx 0000000000001111000 # IE=0 (NOP/Fetch)
+      <a name="table">xx0xxxxxxxxxxxxxxxx 0000000000001111000 # IE=0 (during fetch)
 0x10000110111111111 0011100000000111000 # jnz opd (Taken)
 1x10000110111111111 0000000000001111000 # jnz opd (Skip)
 1x10000111011111111 0011100000000111000 # jz opd (Taken)
@@ -253,6 +260,7 @@ xx10001000111111111 0011100000000111000 # jmp opd
 xx10000100001110001 0000100000001111011 # mov [a], b
 xx10000100001110001 0000100000001111101 # mov [opd], b
 xx10001001111111111 1000000000001111000 # hlt
+xx10001010011111111 0000000000001111000 # nop
 xx10000000000000000 0000010000000000000 # add a, a
 xx10000000000000001 0000010010000000000 # add a, b
 xx10000000000000010 0000010100000000000 # add a, c
@@ -687,6 +695,13 @@ xx10000100000110111 0100000000000011010 # mov d, [a]
 xx10000100001000111 0100000000000100010 # mov e, [a]
 xx10000100001010111 0100000000000101010 # mov bp, [a]
 xx10000100001100111 0100000000000110010 # mov sp, [a]
+xx10000100000001111 0011100000000000000 # mov a, opd
+xx10000100000011111 0011100000000001000 # mov b, opd
+xx10000100000101111 0011100000000010000 # mov c, opd
+xx10000100000111111 0011100000000011000 # mov d, opd
+xx10000100001001111 0011100000000100000 # mov e, opd
+xx10000100001011111 0011100000000101000 # mov bp, opd
+xx10000100001101111 0011100000000110000 # mov sp, opd
 xx10000100000000111 0100000000000000100 # mov a, [opd]
 xx10000100000010111 0100000000000001100 # mov b, [opd]
 xx10000100000100111 0100000000000010100 # mov c, [opd]
@@ -766,7 +781,6 @@ xx10001001001011111 0010111110011111000 # cmp bp, opd
 xx10001001001101111 0011011110011111000 # cmp sp, opd
 </a>
     </comp>
-    <comp lib="1" loc="(2100,320)" name="XNOR Gate"/>
     <comp lib="1" loc="(2160,1350)" name="NOT Gate">
       <a name="facing" val="south"/>
     </comp>
@@ -782,7 +796,6 @@ xx10001001001101111 0011011110011111000 # cmp sp, opd
     <comp lib="1" loc="(2340,900)" name="XOR Gate">
       <a name="width" val="16"/>
     </comp>
-    <comp lib="1" loc="(2680,1290)" name="AND Gate"/>
     <comp lib="1" loc="(2750,490)" name="NOT Gate"/>
     <comp lib="1" loc="(2750,500)" name="NOT Gate"/>
     <comp lib="1" loc="(2750,510)" name="NOT Gate"/>
@@ -877,12 +890,6 @@ xx10001001001101111 0011011110011111000 # cmp sp, opd
     <comp lib="3" loc="(2330,560)" name="Multiplier">
       <a name="width" val="16"/>
     </comp>
-    <comp lib="5" loc="(1130,2400)" name="RAM">
-      <a name="addrWidth" val="16"/>
-      <a name="appearance" val="logisim_evolution"/>
-      <a name="dataWidth" val="16"/>
-      <a name="enables" val="line"/>
-    </comp>
     <comp lib="5" loc="(1320,1050)" name="RAM">
       <a name="addrWidth" val="16"/>
       <a name="appearance" val="logisim_evolution"/>
@@ -898,6 +905,9 @@ xx10001001001101111 0011011110011111000 # cmp sp, opd
       <a name="appearance" val="logisim_evolution"/>
       <a name="length" val="2"/>
       <a name="width" val="16"/>
+    </comp>
+    <comp lib="5" loc="(2370,1240)" name="D Flip-Flop">
+      <a name="appearance" val="logisim_evolution"/>
     </comp>
     <comp lib="5" loc="(2760,1220)" name="Register">
       <a name="appearance" val="logisim_evolution"/>
@@ -950,11 +960,14 @@ xx10001001001101111 0011011110011111000 # cmp sp, opd
       <a name="label" val="SP"/>
       <a name="width" val="16"/>
     </comp>
-    <comp lib="6" loc="(1310,1550)" name="LedBar">
+    <comp lib="6" loc="(1570,280)" name="LedBar">
       <a name="matrixcols" val="16"/>
     </comp>
     <comp lib="6" loc="(1960,1290)" name="LED">
       <a name="label" val="Instruction_Execute"/>
+    </comp>
+    <comp lib="6" loc="(2410,300)" name="LedBar">
+      <a name="matrixcols" val="16"/>
     </comp>
     <comp lib="6" loc="(340,1510)" name="Button">
       <a name="label" val="RESET"/>
@@ -966,16 +979,18 @@ xx10001001001101111 0011011110011111000 # cmp sp, opd
       <a name="label" val="Input_data"/>
       <a name="number" val="16"/>
     </comp>
+    <comp lib="6" loc="(810,1550)" name="LedBar">
+      <a name="matrixcols" val="16"/>
+    </comp>
+    <comp lib="6" loc="(920,1080)" name="LedBar">
+      <a name="matrixcols" val="16"/>
+    </comp>
     <comp lib="9" loc="(745,80)" name="Text">
       <a name="text" val="REGISTERS"/>
     </comp>
     <wire from="(100,920)" to="(100,930)"/>
+    <wire from="(1080,1100)" to="(1080,1120)"/>
     <wire from="(110,920)" to="(110,930)"/>
-    <wire from="(1120,2390)" to="(1120,2410)"/>
-    <wire from="(1120,2390)" to="(1140,2390)"/>
-    <wire from="(1120,2410)" to="(1130,2410)"/>
-    <wire from="(1130,2350)" to="(1140,2350)"/>
-    <wire from="(1140,2350)" to="(1140,2390)"/>
     <wire from="(1190,1140)" to="(1320,1140)"/>
     <wire from="(1190,470)" to="(1190,1140)"/>
     <wire from="(1190,470)" to="(1540,470)"/>
@@ -1062,6 +1077,7 @@ xx10001001001101111 0011011110011111000 # cmp sp, opd
     <wire from="(1710,490)" to="(1770,490)"/>
     <wire from="(1710,510)" to="(1790,510)"/>
     <wire from="(1730,1450)" to="(1770,1450)"/>
+    <wire from="(1730,300)" to="(1770,300)"/>
     <wire from="(1740,1050)" to="(1800,1050)"/>
     <wire from="(1740,850)" to="(1740,960)"/>
     <wire from="(1740,850)" to="(1830,850)"/>
@@ -1071,7 +1087,8 @@ xx10001001001101111 0011011110011111000 # cmp sp, opd
     <wire from="(1760,1170)" to="(1870,1170)"/>
     <wire from="(1760,160)" to="(1770,160)"/>
     <wire from="(1760,180)" to="(2570,180)"/>
-    <wire from="(1770,160)" to="(1770,490)"/>
+    <wire from="(1770,160)" to="(1770,300)"/>
+    <wire from="(1770,300)" to="(1770,490)"/>
     <wire from="(180,920)" to="(180,930)"/>
     <wire from="(1800,1050)" to="(1800,1150)"/>
     <wire from="(1800,1150)" to="(1800,1220)"/>
@@ -1129,7 +1146,7 @@ xx10001001001101111 0011011110011111000 # cmp sp, opd
     <wire from="(1940,1240)" to="(1940,1290)"/>
     <wire from="(1940,1290)" to="(1940,1370)"/>
     <wire from="(1940,1290)" to="(1960,1290)"/>
-    <wire from="(1940,1370)" to="(2590,1370)"/>
+    <wire from="(1940,1370)" to="(2340,1370)"/>
     <wire from="(1950,1080)" to="(2490,1080)"/>
     <wire from="(1950,730)" to="(1950,750)"/>
     <wire from="(1950,750)" to="(1950,1080)"/>
@@ -1210,11 +1227,14 @@ xx10001001001101111 0011011110011111000 # cmp sp, opd
     <wire from="(2330,400)" to="(2450,400)"/>
     <wire from="(2330,480)" to="(2440,480)"/>
     <wire from="(2330,560)" to="(2430,560)"/>
+    <wire from="(2340,1250)" to="(2340,1370)"/>
+    <wire from="(2340,1250)" to="(2360,1250)"/>
     <wire from="(2340,650)" to="(2350,650)"/>
     <wire from="(2340,740)" to="(2360,740)"/>
     <wire from="(2340,900)" to="(2380,900)"/>
     <wire from="(2350,620)" to="(2350,650)"/>
     <wire from="(2350,620)" to="(2460,620)"/>
+    <wire from="(2360,1290)" to="(2360,1660)"/>
     <wire from="(2360,460)" to="(2360,520)"/>
     <wire from="(2360,460)" to="(2490,460)"/>
     <wire from="(2360,630)" to="(2360,740)"/>
@@ -1226,6 +1246,7 @@ xx10001001001101111 0011011110011111000 # cmp sp, opd
     <wire from="(2390,660)" to="(2390,1010)"/>
     <wire from="(2390,660)" to="(2460,660)"/>
     <wire from="(240,920)" to="(240,930)"/>
+    <wire from="(2420,1250)" to="(2690,1250)"/>
     <wire from="(2430,560)" to="(2430,610)"/>
     <wire from="(2430,610)" to="(2460,610)"/>
     <wire from="(2440,480)" to="(2440,600)"/>
@@ -1242,22 +1263,20 @@ xx10001001001101111 0011011110011111000 # cmp sp, opd
     <wire from="(2490,690)" to="(2490,1080)"/>
     <wire from="(250,900)" to="(280,900)"/>
     <wire from="(2500,630)" to="(2570,630)"/>
-    <wire from="(2570,180)" to="(2570,630)"/>
+    <wire from="(2570,180)" to="(2570,320)"/>
+    <wire from="(2570,320)" to="(2570,630)"/>
     <wire from="(2570,630)" to="(2610,630)"/>
-    <wire from="(2590,1270)" to="(2590,1370)"/>
-    <wire from="(2590,1270)" to="(2630,1270)"/>
     <wire from="(2590,430)" to="(2590,440)"/>
     <wire from="(2590,430)" to="(2640,430)"/>
     <wire from="(260,820)" to="(310,820)"/>
     <wire from="(2610,480)" to="(2610,630)"/>
     <wire from="(2610,480)" to="(2670,480)"/>
-    <wire from="(2620,1310)" to="(2620,1670)"/>
-    <wire from="(2620,1310)" to="(2630,1310)"/>
     <wire from="(2640,1320)" to="(2640,1580)"/>
     <wire from="(2640,1320)" to="(2790,1320)"/>
     <wire from="(2640,420)" to="(2640,430)"/>
     <wire from="(2640,420)" to="(2880,420)"/>
-    <wire from="(2680,1290)" to="(2760,1290)"/>
+    <wire from="(2690,1250)" to="(2690,1290)"/>
+    <wire from="(2690,1290)" to="(2760,1290)"/>
     <wire from="(2690,490)" to="(2720,490)"/>
     <wire from="(2690,500)" to="(2720,500)"/>
     <wire from="(2690,510)" to="(2720,510)"/>
@@ -1414,9 +1433,10 @@ xx10001001001101111 0011011110011111000 # cmp sp, opd
     <wire from="(640,1000)" to="(640,1120)"/>
     <wire from="(640,1120)" to="(640,1610)"/>
     <wire from="(640,1120)" to="(690,1120)"/>
-    <wire from="(640,1610)" to="(640,1670)"/>
+    <wire from="(640,1610)" to="(640,1660)"/>
     <wire from="(640,1610)" to="(720,1610)"/>
-    <wire from="(640,1670)" to="(2620,1670)"/>
+    <wire from="(640,1660)" to="(2360,1660)"/>
+    <wire from="(640,1660)" to="(640,1670)"/>
     <wire from="(640,270)" to="(640,380)"/>
     <wire from="(640,270)" to="(720,270)"/>
     <wire from="(640,380)" to="(640,490)"/>
@@ -1495,7 +1515,7 @@ xx10001001001101111 0011011110011111000 # cmp sp, opd
     <wire from="(780,800)" to="(790,800)"/>
     <wire from="(780,930)" to="(790,930)"/>
     <wire from="(790,1540)" to="(790,1570)"/>
-    <wire from="(790,1570)" to="(1470,1570)"/>
+    <wire from="(790,1570)" to="(970,1570)"/>
     <wire from="(790,180)" to="(790,230)"/>
     <wire from="(790,230)" to="(860,230)"/>
     <wire from="(790,310)" to="(790,340)"/>
@@ -1529,6 +1549,8 @@ xx10001001001101111 0011011110011111000 # cmp sp, opd
     <wire from="(90,920)" to="(90,930)"/>
     <wire from="(90,950)" to="(220,950)"/>
     <wire from="(900,1020)" to="(1250,1020)"/>
-    <wire from="(900,1020)" to="(900,1150)"/>
+    <wire from="(900,1020)" to="(900,1120)"/>
+    <wire from="(900,1120)" to="(1080,1120)"/>
+    <wire from="(900,1120)" to="(900,1150)"/>
   </circuit>
 </project>
