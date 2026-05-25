@@ -27,10 +27,20 @@ xx100000111aaaabbbb 0aaaa1bbb111aaaa000 # div r1, r2
 # reg-opd
 xx100000000aaaa1111 0aaaa1111000aaaa000 # add r1, opd
 xx100000001aaaa1111 0aaaa1111001aaaa000 # sub r1, opd
+xx100000010aaaa1111 0aaaa1111010aaaa000 # mul r1, opd
+xx100000011aaaa1111 0aaaa1111011aaaa000 # and r1, opd
+xx100000100aaaa1111 0aaaa1111100aaaa000 # or r1, opd
+xx100000110aaaa1111 0aaaa1111110aaaa000 # xor r1, opd
+xx100000111aaaa1111 0aaaa1111111aaaa000 # div r1, opd
 
 # reg-[a]
 xx100000000aaaa0111 010001aaa000aaaa010 # add r1, [a]
 xx100000001aaaa0111 010001aaa001aaaa010 # sub r1, [a]
+xx100000010aaaa0111 010001aaa010aaaa010 # mul r1, [a]
+xx100000011aaaa0111 010001aaa011aaaa010 # and r1, [a]
+xx100000100aaaa0111 010001aaa100aaaa010 # or r1, [a]
+xx100000110aaaa0111 010001aaa110aaaa010 # sub r1, [a]
+xx100000111aaaa0111 010001aaa111aaaa010 # div r1, [a]
 
 # not
 xx100000101aaaa1111 0aaaa1000101aaaa000 # not r1
