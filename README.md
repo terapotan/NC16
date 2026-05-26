@@ -1,9 +1,13 @@
 # Welcome to NC-16!
+![ロゴ画像](./NC16_logo.png)
+
 　NC-16のGitHubページにようこそ！　NC-16はLogitism-evolution（論理回路シミュレータ）上で動作する16bitCPUです！　回路自体はもちろん、各種ドキュメントも全て公開されており、やる気さえあればNC-16の全てを知ることが可能です！
 　またNC-16はMITライセンスで公開されていますから、NC-16をベースにして別のCPUを作り公開することも可能です。
 ## Install
 　Logitism-evolutionとアセンブラであるcustomasmを導入する必要があります。インストールの詳細については、以下ページをご覧ください。
+
 https://github.com/logisim-evolution/logisim-evolution
+
 https://github.com/hlorenzi/customasm
 ## 動作方法
 　以下コマンドでアセンブリファイルをアセンブルすることができます。
