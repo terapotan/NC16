@@ -312,6 +312,7 @@ ALU Input1 Selectの仕様は次の通りです。
 |0|1|1|1|Input1=オペランド|
 |1|0|0|0|Input1=Input_port|
 |1|0|0|1|Input1=メモリ|
+|1|0|1|0|Input1=PC Register|
 |X|X|X|X|禁止|
 
 ### ALU Input2 Select

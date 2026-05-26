@@ -1,7 +1,15 @@
 
 ; --- レジスタ定義 ---
 ; FuncInput1, FuncInput2 で使用される4ビットの値
-#ruledef regs {
+#subruledef general_regs {
+    a   => 0x0
+    b   => 0x1
+    c   => 0x2
+    d   => 0x3
+    e   => 0x4
+}
+
+#subruledef regs {
     a   => 0x0
     b   => 0x1
     c   => 0x2
@@ -86,6 +94,30 @@
 
     hlt                        => 0x13 @ 0xf @ 0xf @ 0x0000
     nop                        => 0x14 @ 0xf @ 0xf @ 0x0000
-    push s,2 => 0x0000 @ 0x0000
-    push d,2 => 0x0000 @ 0x0000
+
+    ; push命令はaレジスタとbレジスタの値を破壊する！
+    ; pop命令はaレジスタの値を破壊する！
+    ; プログラムを組む際は上記項目に注意すること。
+    push {opd: u16} => asm{
+        sub sp,1
+        mov b,{opd}
+        mov a,sp
+        mov [a],b
+    }
+    push {r1: regs} => asm{
+        sub sp,1
+        mov b,{r1}
+        mov a,sp
+        mov [a],b
+    }
+    pop {r1: regs} => asm{
+        mov a,sp
+        mov {r1},[a]
+        add sp,1
+    }
+    
+
+
 }
+; 初期化
+mov sp,0xffff
