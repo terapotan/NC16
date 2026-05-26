@@ -75,7 +75,7 @@
     <a name="appearance" val="logisim_evolution"/>
     <a name="circuit" val="main"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
-    <a name="simulationFrequency" val="8.0"/>
+    <a name="simulationFrequency" val="16.0"/>
     <comp lib="0" loc="(1010,1190)" name="Constant"/>
     <comp lib="0" loc="(1150,1100)" name="Splitter">
       <a name="facing" val="north"/>
@@ -287,6 +287,7 @@ xx10000100001110001 0000100000001111101 # mov [opd], b
 xx10001001111111111 1000000000001111000 # hlt
 xx10001010011111111 0000000000001111000 # nop
 xxx1111111111111111 0000000000001111000 # invaild
+xx10001010111111111 0101000000000000000 # lpc
 xx10000000000000000 0000010000000000000 # add a, a
 xx10000000000000001 0000010010000000000 # add a, b
 xx10000000000000010 0000010100000000000 # add a, c
@@ -1734,6 +1735,8 @@ xx10001001001101111 0011011110011111000 # cmp sp, opd
     <wire from="(970,1300)" to="(980,1300)"/>
     <wire from="(970,1490)" to="(970,1520)"/>
     <wire from="(970,1520)" to="(1180,1520)"/>
+    <wire from="(970,560)" to="(1600,560)"/>
+    <wire from="(970,560)" to="(970,1020)"/>
     <wire from="(980,1210)" to="(1010,1210)"/>
     <wire from="(980,1210)" to="(980,1240)"/>
     <wire from="(980,1240)" to="(1170,1240)"/>

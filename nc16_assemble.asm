@@ -1,14 +1,6 @@
 
 ; --- レジスタ定義 ---
 ; FuncInput1, FuncInput2 で使用される4ビットの値
-#subruledef general_regs {
-    a   => 0x0
-    b   => 0x1
-    c   => 0x2
-    d   => 0x3
-    e   => 0x4
-}
-
 #subruledef regs {
     a   => 0x0
     b   => 0x1
@@ -87,6 +79,12 @@
     js  {opd: u16}             => 0x10 @ 0xf @ 0xf @ opd
     jmp {opd: u16}             => 0x11 @ 0xf @ 0xf @ opd
 
+    jnz {r1: regs}             => 0x0d @ r1 @ 0xf @ 0x0000
+    jz  {r1: regs}             => 0x0e @ r1 @ 0xf @ 0x0000
+    jns {r1: regs}             => 0x0f @ r1 @ 0xf @ 0x0000
+    js  {r1: regs}             => 0x10 @ r1 @ 0xf @ 0x0000
+    jmp {r1: regs}             => 0x11 @ r1 @ 0xf @ 0x0000
+
     ; --- 比較・停止 ---
     cmp {r1: regs},{r2: regs} => 0x12 @ r1 @ r2 @ 0x0000
     cmp {r1: regs},{opd: u16}  => 0x12 @ r1 @ 0xf @ opd
@@ -94,8 +92,9 @@
 
     hlt                        => 0x13 @ 0xf @ 0xf @ 0x0000
     nop                        => 0x14 @ 0xf @ 0xf @ 0x0000
+    lpc                        => 0x15 @ 0xf @ 0xf @ 0x0000
 
-    ; push命令はaレジスタとbレジスタの値を破壊する！
+    ; push,call命令はaレジスタとbレジスタの値を破壊する！
     ; pop命令はaレジスタの値を破壊する！
     ; プログラムを組む際は上記項目に注意すること。
     push {opd: u16} => asm{
@@ -115,7 +114,17 @@
         mov {r1},[a]
         add sp,1
     }
-    
+    call {opd: u16} => asm{
+        lpc
+        add a,10;push命令、jmp命令の命令長を修正した場合、
+        push a
+        jmp {opd}
+    }
+    ret => asm{
+        pop a
+        jmp a
+    }
+
 
 
 }

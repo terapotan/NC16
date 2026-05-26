@@ -1,11 +1,14 @@
 #include "nc16_assemble.asm"
 
-push 0xffff
-mov b,0x10
-push b
-pop a
-out a
-nop
-pop a
-out a
+
+mov a,func1
+jmp a
+
+mov c,0x0000
+out c
 hlt
+
+func1:
+    mov c,0xffff
+    out c
+    hlt
