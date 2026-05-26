@@ -264,6 +264,8 @@ FuncInput2
 |:--:|:--:|:--:|:--:|:--:|:--:|
 |nop|0x14|0xf|0xf|0x0000|何もしない|
 
+## 無効命令
+　オペコード``0xff``はオペランドの値がなんであれ無効命令とする。
 ## Instruction Decorder仕様
 1ビットのInstruction Execute信号、2ビットのFLAGS信号、16ビットのオペコードを19ビットのCPU制御信号に変換します。CPU制御信号の仕様は次の通りです。
 
@@ -309,6 +311,7 @@ ALU Input1 Selectの仕様は次の通りです。
 |0|1|1|0|Input1=SP register|
 |0|1|1|1|Input1=オペランド|
 |1|0|0|0|Input1=Input_port|
+|1|0|0|1|Input1=メモリ|
 |X|X|X|X|禁止|
 
 ### ALU Input2 Select
