@@ -116,7 +116,7 @@
     }
     call {opd: u16} => asm{
         lpc
-        add a,10;push命令、jmp命令の命令長を修正した場合、
+        add a,0xc;push命令、jmp命令の命令長を修正した場合、加算する値は修正する必要がある
         push a
         jmp {opd}
     }

@@ -1,14 +1,20 @@
 #include "nc16_assemble.asm"
 
-
-mov a,func1
-jmp a
-
-mov c,0x0000
-out c
+in c
+call func1
+mov a,0x2
 hlt
 
 func1:
-    mov c,0xffff
+    call func2
     out c
-    hlt
+    ret
+
+func2:
+    add c,2
+    call func3
+    ret
+
+func3:
+    mov d,3
+    ret
