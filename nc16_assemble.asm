@@ -78,12 +78,24 @@
     jns {opd: u16}             => 0x0f @ 0xf @ 0xf @ opd
     js  {opd: u16}             => 0x10 @ 0xf @ 0xf @ opd
     jmp {opd: u16}             => 0x11 @ 0xf @ 0xf @ opd
+    je  {opd: u16}             => 0x16 @ 0xf @ 0xf @ opd
+    jne {opd: u16}             => 0x17 @ 0xf @ 0xf @ opd
+    ja  {opd: u16}             => 0x18 @ 0xf @ 0xf @ opd
+    jae {opd: u16}             => 0x19 @ 0xf @ 0xf @ opd
+    jl  {opd: u16}             => 0x1a @ 0xf @ 0xf @ opd
+    jle {opd: u16}             => 0x1b @ 0xf @ 0xf @ opd
 
     jnz {r1: regs}             => 0x0d @ r1 @ 0xf @ 0x0000
     jz  {r1: regs}             => 0x0e @ r1 @ 0xf @ 0x0000
     jns {r1: regs}             => 0x0f @ r1 @ 0xf @ 0x0000
     js  {r1: regs}             => 0x10 @ r1 @ 0xf @ 0x0000
     jmp {r1: regs}             => 0x11 @ r1 @ 0xf @ 0x0000
+    je  {r1: regs}             => 0x16 @ r1 @ 0xf @ 0x0000
+    jne {r1: regs}             => 0x17 @ r1 @ 0xf @ 0x0000
+    ja  {r1: regs}             => 0x18 @ r1 @ 0xf @ 0x0000
+    jae {r1: regs}             => 0x19 @ r1 @ 0xf @ 0x0000
+    jl  {r1: regs}             => 0x1a @ r1 @ 0xf @ 0x0000
+    jle {r1: regs}             => 0x1b @ r1 @ 0xf @ 0x0000
 
     ; --- 比較・停止 ---
     cmp {r1: regs},{r2: regs} => 0x12 @ r1 @ r2 @ 0x0000
