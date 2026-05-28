@@ -1994,4 +1994,10 @@ xxx10001101101101111 0000000000001111000 # jle sp (Skip)
     <wire from="(990,1250)" to="(1080,1250)"/>
     <wire from="(990,1250)" to="(990,1480)"/>
   </circuit>
+  <circuit name="div">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="div"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="32.0"/>
+  </circuit>
 </project>

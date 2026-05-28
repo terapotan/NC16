@@ -54,10 +54,6 @@
     xor {r1: regs},{opd: u16}  => 0x06 @ r1 @ 0xf @ opd
     xor {r1: regs},[a]         => 0x06 @ r1 @ 0x7 @ 0x0000
 
-    div {r1: regs},{r2: regs} => 0x07 @ r1 @ r2 @ 0x0000
-    div {r1: regs},{opd: u16}  => 0x07 @ r1 @ 0xf @ opd
-    div {r1: regs},[a]         => 0x07 @ r1 @ 0x7 @ 0x0000
-
     ; --- データ転送命令 ---
     mov {r1: regs},{r2: regs} => 0x08 @ r1 @ r2 @ 0x0000
     mov {r1: regs},[a]         => 0x08 @ r1 @ 0x7 @ 0x0000
@@ -144,5 +140,25 @@
 
 
 }
+
+
+jmp nc16_assemble_start
+
+; 除算を計算する
+; cレジスタに割られる数、dレジスタに割る数を格納し
+; cレジスタに余り、dレジスタに商を除算結果として格納する
+; 符号付き整数には対応していない
+div:
+    mov a,0
+div_inner_loop_28437293731:
+    add a,1
+    sub c,d
+    jns div_inner_loop_28437293731
+    sub a,1
+    add c,d
+    mov d,a
+    ret
+
+nc16_assemble_start:
 ; 初期化
 mov sp,0xffff
