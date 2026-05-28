@@ -1,15 +1,15 @@
 #include "nc16_assemble.asm"
 
-in a
-mov c,func1
-cmp a,0x3
-je c
-mov b,0x000a
-out b
-hlt
+main:
+    mov c,func
+    mov a,0xffff
+    mul a,0x4
+    jc c
+    mov b,0x000a
+    out b
+    hlt
 
-
-func1:
+func:
     mov b,0xffff
     out b
     hlt

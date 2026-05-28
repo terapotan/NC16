@@ -73,6 +73,8 @@
 
     ; --- ジャンプ命令 ---
     ; opdにはラベルまたは16bitアドレスが入る
+    jnc {opd: u16}             => 0x0b @ 0xf @ 0xf @ opd
+    jc  {opd: u16}             => 0x0c @ 0xf @ 0xf @ opd
     jnz {opd: u16}             => 0x0d @ 0xf @ 0xf @ opd
     jz  {opd: u16}             => 0x0e @ 0xf @ 0xf @ opd
     jns {opd: u16}             => 0x0f @ 0xf @ 0xf @ opd
@@ -85,6 +87,8 @@
     jl  {opd: u16}             => 0x1a @ 0xf @ 0xf @ opd
     jle {opd: u16}             => 0x1b @ 0xf @ 0xf @ opd
 
+    jnc {r1: regs}             => 0x0b @ r1 @ 0xf @ 0x0000
+    jc  {r1: regs}             => 0x0c @ r1 @ 0xf @ 0x0000
     jnz {r1: regs}             => 0x0d @ r1 @ 0xf @ 0x0000
     jz  {r1: regs}             => 0x0e @ r1 @ 0xf @ 0x0000
     jns {r1: regs}             => 0x0f @ r1 @ 0xf @ 0x0000
