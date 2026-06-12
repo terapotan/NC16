@@ -54,6 +54,10 @@
     xor {r1: regs},{opd: u16}  => 0x06 @ r1 @ 0xf @ opd
     xor {r1: regs},[a]         => 0x06 @ r1 @ 0x7 @ 0x0000
 
+    shr {r1: regs},{r2: regs} => 0x07 @ r1 @ r2 @ 0x0000
+    shr {r1: regs},{opd: u16}  => 0x07 @ r1 @ 0xf @ opd
+    shr {r1: regs},[a]         => 0x07 @ r1 @ 0x7 @ 0x0000
+
     ; --- データ転送命令 ---
     mov {r1: regs},{r2: regs} => 0x08 @ r1 @ r2 @ 0x0000
     mov {r1: regs},[a]         => 0x08 @ r1 @ 0x7 @ 0x0000
