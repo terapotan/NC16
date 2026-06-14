@@ -103,9 +103,8 @@ FuncInput1
 |0|1|1|0|SP register|
 |0|1|1|1|MEMADDR register|
 |1|0|0|0|MEMVAL register|
-|1|0|0|1|TMP register|
-|1|0|1|0|Input_port|
-|1|0|1|1|Output_port|
+|1|0|0|1|Input_port|
+|1|0|1|0|Output_port|
 |1|1|1|1|本領域が使用されていないことを表す|
 |X|X|X|X|禁止|
 
@@ -121,8 +120,7 @@ FuncInput2
 |0|1|1|0|SP register|
 |0|1|1|1|MEMADDR register|
 |1|0|0|0|MEMVAL register|
-|1|0|0|1|TMP register|
-|1|0|1|0|Input_port|
+|1|0|0|1|Input_port|
 |1|1|1|1|本領域が使用されていないことを表す|
 |X|X|X|X|禁止|
 
@@ -407,6 +405,7 @@ ALU Input1 Selectの仕様は次の通りです。
 |1|0|0|0|Input1=Input_port|
 |1|0|0|1|Input1=メモリ|
 |1|0|1|0|Input1=PC Register|
+|1|0|1|1|Input1=MEMVAL register|
 |X|X|X|X|禁止|
 
 ### ALU Input2 Select
@@ -447,6 +446,8 @@ bit9|bit8|bit7|意味|
 |0|1|1|0|SP register書き込み有効|
 |0|1|1|1|PC register書き込み有効|
 |1|0|0|0|Output_port書き込み有効|
+|1|0|0|1|MEMADDR書き込み有効|
+|1|0|1|0|MEMVAL書き込み有効|
 |1|1|1|1|全レジスタ書き込み無効|
 |X|X|X|X|禁止|
 ### RAM Address Select
