@@ -101,10 +101,12 @@ FuncInput1
 |0|1|0|0|E register|
 |0|1|0|1|BP register|
 |0|1|1|0|SP register|
-|0|1|1|1|MEMADDR register|
-|1|0|0|0|MEMVAL register|
-|1|0|0|1|Input_port|
-|1|0|1|0|Output_port|
+|0|1|1|1|オペランド間接アドレッシング|
+|1|0|0|0|Input_port|
+|1|0|0|1|Output_port|
+|1|0|1|0|MEMADDR register|
+|1|0|1|1|MEMVAL register|
+
 |1|1|1|1|本領域が使用されていないことを表す|
 |X|X|X|X|禁止|
 
@@ -118,9 +120,10 @@ FuncInput2
 |0|1|0|0|E register|
 |0|1|0|1|BP register|
 |0|1|1|0|SP register|
-|0|1|1|1|MEMADDR register|
-|1|0|0|0|MEMVAL register|
-|1|0|0|1|Input_port|
+|0|1|1|1|オペランド間接アドレッシング|
+|1|0|0|0|Input_port|
+|1|0|0|1|MEMADDR register|
+|1|0|1|0|MEMVAL register|
 |1|1|1|1|本領域が使用されていないことを表す|
 |X|X|X|X|禁止|
 
@@ -142,9 +145,9 @@ FuncInput2
 |mov memaddr,r1|memaddr|r1|0x0000|r1レジスタの値をmemaddrレジスタに転送します|
 |mov r1,opd|r1|0xf|opd|opdをr1レジスタに転送します
 |mov r1,[memaddr+opd]|r1|memaddr|opd|[memaddrレジスタの値にopdを加算した値]番地にあるメモリの値をr1レジスタに転送します※1|
-|mov r1,[opd]|r1|メモリ|opd|[opd]番地にあるメモリの値をr1レジスタに転送します|
-|mov [memaddr+opd],memval|メモリ|B|opd|memvalレジスタの値を[memaddrレジスタの値にopdを加算した値]番地にあるメモリに転送します。+opdが省略された場合opd=0x0000が代入されたものと見なします※2|
-|mov [opd],memval|メモリ|memval|opd|memvalレジスタの値を[opd]番地にあるメモリに転送します※3|
+|mov r1,[opd]|r1|オペランド間接アドレッシング|opd|[opd]番地にあるメモリの値をr1レジスタに転送します|
+|mov [memaddr+opd],memval|memaddr|memval|opd|memvalレジスタの値を[memaddrレジスタの値にopdを加算した値]番地にあるメモリに転送します。+opdが省略された場合opd=0x0000が代入されたものと見なします※2|
+|mov [opd],memval|オペランド間接アドレッシング|memval|opd|memvalレジスタの値を[opd]番地にあるメモリに転送します※3|
 
 
 
@@ -182,28 +185,28 @@ FuncInput2
 |:--:|:--:|:--:|:--:|:--:|
 |sub r1,r2|r1|r2|0x0000|r1レジスタの値からr2レジスタの値を減算し、その値をr1レジスタに格納します
 |sub r1,opd|r1|0xf|opd|r1レジスタの値からオペランドを減算し、その値をr1レジスタに格納します
-|sub r1,[memaddr+opd]|r1|memaddr|opd|r1レジスタの値に[memaddrレジスタの値にopdを加算した値]番地の値を減算し、その値をr1レジスタに格納します
+|sub r1,[memaddr+opd]|r1|memaddr|opd|r1レジスタの値から[memaddrレジスタの値にopdを加算した値]番地の値を減算し、その値をr1レジスタに格納します|
 ### mul
 　乗算を行います。mul命令のファンクションコードは``0x02``です。
 |ニーモック|FuncInput1|FuncInput2|オペランド|動作
 |:--:|:--:|:--:|:--:|:--:|
 |mul r1,r2|r1|r2|0x0000|r1レジスタの値にr2レジスタの値を乗算し、その値をr1レジスタに格納します
 |mul r1,opd|r1|0xf|opd|r1レジスタの値にオペランドを乗算し、その値をr1レジスタに格納します
-|mul r1,[memaddr+opd]|r1|メモリ|opd|r1レジスタの値に[memaddrレジスタの値にopdを加算した値]番地の値を乗算し、その値をr1レジスタに格納します
+|mul r1,[memaddr+opd]|r1|memaddr|opd|r1レジスタの値に[memaddrレジスタの値にopdを加算した値]番地の値を乗算し、その値をr1レジスタに格納します
 ### and
 　論理積を行います。and命令のファンクションコードは``0x03``です。
 |ニーモック|FuncInput1|FuncInput2|オペランド|動作
 |:--:|:--:|:--:|:--:|:--:|
 |and r1,r2|r1|r2|0x0000|r1レジスタの値にr2レジスタの値を論理積し、その値をr1レジスタに格納します
 |and r1,opd|r1|0xf|opd|r1レジスタの値にオペランドを論理積し、その値をr1レジスタに格納します
-|and r1,[memaddr+opd]|r1|メモリ|opd|r1レジスタの値に[memaddrレジスタの値にopdを加算した値]番地の値を論理積し、その値をr1レジスタに格納します
+|and r1,[memaddr+opd]|r1|memaddr|opd|r1レジスタの値に[memaddrレジスタの値にopdを加算した値]番地の値を論理積し、その値をr1レジスタに格納します
 ### or
 　論理和を行います。or命令のファンクションコードは``0x04``です。
 |ニーモック|FuncInput1|FuncInput2|オペランド|動作
 |:--:|:--:|:--:|:--:|:--:|
 |or r1,r2|r1|r2|0x0000|r1レジスタの値にr2レジスタの値を論理和し、その値をr1レジスタに格納します
 |or r1,opd|r1|0xf|opd|r1レジスタの値にオペランドを論理和し、その値をr1レジスタに格納します
-|or r1,[memaddr+opd]|r1|メモリ|opd|r1レジスタの値に[memaddrレジスタの値にopdを加算した値]番地の値を論理和し、その値をr1レジスタに格納します
+|or r1,[memaddr+opd]|r1|memaddr|opd|r1レジスタの値に[memaddrレジスタの値にopdを加算した値]番地の値を論理和し、その値をr1レジスタに格納します
 ### not
 　論理否定を行います。not命令のファンクションコードは``0x05``です。
 |ニーモック|FuncInput1|FuncInput2|オペランド|動作
@@ -215,14 +218,14 @@ FuncInput2
 |:--:|:--:|:--:|:--:|:--:|
 |xor r1,r2|r1|r2|0x0000|r1レジスタの値にr2レジスタの値を排他的論理和し、その値をr1レジスタに格納します
 |xor r1,opd|r1|0xf|opd|r1レジスタの値にオペランドを排他的論理和し、その値をr1レジスタに格納します
-|xor r1,[memaddr+opd]|r1|メモリ|opd|r1レジスタの値に[memaddrレジスタの値にopdを加算した値]番地の値を排他的論理和し、その値をr1レジスタに格納します
+|xor r1,[memaddr+opd]|r1|memaddr|opd|r1レジスタの値に[memaddrレジスタの値にopdを加算した値]番地の値を排他的論理和し、その値をr1レジスタに格納します
 ### shr
 　レジスタまたはメモリに格納された値を、指定された数だけ右にビットシフトします。shr命令のファンクションコードは``0x07``です。
 |ニーモック|FuncInput1|FuncInput2|オペランド|動作
 |:--:|:--:|:--:|:--:|:--:|
 |shr r1,r2|r1|r2|0x0000|r1レジスタの値をr2ビット分だけ右にビットシフトしその値をr1レジスタに格納します
 |shr r1,opd|r1|0xf|opd|r1レジスタの値をopdビット分だけ右にビットシフトしその値をr1レジスタに格納します
-|shr r1,[memaddr+opd]|r1|メモリ|opd|r1レジスタの値を[memaddrレジスタの値にopdを加算した値]番地の値のビット分だけ右にビットシフトしその値をr1レジスタに格納します
+|shr r1,[memaddr+opd]|r1|memaddr|opd|r1レジスタの値を[memaddrレジスタの値にopdを加算した値]番地の値のビット分だけ右にビットシフトしその値をr1レジスタに格納します
 ### 除算
 　除算はマシン語レベルでは提供されていません。除算を実行したい場合はCレジスタに割られる数、Dレジスタに割る数を格納して``call div``を実行してください。Cレジスタに余り、Dレジスタに商を格納します。
 
@@ -261,7 +264,7 @@ FuncInput2
 |:--:|:--:|:--:|:--:|:--:|:--:|
 |jmp opd|0x11|0xf|0xf|opd|opd番地にジャンプする|
 |jmp r1|0x11|r1|0xf|0x0000|[r1レジスタの値]番地にジャンプする|
-|jmp memval|0x11|r1|0xf|0x0000|[memvalレジスタの値]番地にジャンプする|
+|jmp memval|0x11|memval|0xf|0x0000|[memvalレジスタの値]番地にジャンプする|
 ## 比較命令
 　二つの値の比較を行い、結果に応じてゼロフラグ・符号フラグを変化させます。動作的にはsub命令と同等ですが、sub命令と異なりレジスタの値を書き換えません。ファンクションコードは``0x12``です。
 
@@ -269,7 +272,7 @@ FuncInput2
 |:--:|:--:|:--:|:--:|:--:|
 |cmp r1,r2|r1|r2|0x0000|r1レジスタの値とr2レジスタの値を比較します
 |cmp r1,opd|r1|0xf|opd|r1レジスタの値とopdを比較します
-|cmp r1,[memaddr+opd]|r1|メモリ|opd|r1レジスタの値と[memaddrレジスタの値にopdを加算した値]番地の値を比較します
+|cmp r1,[memaddr+opd]|r1|memaddr|opd|r1レジスタの値と[memaddrレジスタの値にopdを加算した値]番地の値を比較します
 ## 停止命令
 　CPUに供給するクロックを停止します。現時点のNC-16には割り込み機能が存在しないため、一度停止命令を実行すると、リセットするまで動作復帰しない点に注意してください。
 |ニーモック|ファンクションコード|FuncInput1|FuncInput2|オペランド|動作
