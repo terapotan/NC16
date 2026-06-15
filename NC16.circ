@@ -190,6 +190,19 @@
       <a name="fanout" val="5"/>
       <a name="incoming" val="5"/>
     </comp>
+    <comp lib="0" loc="(3230,1320)" name="Constant">
+      <a name="facing" val="south"/>
+      <a name="value" val="0x0"/>
+    </comp>
+    <comp lib="0" loc="(3230,1400)" name="Constant">
+      <a name="facing" val="south"/>
+      <a name="value" val="0x0"/>
+    </comp>
+    <comp lib="0" loc="(3230,1480)" name="Constant">
+      <a name="facing" val="south"/>
+      <a name="value" val="0x0"/>
+      <a name="width" val="16"/>
+    </comp>
     <comp lib="0" loc="(3480,1630)" name="Splitter">
       <a name="appear" val="right"/>
       <a name="fanout" val="16"/>
