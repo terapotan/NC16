@@ -299,14 +299,14 @@ push opd
 sub sp,1
 mov memval,{opd}
 mov memaddr,sp
-mov [memaddr],memval
+mov [memaddr+0],memval
 ```
 push r1
 ```nasm
 sub sp,1
 mov memval,{r1}
 mov memaddr,sp
-mov [memaddr],memval
+mov [memaddr+0],memval
 ```
 |ニーモック|動作
 |:--:|:--:|
@@ -318,7 +318,7 @@ mov [memaddr],memval
 　pop命令はマルチ命令であり、以下のコードと同等です。
 ```nasm
 mov memaddr,sp
-mov {r1},[memaddr]
+mov {r1},[memaddr+0]
 add sp,1
 ```
 |ニーモック|動作
@@ -337,7 +337,7 @@ add memval,0xc
 ; push memval
 sub sp,1
 mov memaddr,sp
-mov [memaddr],memval
+mov [memaddr+0],memval
 jmp {opd}
 ```
 |ニーモック|動作
@@ -349,7 +349,7 @@ jmp {opd}
 ```nasm
 ; pop memval
 mov memaddr,sp
-mov memval,[memaddr]
+mov memval,[memaddr+0]
 add sp,1
 jmp memval
 ```
