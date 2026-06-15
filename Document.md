@@ -145,10 +145,10 @@ FuncInput2
 |mov memaddr,r1|memaddr|r1|0x0000|r1レジスタの値をmemaddrレジスタに転送します|
 |mov r1,opd|r1|0xf|opd|opdをr1レジスタに転送します
 |mov r1,[memaddr+opd]|r1|memaddr|opd|[memaddrレジスタの値にopdを加算した値]番地にあるメモリの値をr1レジスタに転送します※1|
+|mov memval,[memaddr+opd]|r1|memaddr|opd|[memaddrレジスタの値にopdを加算した値]番地にあるメモリの値をmemvalレジスタに転送します※1|
 |mov r1,[opd]|r1|オペランド間接アドレッシング|opd|[opd]番地にあるメモリの値をr1レジスタに転送します|
 |mov [memaddr+opd],memval|memaddr|memval|opd|memvalレジスタの値を[memaddrレジスタの値にopdを加算した値]番地にあるメモリに転送します。※2|
 |mov [opd],memval|オペランド間接アドレッシング|memval|opd|memvalレジスタの値を[opd]番地にあるメモリに転送します※3|
-
 
 
 ※1　番地指定としてMEMADDRレジスタ以外のレジスタは指定できません。
