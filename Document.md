@@ -146,7 +146,7 @@ FuncInput2
 |mov r1,opd|r1|0xf|opd|opdをr1レジスタに転送します
 |mov r1,[memaddr+opd]|r1|memaddr|opd|[memaddrレジスタの値にopdを加算した値]番地にあるメモリの値をr1レジスタに転送します※1|
 |mov r1,[opd]|r1|オペランド間接アドレッシング|opd|[opd]番地にあるメモリの値をr1レジスタに転送します|
-|mov [memaddr+opd],memval|memaddr|memval|opd|memvalレジスタの値を[memaddrレジスタの値にopdを加算した値]番地にあるメモリに転送します。+opdが省略された場合opd=0x0000が代入されたものと見なします※2|
+|mov [memaddr+opd],memval|memaddr|memval|opd|memvalレジスタの値を[memaddrレジスタの値にopdを加算した値]番地にあるメモリに転送します。※2|
 |mov [opd],memval|オペランド間接アドレッシング|memval|opd|memvalレジスタの値を[opd]番地にあるメモリに転送します※3|
 
 
@@ -159,7 +159,7 @@ FuncInput2
 |ニーモック|動作
 |:--:|:--:|
 |mov r1,[r2+opd]|[r2レジスタの値にopdを加算した値]番地にあるメモリの値をr1レジスタに転送します|
-|mov [r1+opd],r2|r2レジスタの値を[r1レジスタの値にopdを加算した値]番地にあるメモリに転送します。+opdを省略した場合、opd=0x0000が代入されたものとみなします|
+|mov [r1+opd],r2|r2レジスタの値を[r1レジスタの値にopdを加算した値]番地にあるメモリに転送します。|
 ### in
 　入力ポートから他レジスタへ値を転送します。in命令のファンクションコードは``0x09``です。
 |ニーモック|FuncInput1|FuncInput2|オペランド|動作
