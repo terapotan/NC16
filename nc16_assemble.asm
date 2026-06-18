@@ -31,6 +31,7 @@
     add {r1: regs},{r2: regs} => 0x00 @ r1 @ r2 @ 0x0000
     add {r1: regs},{opd:u16}  => 0x00 @ r1 @ 0xf @ opd
     add {r1: regs},[memaddr+{opd:u16}]=> 0x00 @ r1 @ 0x9 @ opd
+    add memval,{opd:u16} => 0x00 @ 0xb @ 0xf @ opd
 
     sub {r1: regs},{r2: regs} => 0x01 @ r1 @ r2 @ 0x0000
     sub {r1: regs},{opd: u16}  => 0x01 @ r1 @ 0xf @ opd
