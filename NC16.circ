@@ -81,7 +81,7 @@
     <a name="circuit" val="main"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="downloadFrequency" val="1.0"/>
-    <a name="simulationFrequency" val="32.0"/>
+    <a name="simulationFrequency" val="128.0"/>
     <comp lib="0" loc="(1170,1840)" name="Splitter">
       <a name="appear" val="right"/>
       <a name="facing" val="south"/>
@@ -936,6 +936,13 @@ xxx10001001000111111 0001111110011111000 # cmp d, opd
 xxx10001001001001111 0010011110011111000 # cmp e, opd
 xxx10001001001011111 0010111110011111000 # cmp bp, opd
 xxx10001001001101111 0011011110011111000 # cmp sp, opd
+xxx10001001000001001 0100110000011111010 # cmp a, [memaddr+opd]
+xxx10001001000011001 0100110010011111010 # cmp b, [memaddr+opd]
+xxx10001001000101001 0100110100011111010 # cmp c, [memaddr+opd]
+xxx10001001000111001 0100110110011111010 # cmp d, [memaddr+opd]
+xxx10001001001001001 0100111000011111010 # cmp e, [memaddr+opd]
+xxx10001001001011001 0100111010011111010 # cmp bp, [memaddr+opd]
+xxx10001001001101001 0100111100011111010 # cmp sp, [memaddr+opd]
 xxx10001000110111111 0101100000000111000 # jmp memval
 00x10000101100001111 0000000000000111000 # jnc a (Taken)
 00x10000101100011111 0000100000000111000 # jnc b (Taken)

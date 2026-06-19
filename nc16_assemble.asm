@@ -53,12 +53,10 @@
 
     xor {r1: regs},{r2: regs} => 0x06 @ r1 @ r2 @ 0x0000
     xor {r1: regs},{opd: u16}  => 0x06 @ r1 @ 0xf @ opd
-    xor {r1: regs},[a]         => 0x06 @ r1 @ 0x7 @ 0x0000
     xor {r1: regs},[memaddr+{opd:u16}]=> 0x06 @ r1 @ 0x9 @ opd
 
     shr {r1: regs},{r2: regs} => 0x07 @ r1 @ r2 @ 0x0000
     shr {r1: regs},{opd: u16}  => 0x07 @ r1 @ 0xf @ opd
-    shr {r1: regs},[a]         => 0x07 @ r1 @ 0x7 @ 0x0000
     shr {r1: regs},[memaddr+{opd:u16}]=> 0x07 @ r1 @ 0x9 @ opd
 
 
@@ -89,10 +87,6 @@
     shr {r1: regs},[{r2: regs}+{opd: u16}] => asm{
         mov memaddr,{r2}
         shr {r1},[memaddr+{opd}]
-    }
-    cmp {r1: regs},[{r2: regs}+{opd: u16}] => asm{
-        mov memaddr,{r2}
-        sub {r1},[memaddr+{opd}]
     }
     ; --- データ転送命令 ---
     mov {r1: regs},{r2: regs} => 0x08 @ r1 @ r2 @ 0x0000
@@ -161,7 +155,6 @@
     ; --- 比較・停止 ---
     cmp {r1: regs},{r2: regs} => 0x12 @ r1 @ r2 @ 0x0000
     cmp {r1: regs},{opd: u16}  => 0x12 @ r1 @ 0xf @ opd
-    cmp {r1: regs},[memaddr+{opd:u16}]=> 0x12 @ r1 @ 0x9 @ opd
 
 
     hlt                        => 0x13 @ 0xf @ 0xf @ 0x0000
