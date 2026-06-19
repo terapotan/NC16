@@ -1,16 +1,28 @@
 #include "nc16_assemble.asm"
 
+;ローカル変数テスト
 
-; 入力したビット列を出力ポートに表示し、その表示を右に横スクロールさせるプログラム
-; 一番端まで来たらループする
-
-in a
 main:
+    mov a,0x000a
+    mov b,0x000b
+    push a
+    push b
+    pop c
+    pop d
+    hlt
+    call test
     out a
-    shr a,1 ;一つ横に移動する
-    jc carryplus
-    jmp main
+    hlt
 
-carryplus:
-    add a,0x8000 ;溢れた分を一つ左側に戻す
-    jmp main
+test:
+    c_test=1
+    d_test=c_test+1
+    varsum_test = 1*2 + 1
+    sub sp,varsum_test
+    mov [sp+c_test],0x0c
+    mov [sp+d_test],0x01
+    add a,b
+    add a,[sp+c_test]
+    add a,[sp+d_test]
+    add sp,varsum_test
+    ret

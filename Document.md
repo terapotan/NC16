@@ -106,7 +106,6 @@ FuncInput1
 |1|0|0|1|Output_port|
 |1|0|1|0|MEMADDR register|
 |1|0|1|1|MEMVAL register|
-
 |1|1|1|1|本領域が使用されていないことを表す|
 |X|X|X|X|禁止|
 
@@ -147,20 +146,19 @@ FuncInput2
 |mov r1,[memaddr+opd]|r1|memaddr|opd|[memaddrレジスタの値にopdを加算した値]番地にあるメモリの値をr1レジスタに転送します※1|
 |mov memval,[memaddr+opd]|r1|memaddr|opd|[memaddrレジスタの値にopdを加算した値]番地にあるメモリの値をmemvalレジスタに転送します※1|
 |mov memval,r1|memval|r1|0x0000|r1レジスタの値をmemvalレジスタに転送します|
-|mov r1,[opd]|r1|オペランド間接アドレッシング|opd|[opd]番地にあるメモリの値をr1レジスタに転送します|
 |mov [memaddr+opd],memval|memaddr|memval|opd|memvalレジスタの値を[memaddrレジスタの値にopdを加算した値]番地にあるメモリに転送します。※2|
-|mov memval,[opd]|オペランド間接アドレッシング|memval|opd|memvalレジスタの値を[opd]番地にあるメモリに転送します※3|
-
+|mov memval,opd|memval|0xf|opd|opdをmemvalレジスタに転送します|
+|mov memaddr,opd|memaddr|0xf|opd|opdをmemaddrレジスタに転送します|
 
 ※1　番地指定としてMEMADDRレジスタ以外のレジスタは指定できません。
 ※2　番地指定としてMEMADDRレジスタ以外は指定できず、なおかつメモリに書き込む値としてMEMVALレジスタ以外は指定できません。
-※3　メモリに書き込む値としてMEMVALレジスタ以外は指定できません。
 
 マルチ命令として以下の命令が提供されています。
 |ニーモック|動作
 |:--:|:--:|
 |mov r1,[r2+opd]|[r2レジスタの値にopdを加算した値]番地にあるメモリの値をr1レジスタに転送します|
 |mov [r1+opd],r2|r2レジスタの値を[r1レジスタの値にopdを加算した値]番地にあるメモリに転送します。|
+|mov [r1+opd1],opd2|opd2を[r1レジスタの値にopd1を加算した値]番地にあるメモリに転送します。|
 ### in
 　入力ポートから他レジスタへ値を転送します。in命令のファンクションコードは``0x09``です。
 |ニーモック|FuncInput1|FuncInput2|オペランド|動作
@@ -333,7 +331,7 @@ add sp,1
 
 ```nasm
 lpc
-add memval,0xc
+add memval,0xa
 ; push memval
 sub sp,1
 mov memaddr,sp

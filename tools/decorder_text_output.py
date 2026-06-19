@@ -61,6 +61,11 @@ xxx1000010001010aaaa 0aaaa00000001001000 # mov memaddr,r1
 xxx1000010001011aaaa 0aaaa00000001010000 # mov memval,r1
 # mov [memaddr+opd],memval
 xxx10000100010101010 0000000000001111011 # mov [memaddr+opd],memval
+# mov memaddr,opd
+xxx10000100010101111 0011100000001001000 # mov memaddr, opd
+# mov memval,opd
+xxx10000100010111111 0011100000001010000 # mov memval, opd
+
 
 # mov r1, opd
 xxx100001000aaaa1111 001110000000aaaa000 # mov r1, opd
