@@ -428,7 +428,7 @@ bit9|bit8|bit7|意味|
 :--:|:--:|:--:|:--:|
 |0|0|0|Input1 + Input2|
 |0|0|1|Input1 - Input2 ※本演算において負数は2の補数を用いて表現します。|
-|0|1|0|Input * Input2|
+|0|1|0|Input1 * Input2|
 |0|1|1|Input1 AND Input2|
 |1|0|0|Input1 OR Input2|
 |1|0|1|NOT Input1|
