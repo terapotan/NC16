@@ -39,7 +39,7 @@ xxx100000001aaaa1001 010011aaa001aaaa010 # sub r1, [memaddr+opd]
 xxx100000010aaaa1001 010011aaa010aaaa010 # mul r1, [memaddr+opd]
 xxx100000011aaaa1001 010011aaa011aaaa010 # and r1, [memaddr+opd]
 xxx100000100aaaa1001 010011aaa100aaaa010 # or r1, [memaddr+opd]
-xxx100000110aaaa1001 010011aaa110aaaa010 # sub r1, [memaddr+opd]
+xxx100000110aaaa1001 010011aaa110aaaa010 # xor r1, [memaddr+opd]
 xxx100000111aaaa1001 010011aaa111aaaa010 # shr r1, [memaddr+opd]
 
 xxx10000000010111111 0101111110001010000 # add memval,opd
@@ -77,7 +77,6 @@ xxx100001010aaaa1111 0aaaa00000001000000 # out r1
 # --- 比較 ---
 xxx100010010aaaabbbb 0aaaa1bbb0011111000 # cmp r1, r2
 xxx100010010aaaa1111 0aaaa11110011111000 # cmp r1, opd
-xxx100010010aaaa1001 010011aaa0011111010 # cmp r1, [memaddr+opd]
 
 
 # jmp,jcc命令
