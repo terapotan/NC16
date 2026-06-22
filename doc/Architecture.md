@@ -1,4 +1,6 @@
 # NC-16　Architecture
+## NC-16 Block diagram
+![BlockDiagram](./BlockDiagram.png)
 ## レジスタ・I/Oポート
 6つの汎用レジスタ、スタックポインタ、プログラムカウンタ、MEMVALレジスタ、MEMADDRレジスタ、一つの入力ポート、一つの出力ポートを備えています。
 ### 汎用レジスタ
