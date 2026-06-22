@@ -1,7 +1,8 @@
 #include "nc16_assemble.asm"
 
-; 配列の合計を求める
-; sum関数を実装する
+; 配列を昇順でソートする
+; アルゴリズムはバブルソート
+
 main:
     sortarray_main=7
     varsum_main=7+1
@@ -17,8 +18,7 @@ main:
     mov a,sp
     add a,sortarray_main
     mov b,0x7
-    call sum
-    out c
+    call bubble_sort
     hlt
 
 

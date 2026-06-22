@@ -38,9 +38,3 @@ fibonacci:
     zeroorone:
         mov d,c
         ret
-
-
-
-
-
-
