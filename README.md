@@ -30,4 +30,4 @@ https://github.com/hlorenzi/customasm
 
 ## ドキュメント
 　NC-16のドキュメントは以下のリンクから飛べます。
-[ドキュメント](./Document.md)
+[ドキュメント](./doc/Document.md)
