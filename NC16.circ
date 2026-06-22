@@ -302,7 +302,7 @@
     <comp lib="1" loc="(2850,2230)" name="AND Gate"/>
     <comp lib="1" loc="(2940,2090)" name="PLA">
       <a name="in_width" val="20"/>
-      <a name="label" val="PLA_1"/>
+      <a name="label" val="Instruction_Decoder"/>
       <a name="out_width" val="19"/>
       <a name="table">xxx0xxxxxxxxxxxxxxxx 0000000000001111000 # IE=0 (during fetch)
 00x10000101111111111 0011100000000111000 # jnc opd (Taken)
@@ -1336,6 +1336,7 @@ xxx10001101101101111 0000000000001111000 # jle sp (Skip)
     </comp>
     <comp lib="5" loc="(2580,2000)" name="Shift Register">
       <a name="appearance" val="logisim_evolution"/>
+      <a name="label" val="Instruction_Register"/>
       <a name="length" val="2"/>
       <a name="width" val="16"/>
     </comp>
@@ -1352,7 +1353,7 @@ xxx10001101101101111 0000000000001111000 # jle sp (Skip)
       <a name="number" val="16"/>
     </comp>
     <comp lib="6" loc="(1260,2450)" name="Button">
-      <a name="label" val="Button_1"/>
+      <a name="label" val="RESET"/>
     </comp>
     <comp lib="6" loc="(1610,750)" name="LedBar">
       <a name="label" val="LedBar_1"/>
@@ -1807,8 +1808,8 @@ xxx10001101101101111 0000000000001111000 # jle sp (Skip)
     <wire from="(2660,1790)" to="(2660,1900)"/>
     <wire from="(2660,1790)" to="(2750,1790)"/>
     <wire from="(2660,1900)" to="(2660,1960)"/>
-    <wire from="(2660,1960)" to="(2660,1990)"/>
-    <wire from="(2660,1990)" to="(2720,1990)"/>
+    <wire from="(2660,1960)" to="(2660,1980)"/>
+    <wire from="(2660,1980)" to="(2720,1980)"/>
     <wire from="(2660,770)" to="(2660,800)"/>
     <wire from="(2670,1130)" to="(2670,1480)"/>
     <wire from="(2680,1100)" to="(2690,1100)"/>
@@ -1817,7 +1818,7 @@ xxx10001101101101111 0000000000001111000 # jle sp (Skip)
     <wire from="(2690,1240)" to="(2690,1430)"/>
     <wire from="(2700,2090)" to="(2720,2090)"/>
     <wire from="(2700,2110)" to="(2790,2110)"/>
-    <wire from="(2720,1990)" to="(2720,2090)"/>
+    <wire from="(2720,1980)" to="(2720,2090)"/>
     <wire from="(2720,2090)" to="(2720,2160)"/>
     <wire from="(2720,2160)" to="(2940,2160)"/>
     <wire from="(2730,1490)" to="(2730,1520)"/>
