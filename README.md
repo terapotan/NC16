@@ -26,7 +26,7 @@ https://github.com/hlorenzi/customasm
 ※customasmはRust上で動作するプログラムであるため、Rustを導入していない場合は、Rustを導入する必要があります。
 ## NC-16操作マニュアル
 　NC-16の操作方法については、以下のリンクをご覧ください。
-[マニュアル](./manual.md)
+[マニュアル](./doc/manual.md)
 
 ## ドキュメント
 　NC-16のドキュメントは以下のリンクから飛べます。
