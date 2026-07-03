@@ -119,6 +119,7 @@
 
     in  {r1: regs}             => 0x09 @ r1 @ 0xf @ 0x0000
     out {r1: regs}             => 0x0a @ r1 @ 0xf @ 0x0000
+    out {opd: u16}             => 0x0a @ 0xf @ 0xf @ opd
 
     ; --- ジャンプ命令 ---
     ; opdにはラベルまたは16bitアドレスが入る

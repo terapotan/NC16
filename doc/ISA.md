@@ -105,6 +105,7 @@ FuncInput2
 |ニーモック|FuncInput1|FuncInput2|オペランド|動作
 |:--:|:--:|:--:|:--:|:--:|
 |out r1|r1|0xf|0x0000|output_portにr1レジスタの値を転送します|
+|out opd|0xf|0xf|opd|output_portにオペランドの値を転送する
 ## 算術演算・論理演算命令
 ### add
 　加算を行います。add命令のファンクションコードは``0x00``です。
