@@ -11,6 +11,7 @@
 
 |bit|意味|
 |:--:|:--:|
+|[19]|flag_write_sw|
 |[18]|HALT|
 |[17:13]|ALU Input1 Select and ALU bypass|
 |[12:10]|ALU Input2 Select|
@@ -30,6 +31,8 @@ Instruction Decorderに入力する信号の仕様は次の通りです。
 
 Instruction Execute信号とは命令の実行タイミングを指令する信号です。NC-16の命令長は4バイトです。一方一回のクロックで取得できるデータは2バイト長です。RAM内の命令をすべて取り込むには2クロック必要になります。以上の事情からNC-16は毎クロック命令を実行するわけにはいきませんから、命令実行のタイミングを指令する信号が必要になります。その信号がInstruction Executeです。
 
+### flag_write_sw
+　FLAGSレジスタへ入力する信号を切り替えます。0b0のときレジスタの入力バスに流れている信号をFLAGSレジスタへ入力します。0b1のときALUからのCarry Flag,Zero Flag,Sign Flagの値をFLAGSレジスタへ入力します（それ以外のビットのFLAGSレジスタの値を保持されます）。0b0の時はRegister Write EnableをFLAGSレジスタにセットしないとFLAGSレジスタへの書き込みは行われませんが、0b1の時はRegister Write Enableで指定したレジスタと併せてFLAGSレジスタへALUからの信号の書き込みを行います。
 ### HALT
 0b1のときCPU全体のクロックを停止します。0b0のときCPU全体にクロック信号を送ります。
 ### ALU Input1 Select and ALU bypass
@@ -97,6 +100,7 @@ bit9|bit8|bit7|意味|
 |1|0|0|0|Output_port書き込み有効|
 |1|0|0|1|MEMADDR書き込み有効|
 |1|0|1|0|MEMVAL書き込み有効|
+|1|0|1|1|FLAGS書き込み有効|
 |1|1|1|1|全レジスタ書き込み無効|
 |X|X|X|X|禁止|
 ### RAM Address Select
