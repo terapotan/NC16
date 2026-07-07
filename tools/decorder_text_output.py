@@ -91,6 +91,7 @@ def export_IMBD_ITSD_MicrocodeROM():
         if before_machine_code != now_machine_code:
             base_address = Microcode_ROM_file.tell() // MICROCODE_BYTES
             IMBD_file.write(before_machine_code + " " + format(base_address,'016b') + " #" + before_comment + "\n")
+            ITSD_file.write(before_machine_code + " " + format(1+len(microcode_list)+1,'08b') + " #" + before_comment + "\n")
             for microcode in microcode_list:
                 Microcode_ROM_file.write(convert_binary_string_to_binary(microcode))
 
