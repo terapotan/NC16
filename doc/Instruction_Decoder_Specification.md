@@ -44,13 +44,15 @@
 ## Microcode仕様
 |bit|意味|
 |:--:|:--:|
-[23:22]|未使用
+[23]|未使用
+[22]|PC Decrement
 [21]|MOR write enable
 [20]|IR operand or MOR operand select
 [19:0]|CPU Control BUS
 
 > Microcodeのビット数を変更する場合は、ROMデータジェネレータの都合上、8の倍数ビットにしなければならない。ファイルの読み書きがバイト単位でしか行えないためである。
-
+### PC Decrement
+　0b1のときPCをデクリメントします。0b0のときは何もしません。
 ### MOR write enable
 　MOR write enableが0b1のとき、該当のワードの下位16ビットをMORに書き込みます。このときCPU Control BUSにはnop相当の信号が出力されます。0b0のとき該当ワードの下位20ビットをCPU Control BUSに出力します。
 ### IR operand or MOR operand select
@@ -80,6 +82,7 @@ IMBDに入力する信号の仕様は次の通りです。
 |[15:0]|オペコード
 
 Instruction Execute信号とは命令の実行タイミングを指令する信号です。NC-16の命令長は4バイトです。一方一回のクロックで取得できるデータは2バイト長です。RAM内の命令をすべて取り込むには2クロック必要になります。以上の事情からNC-16は毎クロック命令を実行するわけにはいきませんから、命令実行のタイミングを指令する信号が必要になります。その信号がInstruction Executeです。
+
 
 ### flag_write_sw
 　FLAGSレジスタへ入力する信号を切り替えます。0b0のときレジスタの入力バスに流れている信号をFLAGSレジスタへ入力します。0b1のときALUからのCarry Flag,Zero Flag,Sign Flagの値をFLAGSレジスタへ入力します（それ以外のビットは保持します）。0b0の時はRegister Write EnableをFLAGSレジスタにセットしないとFLAGSレジスタへの書き込みは行われませんが、0b1の時はRegister Write Enableの指定に関係なく、ALUからFLAGSレジスタへのCarry,Zero,Sign Flag信号の書き込みを必ず行います。もちろんRegister Write Enableで指定したレジスタへの書き込みも併せて行われます。

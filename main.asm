@@ -1,7 +1,7 @@
 #include "nc16_assemble.asm"
 
-mov a,0x25
-mov b,0x20
+mov a,0x20
+mov b,0x25
 cmp a,b
 nop
 nop
