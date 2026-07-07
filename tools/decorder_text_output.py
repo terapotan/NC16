@@ -13,155 +13,33 @@ REGISTERS = [
     ("sp", "0110", "110"),
 ]
 
-raw_template = """
-# --- 算術・論理演算 (add, sub, mul, and, or, xor, div) ---
-# reg-reg
-xxx100000000aaaabbbb 10aaaa1bbb000aaaa000 # add r1, r2
-xxx100000001aaaabbbb 10aaaa1bbb001aaaa000 # sub r1, r2
-xxx100000010aaaabbbb 10aaaa1bbb010aaaa000 # mul r1, r2
-xxx100000011aaaabbbb 10aaaa1bbb011aaaa000 # and r1, r2
-xxx100000100aaaabbbb 10aaaa1bbb100aaaa000 # or r1, r2
-xxx100000110aaaabbbb 10aaaa1bbb110aaaa000 # xor r1, r2
-xxx100000111aaaabbbb 10aaaa1bbb111aaaa000 # shr r1, r2
-
-# reg-opd
-xxx100000000aaaa1111 10aaaa1111000aaaa000 # add r1, opd
-xxx100000001aaaa1111 10aaaa1111001aaaa000 # sub r1, opd
-xxx100000010aaaa1111 10aaaa1111010aaaa000 # mul r1, opd
-xxx100000011aaaa1111 10aaaa1111011aaaa000 # and r1, opd
-xxx100000100aaaa1111 10aaaa1111100aaaa000 # or r1, opd
-xxx100000110aaaa1111 10aaaa1111110aaaa000 # xor r1, opd
-xxx100000111aaaa1111 10aaaa1111111aaaa000 # shr r1, opd
-
-# reg-[memaddr+opd]
-xxx100000000aaaa1001 1010011aaa000aaaa010 # add r1, [memaddr+opd]
-xxx100000001aaaa1001 1010011aaa001aaaa010 # sub r1, [memaddr+opd]
-xxx100000010aaaa1001 1010011aaa010aaaa010 # mul r1, [memaddr+opd]
-xxx100000011aaaa1001 1010011aaa011aaaa010 # and r1, [memaddr+opd]
-xxx100000100aaaa1001 1010011aaa100aaaa010 # or r1, [memaddr+opd]
-xxx100000110aaaa1001 1010011aaa110aaaa010 # xor r1, [memaddr+opd]
-xxx100000111aaaa1001 1010011aaa111aaaa010 # shr r1, [memaddr+opd]
-
-xxx10000000010111111 10101111110001010000 # add memval,opd
-
-# not
-xxx100000101aaaa1111 10aaaa1000101aaaa000 # not r1
-
-# --- データ転送 (mov, in, out) ---
-# mov r1, r2
-xxx100001000aaaabbbb 00bbbb0000000aaaa000 # mov r1, r2
-
-# mov r1, [memaddr+opd]
-xxx100001000aaaa1001 0010010000000aaaa010 # mov r1, [memaddr+opd]
-# mov memval, [memaddr+opd]
-xxx10000100010111001 00100100000001010010 # mov memval, [memaddr+opd]
-# mov memaddr,r1
-xxx1000010001010aaaa 00aaaa00000001001000 # mov memaddr,r1
-# mov memval,r1
-xxx1000010001011aaaa 00aaaa00000001010000 # mov memval,r1
-# mov [memaddr+opd],memval
-xxx10000100010101010 00000000000001111011 # mov [memaddr+opd],memval
-# mov memaddr,opd
-xxx10000100010101111 00011100000001001000 # mov memaddr, opd
-# mov memval,opd
-xxx10000100010111111 00011100000001010000 # mov memval, opd
+TMP_FILE_PATH="./Instruction_Decorder.txt"
+IMBD_FILE_PATH="./IMBD.txt"
+ITSD_FILE_PATH="./ISTD.txt"
+MICROCODE_ROM_FILE_PATH="./MicrocodeROM.bin"
+MICROCODE_BYTES = 3
 
 
-# mov r1, opd
-xxx100001000aaaa1111 0001110000000aaaa000 # mov r1, opd
-
-# in / out
-xxx100001001aaaa1111 0010000000000aaaa000 # in r1
-xxx100001010aaaa1111 00aaaa00000001000000 # out r1
-xxx10000101011111111 00011100000001000000 # out opd
+# 次の形式で実行
+# 第一引数：出力先ファイル名
+# 第二引数：入力ファイル名
+# ./decorder_text_output.py ./machinecode_to_microcode.txt
 
 
-# --- 比較 ---
-xxx100010010aaaabbbb 10aaaa1bbb0011111000 # cmp r1, r2
-xxx100010010aaaa1111 10aaaa11110011111000 # cmp r1, opd
+def convert_binary_string_to_binary(binary_string):
+    return bytes(int(binary_string[i:i+8], 2) for i in range(0, len(binary_string), 8))
 
-
-# jmp,jcc命令
-xxx10001000110111111 00101100000000111000 # jmp memval
-
-0xx100001011aaaa1111 00aaaa00000000111000 # jnc r1 (Taken)
-1xx100001011aaaa1111 00000000000001111000 # jnc r1 (Skip)
-1xx100001100aaaa1111 00aaaa00000000111000 # jc r1 (Taken)
-0xx100001100aaaa1111 00000000000001111000 # jc r1 (Skip)
-x0x100001101aaaa1111 00aaaa00000000111000 # jnz r1 (Taken)
-x1x100001101aaaa1111 00000000000001111000 # jnz r1 (Skip)
-x1x100001110aaaa1111 00aaaa00000000111000 # jz r1 (Taken)
-x0x100001110aaaa1111 00000000000001111000 # jz r1 (Skip)
-xx0100001111aaaa1111 00aaaa00000000111000 # jns r1 (Taken)
-xx1100001111aaaa1111 00000000000001111000 # jns r1 (Skip)
-xx1100010000aaaa1111 00aaaa00000000111000 # js r1 (Taken)
-xx0100010000aaaa1111 00000000000001111000 # js r1 (Skip)
-xxx100010001aaaa1111 00aaaa00000000111000 # jmp r1
-x1x100010110aaaa1111 00aaaa00000000111000 # je r1 (Taken)
-x0x100010110aaaa1111 00000000000001111000 # je r1 (Skip)
-x0x100010111aaaa1111 00aaaa00000000111000 # jne r1(Taken)
-x1x100010111aaaa1111 00000000000001111000 # jne r1(Skip)
-x00100011000aaaa1111 00aaaa00000000111000 # ja r1 (Taken)
-xxx100011000aaaa1111 00000000000001111000 # ja r1 (Skip)
-x00100011001aaaa1111 00aaaa00000000111000 # jae r1 (Taken)
-x10100011001aaaa1111 00aaaa00000000111000 # jae r1 (Taken)
-xxx100011001aaaa1111 00000000000001111000 # jae r1 (Skip)
-x01100011010aaaa1111 00aaaa00000000111000 # jl r1 (Taken)
-xxx100011010aaaa1111 00000000000001111000 # jl r1 (Skip)
-x01100011011aaaa1111 00aaaa00000000111000 # jle r1 (Taken)
-x10100011011aaaa1111 00aaaa00000000111000 # jle r1 (Taken) 
-xxx100011011aaaa1111 00000000000001111000 # jle r1 (Skip)
-"""
-
-fixed_lines = [
-    "xxx0xxxxxxxxxxxxxxxx 00000000000001111000 # IE=0 (during fetch)",
-    "0xx10000101111111111 00011100000000111000 # jnc opd (Taken)",
-    "1xx10000101111111111 00000000000001111000 # jnc opd (Skip)",
-    "1xx10000110011111111 00011100000000111000 # jc opd (Taken)",
-    "0xx10000110011111111 00000000000001111000 # jc opd (Skip)",
-    "x0x10000110111111111 00011100000000111000 # jnz opd (Taken)",
-    "x1x10000110111111111 00000000000001111000 # jnz opd (Skip)",
-    "x1x10000111011111111 00011100000000111000 # jz opd (Taken)",
-    "x0x10000111011111111 00000000000001111000 # jz opd (Skip)",
-    "xx010000111111111111 00011100000000111000 # jns opd (Taken)",
-    "xx110000111111111111 00000000000001111000 # jns opd (Skip)",
-    "xx110001000011111111 00011100000000111000 # js opd (Taken)",
-    "xx010001000011111111 00000000000001111000 # js opd (Skip)",
-    "xxx10001000111111111 00011100000000111000 # jmp opd",
-    "x1x10001011011111111 00011100000000111000 # je opd (Taken)",
-    "x0x10001011011111111 00000000000001111000 # je opd (Skip)",
-    "x0x10001011111111111 00011100000000111000 # jne opd(Taken)",
-    "x1x10001011111111111 00000000000001111000 # jne opd(Skip)",
-    "x0010001100011111111 00011100000000111000 # ja opd (Taken)",
-    "xxx10001100011111111 00000000000001111000 # ja opd (Skip)",
-    "x0010001100111111111 00011100000000111000 # jae opd (Taken)",
-    "x1010001100111111111 00011100000000111000 # jae opd (Taken)",
-    "xxx10001100111111111 00000000000001111000 # jae opd (Skip)",
-    "x0110001101011111111 00011100000000111000 # jl opd (Taken)",
-    "xxx10001101011111111 00000000000001111000 # jl opd (Skip)",
-    "x0110001101111111111 00011100000000111000 # jle opd (Taken)",
-    "x1010001101111111111 00011100000000111000 # jle opd (Taken)", 
-    "xxx10001101111111111 00000000000001111000 # jle opd (Skip)",  
-    "xxx10001001111111111 01000000000001111000 # hlt",
-    "xxx10001010011111111 00000000000001111000 # nop",
-    "xxxx1111111111111111 00000000000001111000 # invaild",
-    "xxx10001010111111111 00101000000001010000 # lpc",
-]
-
-def expand():
+def expand_registers():
+    raw_template = open(sys.argv[1],mode='r',encoding='utf-8').read()
     
-    with open(sys.argv[1],mode='w') as f:
-        # 固定行をまず出力
-        for line in fixed_lines:
-            f.write(line+"\n")
+    with open(TMP_FILE_PATH,mode='w',encoding="utf-8") as f:
 
-        # テンプレートを走査
         for line in raw_template.strip().split('\n'):
+            # #もしくは空行の場合単に無視する
             if not line or line.startswith('#'):
-                f.write(line+"\n")
                 continue
             
-            # r1(aaaa) と r2(bbbb) 両方ある場合 (7x7=49通り)
+            # r1(aaaa) と r2(bbbb) 両方ある場合
             if "aaaa" in line and "bbbb" in line:
                 for r1, r2 in itertools.product(REGISTERS, REGISTERS):
                     name1, a4, a3 = r1
@@ -171,7 +49,7 @@ def expand():
                     new_line = new_line.replace("r1", name1).replace("r2", name2)
                     f.write(new_line+"\n")
 
-            # r1(aaaa) のみある場合 (7通り)
+            # r1(aaaa) のみある場合
             elif "aaaa" in line:
                 for r1 in REGISTERS:
                     name1, a4, a3 = r1
@@ -182,5 +60,52 @@ def expand():
             else:
                 f.write(line+"\n")
 
+def export_IMBD_ITSD_MicrocodeROM():
+    microcode_list = []
+    before_machine_code = ""
+    now_machine_code = ""
+    before_comment = ""
+    now_comment = ""
+    
+    all_text = open(TMP_FILE_PATH,mode='r',encoding='utf-8').read()
+    IMBD_file = open(IMBD_FILE_PATH,mode='w',encoding="utf-8")
+    ITSD_file = open(ITSD_FILE_PATH,mode='w',encoding="utf-8")
+    Microcode_ROM_file = open(MICROCODE_ROM_FILE_PATH,mode='wb')
+
+    for line in all_text.strip().split('\n'):
+        body = line.split('#')[0]
+        now_comment = line.split('#')[1]
+        line_list = body.split(' ')
+        now_machine_code = line_list[0]
+
+        #一番最初の読み込みは比較すべき相手が存在しないから
+        #比較処理（現在読み込んでいる機械語と前読み込んだ機械語が等しいか）をスキップする
+        if before_machine_code == "" :
+            microcode_list.append(line_list[1])
+            before_machine_code = now_machine_code
+            before_comment = now_comment
+            continue
+
+        #前読み込んだ機械語と現在読み込んだ機械語が異なる場合
+        #IMBD,ISTD,Microcode_ROMへの書き込みを行う
+        if before_machine_code != now_machine_code:
+            base_address = Microcode_ROM_file.tell() // MICROCODE_BYTES
+            IMBD_file.write(before_machine_code + " " + format(base_address,'016b') + " #" + before_comment + "\n")
+            for microcode in microcode_list:
+                Microcode_ROM_file.write(convert_binary_string_to_binary(microcode))
+
+            microcode_list.clear()
+            before_machine_code = now_machine_code
+            before_comment = now_comment
+            microcode_list.append(line_list[1])
+            continue
+        else:
+            before_machine_code = now_machine_code
+            before_comment = now_comment
+            microcode_list.append(line_list[1])
+            continue   
+
+
 if __name__ == "__main__":
-    expand()
+    expand_registers()
+    export_IMBD_ITSD_MicrocodeROM()

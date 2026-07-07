@@ -40,9 +40,12 @@
 ## Microcode仕様
 |bit|意味|
 |:--:|:--:|
+[23:22]|未使用
 [21]|MOR write enable
 [20]|IR operand or MOR operand select
 [19:0]|CPU Control BUS
+
+> Microcodeのビット数を変更する場合は、ROMデータジェネレータの都合上、8の倍数ビットにしなければならない。ファイルの読み書きがバイト単位でしか行えないためである。
 
 ### MOR write enable
 　MOR write enableが0b1のとき、該当のワードの下位16ビットをMORに書き込みます。このときCPU Control BUSにはnop相当の信号が出力されます。0b0のとき該当ワードの下位20ビットをCPU Control BUSに出力します。
