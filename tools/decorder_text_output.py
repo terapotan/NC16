@@ -15,8 +15,7 @@ REGISTERS = [
 
 TMP_FILE_PATH="./Instruction_Decorder.txt"
 IMBD_FILE_PATH="./IMBD.txt"
-ITSD_FILE_PATH="./ISTD.txt"
-IIRND_FILE_PATH="./IIRND.txt"
+INSTRUCTION_CLASS_FILE_PATH="./Instruction_Class.txt"
 MICROCODE_ROM_FILE_PATH="./MicrocodeROM.bin"
 MICROCODE_BYTES = 3
 
@@ -67,13 +66,12 @@ def export_IMBD_ITSD_MicrocodeROM():
     now_machine_code = ""
     before_comment = ""
     now_comment = ""
-    before_reset_num = ""
-    now_reset_num = ""
-        
+    before_class_num = ""
+    now_class_num = ""
+
     all_text = open(TMP_FILE_PATH,mode='r',encoding='utf-8').read()
     IMBD_file = open(IMBD_FILE_PATH,mode='w',encoding="utf-8")
-    ITSD_file = open(ITSD_FILE_PATH,mode='w',encoding="utf-8")
-    IIRND_file = open(IIRND_FILE_PATH,mode='w',encoding="utf-8")
+    Instruction_Class_file = open(INSTRUCTION_CLASS_FILE_PATH,mode='w',encoding="utf-8")
     Microcode_ROM_file = open(MICROCODE_ROM_FILE_PATH,mode='wb')
 
     for line in all_text.strip().split('\n'):
@@ -81,7 +79,7 @@ def export_IMBD_ITSD_MicrocodeROM():
         now_comment = line.split('#')[1]
         line_list = body.split(' ')
         now_machine_code = line_list[0]
-        now_reset_num = line_list[2]
+        now_class_num = line_list[2]
 
         #一番最初の読み込みは比較すべき相手が存在しないから
         #比較処理（現在読み込んでいる機械語と前読み込んだ機械語が等しいか）をスキップする
@@ -89,7 +87,7 @@ def export_IMBD_ITSD_MicrocodeROM():
             microcode_list.append(line_list[1])
             before_machine_code = now_machine_code
             before_comment = now_comment
-            before_reset_num = now_reset_num
+            before_class_num = now_class_num
             continue
 
         #前読み込んだ機械語と現在読み込んだ機械語が異なる場合
@@ -97,21 +95,20 @@ def export_IMBD_ITSD_MicrocodeROM():
         if before_machine_code != now_machine_code:
             base_address = Microcode_ROM_file.tell() // MICROCODE_BYTES
             IMBD_file.write(before_machine_code + " " + format(base_address,'016b') + " #" + before_comment + "\n")
-            ITSD_file.write(before_machine_code + " " + format(1+len(microcode_list),'08b') + " #" + before_comment + "\n")
-            IIRND_file.write(before_machine_code + " " + format(int(before_reset_num),'08b')+ " #" + before_comment + "\n")
+            Instruction_Class_file.write(before_machine_code + " " + format(int(before_class_num),'08b') + " #" + before_comment + "\n")
             for microcode in microcode_list:
                 Microcode_ROM_file.write(convert_binary_string_to_binary(microcode))
 
             microcode_list.clear()
             before_machine_code = now_machine_code
             before_comment = now_comment
-            before_reset_num = now_reset_num
+            before_class_num = now_class_num
             microcode_list.append(line_list[1])
             continue
         else:
             before_machine_code = now_machine_code
             before_comment = now_comment
-            before_reset_num = now_reset_num
+            before_class_num = now_class_num
             microcode_list.append(line_list[1])
             continue   
 
