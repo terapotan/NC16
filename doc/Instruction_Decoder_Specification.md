@@ -70,6 +70,7 @@
 
 - IR Fetch Enable：IR Fetch EnableがHのとき、クロックが立ち上がったときの、メモリからIRへのデータ読み込みを有効にします。Lのときデータ読み込みを無効にします。
 - MFCR Count Enable：MFCR Count EnableがHのとき、クロックが立ち上がったときの、MFCRのカウントアップを有効にします。Lのときカウントアップを無効にします。
+- MFCR Zero Load：MFCR Zero LoadがHのとき、次のクロックが立ち上がったときにMFCRの値を0にセットします。Lのときは何もしません。
 - CCB Gate Switch：Microcode ROMからの出力をCPU Control BUS(CCB)に出力するかしないかを選択します。0b1のときMicrocode ROMからの出力をCCBに出力し、0b0のときNOP相当の信号をCCBに出力します。
 - PC Count Enable：PC Count EnableがHのとき、クロックが立ち上がったときの、PCのカウントアップを有効にします。Lのときカウントアップを無効にします。
 - INT Gate Switch：0b1のときInstruction ClassifierへのINT信号の入力を有効にします。0b0のときINT信号の値が何であれ、Instruction Classifierには0b0のINT信号が入力されます。
@@ -78,9 +79,10 @@
 |:--:|:--:|
 [5]|IR Fetch Enable
 [4]|MFCR Count Enable
-[3]|CCB Gate Switch
-[2]|PC Count Enable
-[1]|INT Gate Switch
+[3]|MFCR Zero Load
+[2]|CCB Gate Switch
+[1]|PC Count Enable
+[0]|INT Gate Switch
 
 
 　IDCの状態遷移図は次の通りです。状態に書かれた2進数はDecoder Control BUSを表します。
@@ -120,6 +122,18 @@ stateDiagram-v2
 
     Instruction_Class_2 --> INT_Check<br>000001 :XX
 ```
+
+　各状態は8ビットの値で表されます。各状態に対応した値は次の通りです。
+|状態名|値(10進数)
+|:--:|:--:|
+|INT_Check|0|
+|Instruction_Fetch_1|1
+|Instruction_Fetch_2|2
+|Microcode_Execute_11|3
+|Microcode_Execute_12|4
+|Microcode_Execute_21|5
+|Microcode_Execute_22|6
+
 
 ## Microcode仕様
 |bit|意味|
