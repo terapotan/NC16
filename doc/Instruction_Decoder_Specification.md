@@ -112,11 +112,13 @@ stateDiagram-v2
 
     Instruction_Fetch_1<br>100010 --> Instruction_Fetch_2<br>100000 : XX
 
-    Instruction_Fetch_2<br>100000 --> Instruction_Class_1 : 1X
+    Instruction_Fetch_2<br>100000 --> Instruction_Check<br>000000 : XX
+
+    Instruction_Check<br>000000 --> Instruction_Class_1 : 1X
 
     Instruction_Class_1 --> INT_Check<br>000001 :XX
 
-    Instruction_Fetch_2<br>100000 --> Instruction_Class_2 : 2X
+    Instruction_Check<br>000000 --> Instruction_Class_2 : 2X
 
     Instruction_Class_2 --> INT_Check<br>000001 :XX
 ```
@@ -128,10 +130,10 @@ stateDiagram-v2
 |Instruction_Fetch_1|1
 |Instruction_Fetch_2|2
 |Microcode_Execute_11|3
-|Microcode_Execute_12|4
-|Microcode_Execute_21|5
-|Microcode_Execute_22|6
+|Microcode_Execute_21|4
+|Microcode_Execute_22|5
 
+　現在ある状態にいる状態で、クロックを立ち上げると、現在の状態で出力されている信号が実行されます。例えばINT_Checkにいる状態でクロックを立ち上げると、そのクロック立ち上げでは出力000000で実行される命令が実行され、次の状態に移動します。これは、クロックを立ち上げてもすぐには出力が変化しないためです。
 
 ## Microcode仕様
 |bit|意味|
