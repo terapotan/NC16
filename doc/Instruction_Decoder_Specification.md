@@ -169,11 +169,10 @@ IMBDに入力する信号の仕様は次の通りです。
 |[19]|Carry Flag|
 |[18]|Zero Flag|
 |[17]|Sign Flag|
-|[16]|Instruction Execute|
+|[16]|Instruction Execute(ALLWAYS 1)|
 |[15:0]|オペコード
 
-Instruction Execute信号とは命令の実行タイミングを指令する信号です。NC-16の命令長は4バイトです。一方一回のクロックで取得できるデータは2バイト長です。RAM内の命令をすべて取り込むには2クロック必要になります。以上の事情からNC-16は毎クロック命令を実行するわけにはいきませんから、命令実行のタイミングを指令する信号が必要になります。その信号がInstruction Executeです。
-
+Instruction Execute信号は過去の命令デコード方式で使用されていたものであり、現在の命令デコード方式では使用されていません。前命令デコード方式との互換性を保つため、常に1を入力してください。
 
 ### flag_write_sw
 　FLAGSレジスタへ入力する信号を切り替えます。0b0のときレジスタの入力バスに流れている信号をFLAGSレジスタへ入力します。0b1のときALUからのCarry Flag,Zero Flag,Sign Flagの値をFLAGSレジスタへ入力します（それ以外のビットは保持します）。0b0の時はRegister Write EnableをFLAGSレジスタにセットしないとFLAGSレジスタへの書き込みは行われませんが、0b1の時はRegister Write Enableの指定に関係なく、ALUからFLAGSレジスタへのCarry,Zero,Sign Flag信号の書き込みを必ず行います。もちろんRegister Write Enableで指定したレジスタへの書き込みも併せて行われます。
