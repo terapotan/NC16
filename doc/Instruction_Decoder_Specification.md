@@ -61,25 +61,77 @@
 - Instruction Class Value：Instruction Classifierから出力された命令のクラス値です。
 - INT：INTがHのとき、割り込みが起きたことを意味します。Lのとき割り込みは起きていないことを意味します。
 
+|bit|意味|
+|:--:|:--:|
+[2]|Instruction Class Value
+[1]|INT
+
 　IDCから出力される信号（Decoder Control BUS）一覧です。
+
 - IR Fetch Enable：IR Fetch EnableがHのとき、クロックが立ち上がったときの、メモリからIRへのデータ読み込みを有効にします。Lのときデータ読み込みを無効にします。
 - MFCR Count Enable：MFCR Count EnableがHのとき、クロックが立ち上がったときの、MFCRのカウントアップを有効にします。Lのときカウントアップを無効にします。
 - CCB Gate Switch：Microcode ROMからの出力をCPU Control BUS(CCB)に出力するかしないかを選択します。0b1のときMicrocode ROMからの出力をCCBに出力し、0b0のときNOP相当の信号をCCBに出力します。
 - PC Count Enable：PC Count EnableがHのとき、クロックが立ち上がったときの、PCのカウントアップを有効にします。Lのときカウントアップを無効にします。
 - INT Gate Switch：0b1のときInstruction ClassifierへのINT信号の入力を有効にします。0b0のときINT信号の値が何であれ、Instruction Classifierには0b0のINT信号が入力されます。
 
+|bit|意味|
+|:--:|:--:|
+[5]|IR Fetch Enable
+[4]|MFCR Count Enable
+[3]|CCB Gate Switch
+[2]|PC Count Enable
+[1]|INT Gate Switch
+
+
+　IDCの状態遷移図は次の通りです。状態に書かれた2進数はDecoder Control BUSを表します。
+
+```mermaid
+stateDiagram-v2
+    state INT_PROC{
+        T.B.D.
+    }
+    state Instruction_Class_1{
+        [*] --> Microcode_Execute_11<br>001100
+        Microcode_Execute_11<br>001100 --> [*]
+    }
+
+    state Instruction_Class_2{
+        [*] --> Microcode_Execute_21<br>010100
+
+        Microcode_Execute_21<br>010100 --> Microcode_Execute_22<br>001100
+
+        Microcode_Execute_22<br>001100 --> [*]
+    }
+
+
+    [*] --> INT_Check<br>000001: reset
+    INT_Check<br>000001 --> Instruction_Fetch_1<br>100010: X0
+
+    INT_Check<br>000001 --> INT_PROC:X1
+    INT_PROC --> INT_Check<br>000001:XX
+
+    Instruction_Fetch_1<br>100010 --> Instruction_Fetch_2<br>100000 : XX
+
+    Instruction_Fetch_2<br>100000 --> Instruction_Class_1 : 1X
+
+    Instruction_Class_1 --> INT_Check<br>000001 :XX
+
+    Instruction_Fetch_2<br>100000 --> Instruction_Class_2 : 2X
+
+    Instruction_Class_2 --> INT_Check<br>000001 :XX
+```
+
 ## Microcode仕様
 |bit|意味|
 |:--:|:--:|
 [23]|未使用
-[22]|PC Decrement
+[22]|未使用
 [21]|MOR write enable
 [20]|IR operand or MOR operand select
 [19:0]|CPU Control BUS
 
-> Microcodeのビット数を変更する場合は、ROMデータジェネレータの都合上、8の倍数ビットにしなければならない。ファイルの読み書きがバイト単位でしか行えないためである。
-### PC Decrement
-　0b1のときPCをデクリメントします。0b0のときは何もしません。
+> Microcodeのビット数を変更する場合は、ROMデータジェネレータの都合上、8の倍数ビットにしなければなりません。ファイルの読み書きがバイト単位でしか行えないためです。
+
 ### MOR write enable
 　MOR write enableが0b1のとき、該当のワードの下位16ビットをMORに書き込みます。このときCPU Control BUSにはnop相当の信号が出力されます。0b0のとき該当ワードの下位20ビットをCPU Control BUSに出力します。
 ### IR operand or MOR operand select
