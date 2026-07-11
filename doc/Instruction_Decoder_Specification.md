@@ -44,6 +44,8 @@
 
 ## 各部解説
 　命令デコードに関わる部品を解説します。
+### Instruction Classifier
+　オペコードに対応する命令のクラス値を算出します。クラス値のサイズは8ビットです。
 ### Instruction Register(IR)
 　メモリから読みだした命令を格納するレジスタです。実体は16bit X 2のシフトレジスタです。
 ### Instruction Microcode Base-address Decoder(IMBD)
