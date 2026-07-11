@@ -1,0 +1,16 @@
+# 状態と値の対応
+# INT_Check 00000000
+# Instruction_Fetch_1 00000001
+# Instruction_Fetch_2 00000010
+# Microcode_Execute_11 00000011
+# Microcode_Execute_21 00000100
+# Microcode_Execute_22 00000101
+# Instruction_Check 00000110
+
+00000000 000001 #INT_Check
+00000001 100010 #Instruction_Fetch_1
+00000010 100010 #Instruction_Fetch_2
+00000011 001100 #Microcode_Execute_11
+00000100 010100 #Microcode_Execute_21
+00000101 001100 #Microcode_Execute_22
+00000110 000000 #Instruction_Check

@@ -1,0 +1,23 @@
+# 状態と値の対応
+# INT_Check 00000000
+# Instruction_Fetch_1 00000001
+# Instruction_Fetch_2 00000010
+# Microcode_Execute_11 00000011
+# Microcode_Execute_21 00000100
+# Microcode_Execute_22 00000101
+# Instruction_Check 00000110
+
+
+
+0xxxxxxxx00000000 00000001 # INT_Check -> Instruction_Fetch_1
+1xxxxxxxx00000000 00000000 # INT_Check -> INT_PROC(INT処理未実装につき、とりあえずINT_Checkに飛ばす)
+
+xxxxxxxxx00000001 00000010 # Instruction_Fetch_1 -> Instruction_Fetch_2
+xxxxxxxxx00000010 00000110 # Instruction_Fetch_2 -> Instruction_Check
+x0000000100000110 00000011 # Instruction_Check -> Microcode_Execute_11
+x0000001000000110 00000100 # Instruction_Check -> Microcode_Execute_21
+
+xxxxxxxxx00000011 00000000 # Microcode_Execute_11 -> INT_Check
+
+xxxxxxxxx00000100 00000101 # Microcode_Execute_21 -> Microcode_Execute_22
+xxxxxxxxx00000101 00000000 # Microcode_Execute_22 -> INT_Check
