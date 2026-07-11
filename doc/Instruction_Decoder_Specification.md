@@ -63,10 +63,6 @@
 - Instruction Class Value：Instruction Classifierから出力された命令のクラス値です。
 - INT：INTがHのとき、割り込みが起きたことを意味します。Lのとき割り込みは起きていないことを意味します。
 
-|bit|意味|
-|:--:|:--:|
-[2]|Instruction Class Value
-[1]|INT
 
 　IDCから出力される信号（Decoder Control BUS）一覧です。
 
@@ -87,7 +83,7 @@
 [0]|INT Gate Switch
 
 
-　IDCの状態遷移図は次の通りです。状態に書かれた2進数はDecoder Control BUSを表します。
+　IDCの状態遷移図は次の通りです。状態に書かれた2進数はDecoder Control BUSを表します。矢印付近に書かれた数値はIDCに入力される値のうち、Instruction Class ValueとINTを並べて書いたものです。
 
 ```mermaid
 stateDiagram-v2
