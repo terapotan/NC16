@@ -4,3 +4,4 @@
 - [ISA](./ISA.md)
 - [NC-16アーキテクチャ](./Architecture.md)
 - [命令デコーダの詳細仕様](./Instruction_Decoder_Specification.md)
+- [割り込み処理仕様](./Interrupt_specification.md)
