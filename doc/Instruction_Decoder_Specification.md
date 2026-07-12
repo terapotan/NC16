@@ -204,6 +204,7 @@ ALU Input1 Selectの仕様は次の通りです。
 |1|0|1|0|Input1=PC Register|
 |1|0|1|1|Input1=MEMVAL register|
 |1|1|0|0|Input1=FLAGS register|
+|1|1|0|1|Input1=INTNUM register|
 |X|X|X|X|禁止|
 
 ### ALU Input2 Select
