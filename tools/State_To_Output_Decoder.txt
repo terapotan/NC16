@@ -6,6 +6,8 @@
 # Microcode_Execute_21 00000100
 # Microcode_Execute_22 00000101
 # Instruction_Check 00000110
+# INT_PROC_1 00000111
+# INT_PROC_2 00001000
 
 00000000 000001 #INT_Check
 00000001 100010 #Instruction_Fetch_1
@@ -14,3 +16,5 @@
 00000100 010100 #Microcode_Execute_21
 00000101 001100 #Microcode_Execute_22
 00000110 000000 #Instruction_Check
+00000111 010100 #INT_PROC_1
+00001000 001100 #INT_PROC_2

@@ -17,6 +17,7 @@
 　命令の分類はInstruction classfierで行っています。与えられオペコードを元に、対応するクラスを出力します。
 
 　現在次のクラス値が定義されています。
+1. 0：割り込み処理
 1. 1：マイクロコード長1の命令
 2. 2：マイクロコード長2の命令
 3. 4：マイクロコード長4の命令
@@ -88,17 +89,19 @@
 ```mermaid
 stateDiagram-v2
     state INT_PROC{
-        T.B.D.
+        [*] --> INT_PROC_1<br>010100 
+        INT_PROC_1<br>010100 --> INT_PROC_2<br>001100 :XX
+        INT_PROC_2<br>001100 --> [*] 
     }
     state Instruction_Class_1{
-        [*] --> Microcode_Execute_11<br>001100
+        [*] --> Microcode_Execute_11<br>001100 
         Microcode_Execute_11<br>001100 --> [*]
     }
 
     state Instruction_Class_2{
         [*] --> Microcode_Execute_21<br>010100
 
-        Microcode_Execute_21<br>010100 --> Microcode_Execute_22<br>001100
+        Microcode_Execute_21<br>010100 --> Microcode_Execute_22<br>001100 :XX
 
         Microcode_Execute_22<br>001100 --> [*]
     }
@@ -132,6 +135,9 @@ stateDiagram-v2
 |Microcode_Execute_11|3
 |Microcode_Execute_21|4
 |Microcode_Execute_22|5
+|Instruction_Check|6
+|INT_PROC_1|7
+|INT_PROC_2|8
 
 　現在ある状態にいる状態で、クロックを立ち上げると、現在の状態で出力されている信号が実行されます。例えばINT_Checkにいる状態でクロックを立ち上げると、そのクロック立ち上げでは出力000000で実行される命令が実行され、次の状態に移動します。これは、クロックを立ち上げてもすぐには出力が変化しないためです。
 
@@ -168,13 +174,16 @@ stateDiagram-v2
 IMBDに入力する信号の仕様は次の通りです。
 |bit|意味|
 |:--:|:--:|
+|[20]|INT|
 |[19]|Carry Flag|
 |[18]|Zero Flag|
 |[17]|Sign Flag|
-|[16]|Instruction Execute(ALLWAYS 1)|
+|[16]|Instruction Execute(NOT USED)|
 |[15:0]|オペコード
 
 Instruction Execute信号は過去の命令デコード方式で使用されていたものであり、現在の命令デコード方式では使用されていません。前命令デコード方式との互換性を保つため、常に1を入力してください。
+
+INTは、INT信号（割り込み通知用信号）です。
 
 ### flag_write_sw
 　FLAGSレジスタへ入力する信号を切り替えます。0b0のときレジスタの入力バスに流れている信号をFLAGSレジスタへ入力します。0b1のときALUからのCarry Flag,Zero Flag,Sign Flagの値をFLAGSレジスタへ入力します（それ以外のビットは保持します）。0b0の時はRegister Write EnableをFLAGSレジスタにセットしないとFLAGSレジスタへの書き込みは行われませんが、0b1の時はRegister Write Enableの指定に関係なく、ALUからFLAGSレジスタへのCarry,Zero,Sign Flag信号の書き込みを必ず行います。もちろんRegister Write Enableで指定したレジスタへの書き込みも併せて行われます。

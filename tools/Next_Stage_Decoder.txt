@@ -6,11 +6,15 @@
 # Microcode_Execute_21 00000100
 # Microcode_Execute_22 00000101
 # Instruction_Check 00000110
+# INT_PROC_1 00000111
+# INT_PROC_2 00001000
 
 
 
 0xxxxxxxx00000000 00000001 # INT_Check -> Instruction_Fetch_1
-1xxxxxxxx00000000 00000000 # INT_Check -> INT_PROC(INT処理未実装につき、とりあえずINT_Checkに飛ばす)
+1xxxxxxxx00000000 00000111 # INT_Check -> INT_PROC_1
+xxxxxxxxx00000111 00001000 # INT_PROC_1 -> INT_PROC_2
+xxxxxxxxx00001000 00000000 # INT_PROC_2 -> INT_Check
 
 xxxxxxxxx00000001 00000010 # Instruction_Fetch_1 -> Instruction_Fetch_2
 xxxxxxxxx00000010 00000110 # Instruction_Fetch_2 -> Instruction_Check

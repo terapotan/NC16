@@ -91,7 +91,7 @@ def export_IMBD_ITSD_MicrocodeROM():
             continue
 
         #前読み込んだ機械語と現在読み込んだ機械語が異なる場合
-        #IMBD,ISTD,Microcode_ROMへの書き込みを行う
+        #IMBD,Microcode_ROMへの書き込みを行う
         if before_machine_code != now_machine_code:
             base_address = Microcode_ROM_file.tell() // MICROCODE_BYTES
             IMBD_file.write(before_machine_code + " " + format(base_address,'016b') + " #" + before_comment + "\n")
