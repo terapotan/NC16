@@ -247,6 +247,7 @@ bit9|bit8|bit7|意味|
 |1|0|0|1|MEMADDR書き込み有効|
 |1|0|1|0|MEMVAL書き込み有効|
 |1|0|1|1|FLAGS書き込み有効|
+|1|1|0|0|INTNUM書き込み有効|
 |1|1|1|1|全レジスタ書き込み無効|
 |X|X|X|X|禁止|
 ### RAM Address Select
