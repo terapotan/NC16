@@ -89,9 +89,10 @@
 ```mermaid
 stateDiagram-v2
     state INT_PROC{
-        [*] --> INT_PROC_1<br>010100 
-        INT_PROC_1<br>010100 --> INT_PROC_2<br>001100 :XX
-        INT_PROC_2<br>001100 --> [*] 
+        [*] --> INT_PROC_1<br>010101
+        INT_PROC_1<br>010101 --> INT_PROC_2<br>010101 :XX
+        INT_PROC_2<br>010101 --> INT_PROC_3<br>001101 :XX
+        INT_PROC_3<br>001101 --> [*] 
     }
     state Instruction_Class_1{
         [*] --> Microcode_Execute_11<br>001100 
@@ -138,6 +139,7 @@ stateDiagram-v2
 |Instruction_Check|6
 |INT_PROC_1|7
 |INT_PROC_2|8
+|INT_PROC_3|9
 
 　現在ある状態にいる状態で、クロックを立ち上げると、現在の状態で出力されている信号が実行されます。例えばINT_Checkにいる状態でクロックを立ち上げると、そのクロック立ち上げでは出力000000で実行される命令が実行され、次の状態に移動します。これは、クロックを立ち上げてもすぐには出力が変化しないためです。
 
