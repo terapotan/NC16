@@ -91,8 +91,18 @@ stateDiagram-v2
     state INT_PROC{
         [*] --> INT_PROC_1<br>010101
         INT_PROC_1<br>010101 --> INT_PROC_2<br>010101 :XX
-        INT_PROC_2<br>010101 --> INT_PROC_3<br>001101 :XX
-        INT_PROC_3<br>001101 --> [*] 
+        INT_PROC_2<br>010101 --> INT_PROC_3<br>010101 :XX
+        INT_PROC_3<br>010101 --> INT_PROC_4<br>010101 :XX
+        INT_PROC_4<br>010101 --> INT_PROC_5<br>010101 :XX
+        INT_PROC_5<br>010101 --> INT_PROC_6<br>010101 :XX
+        INT_PROC_6<br>010101 --> INT_PROC_7<br>010101 :XX
+        INT_PROC_7<br>010101 --> INT_PROC_8<br>010101 :XX
+        INT_PROC_8<br>010101 --> INT_PROC_9<br>010101 :XX
+        INT_PROC_9<br>010101 --> INT_PROC_10<br>010101 :XX
+        INT_PROC_10<br>010101 --> INT_PROC_11<br>010101 :XX
+        INT_PROC_11<br>010101 --> INT_PROC_12<br>010101 :XX
+        INT_PROC_12<br>010101 -->       INT_PROC_13<br>001101 :XX
+        INT_PROC_13<br>001101 --> [*] 
     }
     state Instruction_Class_1{
         [*] --> Microcode_Execute_11<br>001100 
@@ -140,6 +150,17 @@ stateDiagram-v2
 |INT_PROC_1|7
 |INT_PROC_2|8
 |INT_PROC_3|9
+|INT_PROC_4|10
+|INT_PROC_5|11
+|INT_PROC_6|12
+|INT_PROC_7|13
+|INT_PROC_8|14
+|INT_PROC_9|15
+|INT_PROC_10|16
+|INT_PROC_11|17
+|INT_PROC_12|18
+|INT_PROC_13|19
+
 
 　現在ある状態にいる状態で、クロックを立ち上げると、現在の状態で出力されている信号が実行されます。例えばINT_Checkにいる状態でクロックを立ち上げると、そのクロック立ち上げでは出力000000で実行される命令が実行され、次の状態に移動します。これは、クロックを立ち上げてもすぐには出力が変化しないためです。
 

@@ -3746,7 +3746,18 @@
       <a name="table">0xxxxxxxx00000000 00000001 # INT_Check -&gt; Instruction_Fetch_1
 1xxxxxxxx00000000 00000111 # INT_Check -&gt; INT_PROC_1
 xxxxxxxxx00000111 00001000 # INT_PROC_1 -&gt; INT_PROC_2
-xxxxxxxxx00001000 00000000 # INT_PROC_2 -&gt; INT_Check
+xxxxxxxxx00001000 00001001 # INT_PROC_2 -&gt; INT_PROC_3
+xxxxxxxxx00001001 00001010 # INT_PROC_3 -&gt; INT_PROC_4
+xxxxxxxxx00001010 00001011 # INT_PROC_4 -&gt; INT_PROC_5
+xxxxxxxxx00001011 00001100 # INT_PROC_5 -&gt; INT_PROC_6
+xxxxxxxxx00001100 00001101 # INT_PROC_6 -&gt; INT_PROC_7
+xxxxxxxxx00001101 00001110 # INT_PROC_7 -&gt; INT_PROC_8
+xxxxxxxxx00001110 00001111 # INT_PROC_8 -&gt; INT_PROC_9
+xxxxxxxxx00001111 00010000 # INT_PROC_9 -&gt; INT_PROC_10
+xxxxxxxxx00010000 00010001 # INT_PROC_10 -&gt; INT_PROC_11
+xxxxxxxxx00010001 00010010 # INT_PROC_11 -&gt; INT_PROC_12
+xxxxxxxxx00010010 00010011 # INT_PROC_12 -&gt; INT_PROC_13
+xxxxxxxxx00010011 00000000 # INT_PROC_13 -&gt; INT_Check
 xxxxxxxxx00000001 00000010 # Instruction_Fetch_1 -&gt; Instruction_Fetch_2
 xxxxxxxxx00000010 00000110 # Instruction_Fetch_2 -&gt; Instruction_Check
 x0000000100000110 00000011 # Instruction_Check -&gt; Microcode_Execute_11
@@ -3769,7 +3780,18 @@ xxxxxxxxx00000101 00000000 # Microcode_Execute_22 -&gt; INT_Check
 00000101 001100 # Microcode_Execute_22
 00000110 000000 # Instruction_Check
 00000111 010101 # INT_PROC_1
-00001000 001101 # INT_PROC_2
+00001000 010101 # INT_PROC_2
+00001001 010101 # INT_PROC_3
+00001010 010101 # INT_PROC_4
+00001011 010101 # INT_PROC_5
+00001100 010101 # INT_PROC_6
+00001101 010101 # INT_PROC_7
+00001110 010101 # INT_PROC_8
+00001111 010101 # INT_PROC_9
+00010000 010101 # INT_PROC_10
+00010001 010101 # INT_PROC_11
+00010010 010101 # INT_PROC_12
+00010011 001101 # INT_PROC_13
 </a>
     </comp>
     <comp lib="1" loc="(1970,1180)" name="PLA">
@@ -4599,7 +4621,7 @@ xxxxxxxxx00000101 00000000 # Microcode_Execute_22 -&gt; INT_Check
 0xxx10001101101001111 00000001 # jle e (Skip)
 0xxx10001101101011111 00000001 # jle bp (Skip)
 0xxx10001101101101111 00000001 # jle sp (Skip)
-1xxxxxxxxxxxxxxxxxxxx 00000000 # Interrupt
+1xxxxxxxxxxxxxxxxxxxx 00000000 # Interrput
 </a>
     </comp>
     <comp lib="1" loc="(2110,1030)" name="PLA">
@@ -5429,7 +5451,7 @@ xxxxxxxxx00000101 00000000 # Microcode_Execute_22 -&gt; INT_Check
 0xxx10001101101001111 0000001100110100 # jle e (Skip)
 0xxx10001101101011111 0000001100110101 # jle bp (Skip)
 0xxx10001101101101111 0000001100110110 # jle sp (Skip)
-1xxxxxxxxxxxxxxxxxxxx 0000001100110111 # Interrupt
+1xxxxxxxxxxxxxxxxxxxx 0000001100110111 # Interrput
 </a>
     </comp>
     <comp lib="1" loc="(2120,1250)" name="AND Gate">
@@ -5589,8 +5611,9 @@ c020 10020 14020 18020 28 4028 8028 c028
 38 4038 8038 c038 10038 14038 18038 7*78
 38 4038 8038 c038 10038 14038 18038 7*78
 38 4038 8038 c038 10038 14038 18038 38
-4038 8038 c038 10038 14038 18038 7*78 20ffff
-11c040 40078
+4038 8038 c038 10038 14038 18038 7*78 205000
+137c60 28050 200001 11bcb0 18048 200000 10007b 10007a
+34048 124052 2c038 20fff7
 </a>
       <a name="dataWidth" val="24"/>
       <a name="label" val="Microcode_ROM"/>
@@ -5623,7 +5646,7 @@ c020 10020 14020 18020 28 4028 8028 c028
     <wire from="(1150,810)" to="(1180,810)"/>
     <wire from="(1160,830)" to="(1160,850)"/>
     <wire from="(1160,830)" to="(1180,830)"/>
-    <wire from="(1160,850)" to="(1540,850)"/>
+    <wire from="(1160,850)" to="(1380,850)"/>
     <wire from="(1210,960)" to="(1210,980)"/>
     <wire from="(1220,1350)" to="(1220,1500)"/>
     <wire from="(1220,1350)" to="(1750,1350)"/>
@@ -5653,6 +5676,8 @@ c020 10020 14020 18020 28 4028 8028 c028
     <wire from="(1380,1700)" to="(1380,1930)"/>
     <wire from="(1380,1700)" to="(1460,1700)"/>
     <wire from="(1380,1930)" to="(1840,1930)"/>
+    <wire from="(1380,710)" to="(1380,850)"/>
+    <wire from="(1380,710)" to="(1620,710)"/>
     <wire from="(1380,900)" to="(1380,920)"/>
     <wire from="(1410,1790)" to="(1470,1790)"/>
     <wire from="(1410,1800)" to="(1470,1800)"/>
@@ -5677,8 +5702,6 @@ c020 10020 14020 18020 28 4028 8028 c028
     <wire from="(1530,1500)" to="(1530,1570)"/>
     <wire from="(1530,1500)" to="(2370,1500)"/>
     <wire from="(1530,1570)" to="(1830,1570)"/>
-    <wire from="(1540,850)" to="(1540,880)"/>
-    <wire from="(1540,880)" to="(1770,880)"/>
     <wire from="(1570,680)" to="(1570,840)"/>
     <wire from="(1570,840)" to="(1620,840)"/>
     <wire from="(1590,1690)" to="(1680,1690)"/>
@@ -5943,7 +5966,7 @@ c020 10020 14020 18020 28 4028 8028 c028
     <wire from="(490,2060)" to="(1270,2060)"/>
     <wire from="(490,640)" to="(1250,640)"/>
     <wire from="(490,680)" to="(1570,680)"/>
-    <wire from="(490,710)" to="(1620,710)"/>
+    <wire from="(490,710)" to="(1380,710)"/>
     <wire from="(500,750)" to="(500,770)"/>
     <wire from="(500,770)" to="(1150,770)"/>
     <wire from="(500,780)" to="(550,780)"/>
