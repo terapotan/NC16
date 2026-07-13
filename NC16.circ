@@ -96,6 +96,7 @@
     </comp>
     <comp lib="0" loc="(580,610)" name="Constant"/>
     <comp lib="0" loc="(670,600)" name="Constant">
+      <a name="value" val="0x2"/>
       <a name="width" val="16"/>
     </comp>
     <comp lib="0" loc="(680,660)" name="Clock">
