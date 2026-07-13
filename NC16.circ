@@ -69,7 +69,7 @@
       <a name="facing" val="north"/>
     </tool>
     <tool lib="1" name="AND Gate">
-      <a name="facing" val="west"/>
+      <a name="facing" val="north"/>
     </tool>
     <tool lib="1" name="OR Gate"/>
     <tool lib="1" name="XOR Gate"/>
@@ -3672,6 +3672,10 @@
       <a name="fanout" val="16"/>
       <a name="incoming" val="16"/>
     </comp>
+    <comp lib="0" loc="(3010,1190)" name="Constant">
+      <a name="value" val="0x78"/>
+      <a name="width" val="20"/>
+    </comp>
     <comp lib="0" loc="(3200,1190)" name="Splitter">
       <a name="fanout" val="20"/>
       <a name="incoming" val="20"/>
@@ -5457,6 +5461,9 @@ xxxxxxxxx00000101 00000000 # Microcode_Execute_22 -&gt; INT_Check
     <comp lib="1" loc="(2120,1250)" name="AND Gate">
       <a name="facing" val="west"/>
     </comp>
+    <comp lib="1" loc="(3060,1280)" name="NOT Gate">
+      <a name="facing" val="north"/>
+    </comp>
     <comp lib="1" loc="(730,1080)" name="OR Gate"/>
     <comp lib="2" loc="(1350,900)" name="Multiplexer">
       <a name="select" val="2"/>
@@ -5470,6 +5477,9 @@ xxxxxxxxx00000101 00000000 # Microcode_Execute_22 -&gt; INT_Check
       <a name="width" val="16"/>
     </comp>
     <comp lib="2" loc="(2830,1330)" name="Multiplexer">
+      <a name="width" val="20"/>
+    </comp>
+    <comp lib="2" loc="(3080,1200)" name="Multiplexer">
       <a name="width" val="20"/>
     </comp>
     <comp lib="2" loc="(690,1010)" name="Multiplexer">
@@ -5612,8 +5622,8 @@ c020 10020 14020 18020 28 4028 8028 c028
 38 4038 8038 c038 10038 14038 18038 7*78
 38 4038 8038 c038 10038 14038 18038 38
 4038 8038 c038 10038 14038 18038 7*78 205000
-137c60 28050 200001 11bcb0 18048 200000 10007b 10007a
-34048 124052 2c038 20fff7
+137c60 28050 200001 11bcb0 18048 200000 10007b 34048
+124052 2c038 20fff7 133dd8
 </a>
       <a name="dataWidth" val="24"/>
       <a name="label" val="Microcode_ROM"/>
@@ -5885,14 +5895,20 @@ c020 10020 14020 18020 28 4028 8028 c028
     <wire from="(2790,1250)" to="(2920,1250)"/>
     <wire from="(2800,1150)" to="(2800,1240)"/>
     <wire from="(2800,1240)" to="(2970,1240)"/>
+    <wire from="(2800,1410)" to="(2800,1560)"/>
+    <wire from="(2800,1410)" to="(2820,1410)"/>
+    <wire from="(2800,1560)" to="(2810,1560)"/>
     <wire from="(2810,1150)" to="(2810,1290)"/>
-    <wire from="(2810,1350)" to="(2810,1670)"/>
+    <wire from="(2810,1350)" to="(2820,1350)"/>
+    <wire from="(2810,1560)" to="(2810,1670)"/>
+    <wire from="(2820,1350)" to="(2820,1410)"/>
     <wire from="(2830,1190)" to="(2830,1260)"/>
     <wire from="(2830,1190)" to="(2850,1190)"/>
     <wire from="(2830,1260)" to="(2850,1260)"/>
     <wire from="(2830,1330)" to="(2850,1330)"/>
     <wire from="(2850,1150)" to="(2850,1190)"/>
-    <wire from="(2850,1190)" to="(3200,1190)"/>
+    <wire from="(2850,1190)" to="(2850,1210)"/>
+    <wire from="(2850,1210)" to="(3050,1210)"/>
     <wire from="(2850,1260)" to="(2850,1330)"/>
     <wire from="(2870,1000)" to="(2910,1000)"/>
     <wire from="(2870,1010)" to="(2910,1010)"/>
@@ -5914,6 +5930,8 @@ c020 10020 14020 18020 28 4028 8028 c028
     <wire from="(2890,1170)" to="(2940,1170)"/>
     <wire from="(2910,600)" to="(2910,920)"/>
     <wire from="(2910,920)" to="(2980,920)"/>
+    <wire from="(2920,1250)" to="(2920,1530)"/>
+    <wire from="(2920,1530)" to="(3060,1530)"/>
     <wire from="(2920,950)" to="(2920,1250)"/>
     <wire from="(2920,950)" to="(2990,950)"/>
     <wire from="(2940,930)" to="(2940,1170)"/>
@@ -5921,8 +5939,12 @@ c020 10020 14020 18020 28 4028 8028 c028
     <wire from="(2970,780)" to="(2970,1240)"/>
     <wire from="(2980,920)" to="(2980,970)"/>
     <wire from="(2980,970)" to="(2990,970)"/>
+    <wire from="(3010,1190)" to="(3050,1190)"/>
     <wire from="(3020,990)" to="(3020,1850)"/>
     <wire from="(3050,930)" to="(3090,930)"/>
+    <wire from="(3060,1220)" to="(3060,1280)"/>
+    <wire from="(3060,1310)" to="(3060,1530)"/>
+    <wire from="(3080,1200)" to="(3200,1200)"/>
     <wire from="(3090,770)" to="(3090,930)"/>
     <wire from="(3140,2060)" to="(3150,2060)"/>
     <wire from="(3140,970)" to="(3140,2060)"/>
@@ -5930,6 +5952,7 @@ c020 10020 14020 18020 28 4028 8028 c028
     <wire from="(3150,2060)" to="(3150,2070)"/>
     <wire from="(3170,1350)" to="(3170,2090)"/>
     <wire from="(3170,1350)" to="(3200,1350)"/>
+    <wire from="(3200,1190)" to="(3200,1200)"/>
     <wire from="(3200,1320)" to="(3200,1350)"/>
     <wire from="(3200,1320)" to="(3270,1320)"/>
     <wire from="(3220,1000)" to="(3250,1000)"/>

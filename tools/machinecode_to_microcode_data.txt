@@ -154,11 +154,10 @@
 1xxxxxxxxxxxxxxxxxxxx 000000011000000001001000 0 # mov memaddr,sp　6
 1xxxxxxxxxxxxxxxxxxxx 001000000000000000000000 0 # MOR <- 0x0000
 1xxxxxxxxxxxxxxxxxxxx 000100000000000001111011 0 # mov [memaddr+opd],memval 8
-1xxxxxxxxxxxxxxxxxxxx 000100000000000001111010 0 # 試しに入れてみる
 1xxxxxxxxxxxxxxxxxxxx 000000110100000001001000 0 # mov memaddr,INTNUM
 1xxxxxxxxxxxxxxxxxxxx 000100100100000001010010 0 # mov memval,[memaddr+0]
 1xxxxxxxxxxxxxxxxxxxx 000000101100000000111000 0 # jmp memval
 1xxxxxxxxxxxxxxxxxxxx 001000001111111111110111 0 # MOR <- 0xFFF7(Next and FLAGS,MOR)
-#1xxxxxxxxxxxxxxxxxxxx 000100110011110111011000 0 # Interrupt
+1xxxxxxxxxxxxxxxxxxxx 000100110011110111011000 0 # Interrupt
 
 DDDDDDDDDDDDDDDDDDDDD DDDDDDDDDDDDDDDDDDDDDDDD D # DUMMY(ジェネレータ用の書き出し用に追加している行。実際には出力されない。DON'T DELETE THIS !!!)
