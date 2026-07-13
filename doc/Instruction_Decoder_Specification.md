@@ -117,6 +117,18 @@ stateDiagram-v2
         Microcode_Execute_22<br>001100 --> [*]
     }
 
+    state Instruction_Class_7{
+        [*] --> Microcode_Execute_71<br>010100
+
+        Microcode_Execute_71<br>010100 --> Microcode_Execute_72<br>010100 :XX
+        Microcode_Execute_72<br>010100 --> Microcode_Execute_73<br>010100 :XX
+        Microcode_Execute_73<br>010100 --> Microcode_Execute_74<br>010100 :XX
+        Microcode_Execute_74<br>010100 --> Microcode_Execute_75<br>010100 :XX
+        Microcode_Execute_75<br>010100 --> Microcode_Execute_76<br>010100 :XX
+        Microcode_Execute_76<br>010100 --> Microcode_Execute_77<br>001100 :XX
+        Microcode_Execute_77<br>001100 --> [*]
+    }
+
 
     [*] --> INT_Check<br>000001: reset
     INT_Check<br>000001 --> Instruction_Fetch_1<br>100010: X0
@@ -135,6 +147,11 @@ stateDiagram-v2
     Instruction_Check<br>000000 --> Instruction_Class_2 : 2X
 
     Instruction_Class_2 --> INT_Check<br>000001 :XX
+
+    Instruction_Check<br>000000 --> Instruction_Class_7 : 5X
+    Instruction_Class_7 --> INT_Check<br>000001 :XX
+
+
 ```
 
 　各状態は8ビットの値で表されます。各状態に対応した値は次の通りです。
@@ -160,6 +177,13 @@ stateDiagram-v2
 |INT_PROC_11|17
 |INT_PROC_12|18
 |INT_PROC_13|19
+|Microcode_Execute_71|20
+|Microcode_Execute_72|21
+|Microcode_Execute_73|22
+|Microcode_Execute_74|23
+|Microcode_Execute_75|24
+|Microcode_Execute_76|25
+|Microcode_Execute_77|26
 
 
 　現在ある状態にいる状態で、クロックを立ち上げると、現在の状態で出力されている信号が実行されます。例えばINT_Checkにいる状態でクロックを立ち上げると、そのクロック立ち上げでは出力000000で実行される命令が実行され、次の状態に移動します。これは、クロックを立ち上げてもすぐには出力が変化しないためです。

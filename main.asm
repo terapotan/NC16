@@ -16,4 +16,6 @@ loop:
 
 int_handler:
     out 0xffff
-    hlt
+    out 0x0000
+    out 0xffff
+    intret

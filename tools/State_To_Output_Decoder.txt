@@ -19,6 +19,13 @@
 # INT_PROC_11 00010001
 # INT_PROC_12 00010010
 # INT_PROC_13 00010011
+# Microcode_Execute_71 00010100
+# Microcode_Execute_72 00010101
+# Microcode_Execute_73 00010110
+# Microcode_Execute_74 00010111
+# Microcode_Execute_75 00011000
+# Microcode_Execute_76 00011001
+# Microcode_Execute_77 00011010
 
 
 00000000 000001 #INT_Check
@@ -41,3 +48,10 @@
 00010001 010101 #INT_PROC_11
 00010010 010101 #INT_PROC_12
 00010011 001101 #INT_PROC_13
+00010100 010101 # Microcode_Execute_71
+00010101 010101 # Microcode_Execute_72
+00010110 010101 # Microcode_Execute_73
+00010111 010101 # Microcode_Execute_74
+00011000 010101 # Microcode_Execute_75
+00011001 010101 # Microcode_Execute_76
+00011010 001101 # Microcode_Execute_77

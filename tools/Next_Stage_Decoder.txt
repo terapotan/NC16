@@ -19,7 +19,13 @@
 # INT_PROC_11 00010001
 # INT_PROC_12 00010010
 # INT_PROC_13 00010011
-
+# Microcode_Execute_71 00010100
+# Microcode_Execute_72 00010101
+# Microcode_Execute_73 00010110
+# Microcode_Execute_74 00010111
+# Microcode_Execute_75 00011000
+# Microcode_Execute_76 00011001
+# Microcode_Execute_77 00011010
 
 
 0xxxxxxxx00000000 00000001 # INT_Check -> Instruction_Fetch_1
@@ -40,8 +46,19 @@ xxxxxxxxx00010011 00000000 # INT_PROC_13 -> INT_Check
 
 xxxxxxxxx00000001 00000010 # Instruction_Fetch_1 -> Instruction_Fetch_2
 xxxxxxxxx00000010 00000110 # Instruction_Fetch_2 -> Instruction_Check
+
 x0000000100000110 00000011 # Instruction_Check -> Microcode_Execute_11
 x0000001000000110 00000100 # Instruction_Check -> Microcode_Execute_21
+x0000011100000110 00010100 # Instruciton_Check -> Microcode_Execute_71
+
+xxxxxxxxx00010100 00010101 # Microcode_Execute_71 -> Microcode_Execute_72
+xxxxxxxxx00010101 00010110 # Microcode_Execute_72 -> Microcode_Execute_73
+xxxxxxxxx00010110 00010111 # Microcode_Execute_73 -> Microcode_Execute_74
+xxxxxxxxx00010111 00011000 # Microcode_Execute_74 -> Microcode_Execute_75
+xxxxxxxxx00011000 00011001 # Microcode_Execute_75 -> Microcode_Execute_76
+xxxxxxxxx00011001 00011010 # Microcode_Execute_76 -> Microcode_Execute_77
+xxxxxxxxx00011010 00000000 # Microcode_Execute_77 -> INT_Check
+
 
 xxxxxxxxx00000011 00000000 # Microcode_Execute_11 -> INT_Check
 
