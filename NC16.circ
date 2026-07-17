@@ -43,7 +43,7 @@
   <lib desc="#BFH-Praktika" name="10"/>
   <lib desc="#Input/Output-Extra" name="11"/>
   <lib desc="#Soc" name="12"/>
-  <main name="NC16_main"/>
+  <main name="main"/>
   <options>
     <a name="gateUndefined" val="ignore"/>
     <a name="simlimit" val="1000"/>
@@ -89,10 +89,22 @@
       <a name="fanout" val="16"/>
       <a name="incoming" val="16"/>
     </comp>
+    <comp lib="0" loc="(300,820)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+    </comp>
+    <comp lib="0" loc="(350,820)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+    </comp>
     <comp lib="0" loc="(420,640)" name="Splitter">
       <a name="facing" val="south"/>
       <a name="fanout" val="16"/>
       <a name="incoming" val="16"/>
+    </comp>
+    <comp lib="0" loc="(490,810)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="type" val="output"/>
+      <a name="width" val="7"/>
     </comp>
     <comp lib="0" loc="(580,610)" name="Constant"/>
     <comp lib="0" loc="(670,600)" name="Constant">
@@ -102,6 +114,7 @@
     <comp lib="0" loc="(680,660)" name="Clock">
       <a name="appearance" val="NewPins"/>
     </comp>
+    <comp lib="6" loc="(330,780)" name="Keyboard"/>
     <comp lib="6" loc="(420,660)" name="DipSwitch">
       <a name="number" val="16"/>
     </comp>
@@ -111,8 +124,18 @@
       <a name="matrixcols" val="16"/>
     </comp>
     <comp loc="(900,600)" name="NC16_main"/>
+    <wire from="(300,780)" to="(300,820)"/>
+    <wire from="(300,780)" to="(330,780)"/>
+    <wire from="(350,790)" to="(350,810)"/>
+    <wire from="(350,810)" to="(360,810)"/>
+    <wire from="(350,820)" to="(360,820)"/>
+    <wire from="(360,810)" to="(360,820)"/>
     <wire from="(420,630)" to="(420,640)"/>
     <wire from="(420,630)" to="(600,630)"/>
+    <wire from="(460,790)" to="(460,830)"/>
+    <wire from="(460,830)" to="(480,830)"/>
+    <wire from="(470,790)" to="(470,810)"/>
+    <wire from="(470,810)" to="(490,810)"/>
     <wire from="(600,630)" to="(600,640)"/>
     <wire from="(600,640)" to="(680,640)"/>
     <wire from="(630,760)" to="(640,760)"/>
@@ -5873,12 +5896,10 @@ c020 10020 14020 18020 28 4028 8028 c028
     <wire from="(2210,1230)" to="(2210,2060)"/>
     <wire from="(2370,1500)" to="(2370,1850)"/>
     <wire from="(2370,1850)" to="(3020,1850)"/>
-    <wire from="(2380,1210)" to="(2380,1400)"/>
-    <wire from="(2380,1210)" to="(2410,1210)"/>
+    <wire from="(2380,1130)" to="(2380,1400)"/>
+    <wire from="(2380,1130)" to="(2430,1130)"/>
     <wire from="(2400,1030)" to="(2400,1110)"/>
     <wire from="(2400,1110)" to="(2430,1110)"/>
-    <wire from="(2410,1130)" to="(2410,1210)"/>
-    <wire from="(2410,1130)" to="(2430,1130)"/>
     <wire from="(2460,1650)" to="(2460,1670)"/>
     <wire from="(2460,1670)" to="(2820,1670)"/>
     <wire from="(2470,1120)" to="(2480,1120)"/>

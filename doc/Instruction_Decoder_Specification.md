@@ -23,7 +23,8 @@
 3. 4：マイクロコード長4の命令
 4. 5：マイクロコード長5の命令
 5. 6：マイクロコード長6の命令
-6. 8：マイクロコード長8の命令
+6. 7：intret
+7. 8：マイクロコード長8の命令
 
 ### Microcodeの読み出し
 　Microcode ROMからマイクロコードを読み出すには、Microcode ROMに、命令に対応したマイクロコードが格納されているメモリアドレスを指定する必要があります。このメモリアドレスの算出を担っているのが、IBMDとMFCRです。IMBDはオペコードからマイクロコードの起点アドレス（命令に対応したマイクロコードのうち、一番最初に実行されるマイクロコード）を出力します。
@@ -76,6 +77,7 @@
 
 |bit|意味|
 |:--:|:--:|
+[6]|INTRET
 [5]|IR Fetch Enable
 [4]|MFCR Count Enable
 [3]|MFCR Zero Load
@@ -89,67 +91,67 @@
 ```mermaid
 stateDiagram-v2
     state INT_PROC{
-        [*] --> INT_PROC_1<br>010101
-        INT_PROC_1<br>010101 --> INT_PROC_2<br>010101 :XX
-        INT_PROC_2<br>010101 --> INT_PROC_3<br>010101 :XX
-        INT_PROC_3<br>010101 --> INT_PROC_4<br>010101 :XX
-        INT_PROC_4<br>010101 --> INT_PROC_5<br>010101 :XX
-        INT_PROC_5<br>010101 --> INT_PROC_6<br>010101 :XX
-        INT_PROC_6<br>010101 --> INT_PROC_7<br>010101 :XX
-        INT_PROC_7<br>010101 --> INT_PROC_8<br>010101 :XX
-        INT_PROC_8<br>010101 --> INT_PROC_9<br>010101 :XX
-        INT_PROC_9<br>010101 --> INT_PROC_10<br>010101 :XX
-        INT_PROC_10<br>010101 --> INT_PROC_11<br>010101 :XX
-        INT_PROC_11<br>010101 --> INT_PROC_12<br>010101 :XX
-        INT_PROC_12<br>010101 -->       INT_PROC_13<br>001101 :XX
-        INT_PROC_13<br>001101 --> [*] 
+        [*] --> INT_PROC_1<br>0010101
+        INT_PROC_1<br>0010101 --> INT_PROC_2<br>0010101 :XX
+        INT_PROC_2<br>0010101 --> INT_PROC_3<br>0010101 :XX
+        INT_PROC_3<br>0010101 --> INT_PROC_4<br>0010101 :XX
+        INT_PROC_4<br>0010101 --> INT_PROC_5<br>0010101 :XX
+        INT_PROC_5<br>0010101 --> INT_PROC_6<br>0010101 :XX
+        INT_PROC_6<br>0010101 --> INT_PROC_7<br>0010101 :XX
+        INT_PROC_7<br>0010101 --> INT_PROC_8<br>0010101 :XX
+        INT_PROC_8<br>0010101 --> INT_PROC_9<br>0010101 :XX
+        INT_PROC_9<br>0010101 --> INT_PROC_10<br>0010101 :XX
+        INT_PROC_10<br>0010101 --> INT_PROC_11<br>0010101 :XX
+        INT_PROC_11<br>0010101 --> INT_PROC_12<br>0010101 :XX
+        INT_PROC_12<br>0010101 --> INT_PROC_13<br>0001101 :XX
+        INT_PROC_13<br>0001101 --> [*] 
     }
     state Instruction_Class_1{
-        [*] --> Microcode_Execute_11<br>001100 
-        Microcode_Execute_11<br>001100 --> [*]
+        [*] --> Microcode_Execute_11<br>0001100 
+        Microcode_Execute_11<br>0001100 --> [*]
     }
 
     state Instruction_Class_2{
-        [*] --> Microcode_Execute_21<br>010100
+        [*] --> Microcode_Execute_21<br>0010100
 
-        Microcode_Execute_21<br>010100 --> Microcode_Execute_22<br>001100 :XX
+        Microcode_Execute_21<br>0010100 --> Microcode_Execute_22<br>0001100 :XX
 
-        Microcode_Execute_22<br>001100 --> [*]
+        Microcode_Execute_22<br>0001100 --> [*]
     }
 
     state Instruction_Class_7{
-        [*] --> Microcode_Execute_71<br>010100
+        [*] --> Microcode_Execute_71<br>0010100
 
-        Microcode_Execute_71<br>010100 --> Microcode_Execute_72<br>010100 :XX
-        Microcode_Execute_72<br>010100 --> Microcode_Execute_73<br>010100 :XX
-        Microcode_Execute_73<br>010100 --> Microcode_Execute_74<br>010100 :XX
-        Microcode_Execute_74<br>010100 --> Microcode_Execute_75<br>010100 :XX
-        Microcode_Execute_75<br>010100 --> Microcode_Execute_76<br>010100 :XX
-        Microcode_Execute_76<br>010100 --> Microcode_Execute_77<br>001100 :XX
-        Microcode_Execute_77<br>001100 --> [*]
+        Microcode_Execute_71<br>0010100 --> Microcode_Execute_72<br>0010100 :XX
+        Microcode_Execute_72<br>0010100 --> Microcode_Execute_73<br>0010100 :XX
+        Microcode_Execute_73<br>0010100 --> Microcode_Execute_74<br>0010100 :XX
+        Microcode_Execute_74<br>0010100 --> Microcode_Execute_75<br>0010100 :XX
+        Microcode_Execute_75<br>0010100 --> Microcode_Execute_76<br>0010100 :XX
+        Microcode_Execute_76<br>0010100 --> Microcode_Execute_77<br>1001100 :XX
+        Microcode_Execute_77<br>1001100 --> [*]
     }
 
 
-    [*] --> INT_Check<br>000001: reset
-    INT_Check<br>000001 --> Instruction_Fetch_1<br>100010: X0
+    [*] --> INT_Check<br>0000001: reset
+    INT_Check<br>0000001 --> Instruction_Fetch_1<br>0100010: X0
 
-    INT_Check<br>000001 --> INT_PROC:X1
-    INT_PROC --> INT_Check<br>000001:XX
+    INT_Check<br>0000001 --> INT_PROC:X1
+    INT_PROC --> INT_Check<br>0000001:XX
 
-    Instruction_Fetch_1<br>100010 --> Instruction_Fetch_2<br>100000 : XX
+    Instruction_Fetch_1<br>0100010 --> Instruction_Fetch_2<br>0100000 : XX
 
-    Instruction_Fetch_2<br>100000 --> Instruction_Check<br>000000 : XX
+    Instruction_Fetch_2<br>0100000 --> Instruction_Check<br>0000000 : XX
 
-    Instruction_Check<br>000000 --> Instruction_Class_1 : 1X
+    Instruction_Check<br>0000000 --> Instruction_Class_1 : 1X
 
-    Instruction_Class_1 --> INT_Check<br>000001 :XX
+    Instruction_Class_1 --> INT_Check<br>0000001 :XX
 
-    Instruction_Check<br>000000 --> Instruction_Class_2 : 2X
+    Instruction_Check<br>0000000 --> Instruction_Class_2 : 2X
 
-    Instruction_Class_2 --> INT_Check<br>000001 :XX
+    Instruction_Class_2 --> INT_Check<br>0000001 :XX
 
-    Instruction_Check<br>000000 --> Instruction_Class_7 : 5X
-    Instruction_Class_7 --> INT_Check<br>000001 :XX
+    Instruction_Check<br>0000000 --> Instruction_Class_7 : 5X
+    Instruction_Class_7 --> INT_Check<br>0000001 :XX
 
 
 ```
