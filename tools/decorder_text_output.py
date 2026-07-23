@@ -2,15 +2,15 @@ import itertools
 import sys
 
 # 定義: NC-16 レジスタ
-# (名前, 4bit値, 3bit値)
+# (名前, 5bit値, 4bit値, 3bit値)
 REGISTERS = [
-    ("a",  "0000", "000"),
-    ("b",  "0001", "001"),
-    ("c",  "0010", "010"),
-    ("d",  "0011", "011"),
-    ("e",  "0100", "100"),
-    ("bp", "0101", "101"),
-    ("sp", "0110", "110"),
+    ("a",  "00000", "0000", "000"),
+    ("b",  "00001", "0001", "001"),
+    ("c",  "00010", "0010", "010"),
+    ("d",  "00011", "0011", "011"),
+    ("e",  "00100", "0100", "100"),
+    ("bp", "00101", "0101", "101"),
+    ("sp", "00110", "0110", "110"),
 ]
 
 TMP_FILE_PATH="./Instruction_Decorder.txt"
@@ -38,25 +38,33 @@ def expand_registers():
             # #もしくは空行の場合単に無視する
             if not line or line.startswith('#'):
                 continue
-            
-            # r1(aaaa) と r2(bbbb) 両方ある場合
-            if "aaaa" in line and "bbbb" in line:
-                for r1, r2 in itertools.product(REGISTERS, REGISTERS):
-                    name1, a4, a3 = r1
-                    name2, b4, b3 = r2
 
-                    new_line = line.replace("aaaa", a4).replace("bbbb", b4).replace("bbb", b3)
-                    new_line = new_line.replace("r1", name1).replace("r2", name2)
-                    f.write(new_line+"\n")
+            if ("aaaaa" in line) or ("aaaa" in line) or ("aaa" in line) or \
+                ("bbbbb" in line) or ("bbbb" in line) or ("bbb" in line):
+                    if  (("aaaaa" in line) or ("aaaa" in line) or ("aaa" in line) ) and \
+                    (("bbbbb" in line) or ("bbbb" in line) or ("bbb" in line)):
+                        for r1, r2 in itertools.product(REGISTERS, REGISTERS):
+                            name1, a5, a4, a3  = r1
+                            name2, b5, b4, b3  = r2
+                            new_line = line.replace("aaaaa", a5).replace("aaaa", a4).replace("aaa", a3)
+                            new_line = new_line.replace("bbbbb", b5).replace("bbbb", b4).replace("bbb", b3)
+                            new_line = new_line.replace("r1", name1).replace("r2", name2)
+                            f.write(new_line+"\n")
+                    elif  (("aaaaa" in line) or ("aaaa" in line) or ("aaa" in line) ) and \
+                    not (("bbbbb" in line) or ("bbbb" in line) or ("bbb" in line)):
+                        for r1 in REGISTERS:
+                            name1, a5, a4, a3  = r1
+                            new_line = line.replace("aaaaa", a5).replace("aaaa", a4).replace("aaa", a3)
+                            new_line = new_line.replace("r1", name1)
+                            f.write(new_line+"\n")
+                    elif  not (("aaaaa" in line) or ("aaaa" in line) or ("aaa" in line) ) and \
+                    (("bbbbb" in line) or ("bbbb" in line) or ("bbb" in line)):
+                        for r2 in REGISTERS:
+                            name2, b5, b4, b3  = r2
+                            new_line = line.replace("bbbbb", b5).replace("bbbb", b4).replace("bbb", b3)
+                            new_line = new_line.replace("r2", name2)
+                            f.write(new_line+"\n")                            
 
-            # r1(aaaa) のみある場合
-            elif "aaaa" in line:
-                for r1 in REGISTERS:
-                    name1, a4, a3 = r1
-
-                    new_line = line.replace("aaaa", a4).replace("aaa", a3)
-                    new_line = new_line.replace("r1", name1)
-                    f.write(new_line+"\n")
             else:
                 f.write(line+"\n")
 

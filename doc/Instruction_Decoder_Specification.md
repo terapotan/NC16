@@ -193,11 +193,9 @@ stateDiagram-v2
 ## Microcode仕様
 |bit|意味|
 |:--:|:--:|
-[23]|未使用
-[22]|未使用
-[21]|MOR write enable
-[20]|IR operand or MOR operand select
-[19:0]|CPU Control BUS
+[23]|MOR write enable
+[22]|IR operand or MOR operand select
+[21:0]|CPU Control BUS
 
 > Microcodeのビット数を変更する場合は、ROMデータジェネレータの都合上、8の倍数ビットにしなければなりません。ファイルの読み書きがバイト単位でしか行えないためです。
 
@@ -211,12 +209,12 @@ stateDiagram-v2
 
 |bit|意味|
 |:--:|:--:|
-|[19]|flag_write_sw|
-|[18]|HALT|
-|[17:13]|ALU Input1 Select and ALU bypass|
-|[12:10]|ALU Input2 Select|
-|[9:7]|ALU function Select|
-|[6:3]|Register Write Enable|
+|[21]|flag_write_sw|
+|[20]|HALT|
+|[19:14]|ALU Input1 Select and ALU bypass|
+|[13:11]|ALU Input2 Select|
+|[10:8]|ALU function Select|
+|[7:3]|Register Write Enable|
 |[2:1]|RAM Address Select|
 |[0]|RAM Write Enable
 
@@ -243,33 +241,33 @@ ALUのInput1の選択、Input1をALUに入力せずそのままレジスタの�
 
 |bit|意味|
 |:--:|:--:|
-|[17:14]|ALU Input1 Select|
-|[13]|ALU bybass。0b0のときInput1信号はALUをバイパスします。すなわち、ALUを経由せずレジスタ入力側に直接Input1信号が送り込まれます。0b1のときALUにInput1を入力します。|
+|[19:15]|ALU Input1 Select|
+|[14]|ALU bybass。0b0のときInput1信号はALUをバイパスします。すなわち、ALUを経由せずレジスタ入力側に直接Input1信号が送り込まれます。0b1のときALUにInput1を入力します。|
 
 ALU Input1 Selectの仕様は次の通りです。
-|bit17|bit16|bit15|bit14|意味|
-|:--:|:--:|:--:|:--:|:--:|
-|0|0|0|0|Input1=A register|
-|0|0|0|1|Input1=B register|
-|0|0|1|0|Input1=C register|
-|0|0|1|1|Input1=D register|
-|0|1|0|0|Input1=E register|
-|0|1|0|1|Input1=BP register|
-|0|1|1|0|Input1=SP register|
-|0|1|1|1|Input1=オペランド|
-|1|0|0|0|Input1=Input_port|
-|1|0|0|1|Input1=メモリ|
-|1|0|1|0|Input1=PC Register|
-|1|0|1|1|Input1=MEMVAL register|
-|1|1|0|0|Input1=FLAGS register|
-|1|1|0|1|Input1=INTNUM register|
-|1|1|1|0|Input1=inaddr register|
-|1|1|1|1|Input1=outaddr register|
-|X|X|X|X|禁止|
+|bit|bit|bit|bit|bit|意味|
+|:--:|:--:|:--:|:--:|:--:|:--:|
+|0|0|0|0|0|Input1=A register|
+|0|0|0|0|1|Input1=B register|
+|0|0|0|1|0|Input1=C register|
+|0|0|0|1|1|Input1=D register|
+|0|0|1|0|0|Input1=E register|
+|0|0|1|0|1|Input1=BP register|
+|0|0|1|1|0|Input1=SP register|
+|0|0|1|1|1|Input1=オペランド|
+|0|1|0|0|0|Input1=Input_port|
+|0|1|0|0|1|Input1=メモリ|
+|0|1|0|1|0|Input1=PC Register|
+|0|1|0|1|1|Input1=MEMVAL register|
+|0|1|1|0|0|Input1=FLAGS register|
+|0|1|1|0|1|Input1=INTNUM register|
+|0|1|1|1|0|Input1=inaddr register|
+|0|1|1|1|1|Input1=outaddr register|
+|X|X|X|X|X|禁止|
 
 ### ALU Input2 Select
 ALUのInput2の選択を行います。仕様は次の通りです。
-|bit12|bit11|bit10|意味|
+|bit|bit|bit|意味|
 |:--:|:--:|:--:|:--:|
 |0|0|0|Input2=A register|
 |0|0|1|Input2=B register|
@@ -282,7 +280,7 @@ ALUのInput2の選択を行います。仕様は次の通りです。
 |X|X|X|禁止|
 ### ALU function select
 与えられた二つの入力に対し、どのような算術演算を実行するか選択します。仕様は次の通りです。
-bit9|bit8|bit7|意味|
+bit|bit|bit|意味|
 :--:|:--:|:--:|:--:|
 |0|0|0|Input1 + Input2|
 |0|0|1|Input1 - Input2 ※本演算において負数は2の補数を用いて表現します。|
@@ -294,28 +292,28 @@ bit9|bit8|bit7|意味|
 |1|1|1|Input1をInput2ビットだけ右シフト
 ### Register Write Enable
 レジスタへの値書き込みを制御します。仕様は次の通りです。
-|bit6|bit5|bit4|bit3|意味|
-|:--:|:--:|:--:|:--:|:--:|
-|0|0|0|0|A register書き込み有効|
-|0|0|0|1|B register書き込み有効|
-|0|0|1|0|C register書き込み有効|
-|0|0|1|1|D register書き込み有効|
-|0|1|0|0|E register書き込み有効|
-|0|1|0|1|BP register書き込み有効|
-|0|1|1|0|SP register書き込み有効|
-|0|1|1|1|PC register書き込み有効|
-|1|0|0|0|Output_port書き込み有効|
-|1|0|0|1|MEMADDR書き込み有効|
-|1|0|1|0|MEMVAL書き込み有効|
-|1|0|1|1|FLAGS書き込み有効|
-|1|1|0|0|INTNUM書き込み有効|
-|1|1|0|1|inaddr書き込み有効|
-|1|1|1|0|outaddr書き込み有効|
-|1|1|1|1|全レジスタ書き込み無効|
-|X|X|X|X|禁止|
+|bit|bit|bit|bit|bit|意味|
+|:--:|:--:|:--:|:--:|:--:|:--:|
+|0|0|0|0|0|A register書き込み有効|
+|0|0|0|0|1|B register書き込み有効|
+|0|0|0|1|0|C register書き込み有効|
+|0|0|0|1|1|D register書き込み有効|
+|0|0|1|0|0|E register書き込み有効|
+|0|0|1|0|1|BP register書き込み有効|
+|0|0|1|1|0|SP register書き込み有効|
+|0|0|1|1|1|PC register書き込み有効|
+|0|1|0|0|0|Output_port書き込み有効|
+|0|1|0|0|1|MEMADDR書き込み有効|
+|0|1|0|1|0|MEMVAL書き込み有効|
+|0|1|0|1|1|FLAGS書き込み有効|
+|0|1|1|0|0|INTNUM書き込み有効|
+|0|1|1|0|1|inaddr書き込み有効|
+|0|1|1|1|0|outaddr書き込み有効|
+|0|1|1|1|1|全レジスタ書き込み無効|
+|X|X|X|X|X|禁止|
 ### RAM Address Select
 RAMアドレス端子へどの信号を入力するか選択します。仕様は次の通りです。
-|bit2|bit1|意味|
+|bit|bit|意味|
 |:--:|:--:|:--:|
 |0|0|PC|
 |0|1|MEMADDR register + opd|
