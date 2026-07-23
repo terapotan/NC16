@@ -263,6 +263,8 @@ ALU Input1 Selectの仕様は次の通りです。
 |1|0|1|1|Input1=MEMVAL register|
 |1|1|0|0|Input1=FLAGS register|
 |1|1|0|1|Input1=INTNUM register|
+|1|1|1|0|Input1=inaddr register|
+|1|1|1|1|Input1=outaddr register|
 |X|X|X|X|禁止|
 
 ### ALU Input2 Select
@@ -307,6 +309,8 @@ bit9|bit8|bit7|意味|
 |1|0|1|0|MEMVAL書き込み有効|
 |1|0|1|1|FLAGS書き込み有効|
 |1|1|0|0|INTNUM書き込み有効|
+|1|1|0|1|inaddr書き込み有効|
+|1|1|1|0|outaddr書き込み有効|
 |1|1|1|1|全レジスタ書き込み無効|
 |X|X|X|X|禁止|
 ### RAM Address Select
