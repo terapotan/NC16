@@ -150,4 +150,5 @@
 1xxxxxxxxxxxxxxxxxxxx 100000001111111111110111 0 # MOR <- 0xFFF7(Next and FLAGS,MOR)
 1xxxxxxxxxxxxxxxxxxxx 010001100111101101011000 0 # Interrupt
 
+
 DDDDDDDDDDDDDDDDDDDDD DDDDDDDDDDDDDDDDDDDDDDDD D # DUMMY(ジェネレータ用の書き出し用に追加している行。実際には出力されない。DON'T DELETE THIS !!!)
