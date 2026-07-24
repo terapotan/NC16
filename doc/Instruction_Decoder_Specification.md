@@ -263,6 +263,9 @@ ALU Input1 Selectの仕様は次の通りです。
 |0|1|1|0|1|Input1=INTNUM register|
 |0|1|1|1|0|Input1=inaddr register|
 |0|1|1|1|1|Input1=outaddr register|
+|1|0|0|0|0|Input1=buffer|
+|1|0|0|0|1|Input1=buffer_pointer|
+|1|0|0|1|0|Input1=buffer_size|
 |X|X|X|X|X|禁止|
 
 ### ALU Input2 Select
@@ -310,6 +313,9 @@ bit|bit|bit|意味|
 |0|1|1|0|1|inaddr書き込み有効|
 |0|1|1|1|0|outaddr書き込み有効|
 |0|1|1|1|1|全レジスタ書き込み無効|
+|1|0|0|0|0|buffer書き込み有効|
+|1|0|0|0|1|buffer_pointer書き込み有効|
+|1|0|0|1|0|buffer_size書き込み有効|
 |X|X|X|X|X|禁止|
 ### RAM Address Select
 RAMアドレス端子へどの信号を入力するか選択します。仕様は次の通りです。

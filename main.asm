@@ -12,9 +12,14 @@ mov [memaddr+num1],memval
 mov a,0
 loop:
     add a,1
+    setoutaddr 0x1
+    out a
     jmp loop
 
 int_handler:
+    setinaddr 0x0
+    setoutaddr 0x0
     in b
     out b
+    setoutaddr 0x1
     intret
