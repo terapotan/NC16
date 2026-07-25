@@ -200,12 +200,12 @@ stateDiagram-v2
 > Microcodeのビット数を変更する場合は、ROMデータジェネレータの都合上、8の倍数ビットにしなければなりません。ファイルの読み書きがバイト単位でしか行えないためです。
 
 ### MOR write enable
-　MOR write enableが0b1のとき、該当のワードの下位16ビットをMORに書き込みます。このときCPU Control BUSにはnop相当の信号が出力されます。0b0のとき該当ワードの下位20ビットをCPU Control BUSに出力します。
+　MOR write enableが0b1のとき、該当のワードの下位16ビットをMORに書き込みます。このときCPU Control BUSにはnop相当の信号が出力されます。0b0のとき該当ワードの下位22ビットをCPU Control BUSに出力します。
 ### IR operand or MOR operand select
 　Instruction Decoderから出力するオペランドを、IRに格納されているオペランドとするか、MORに格納されているオペランドとするか選択できます。0b0のときIRに格納されているオペランドを、0b1のときMORに格納されているオペランドを出力します。
 
 ## CPU Control BUS(CCB)
-1ビットのInstruction Execute信号、2ビットのFLAGS信号、16ビットのオペコードを20ビットのCPU制御信号に変換します。CPU制御信号（CPU Control Bus）の仕様は次の通りです。
+1ビットのInstruction Execute信号、2ビットのFLAGS信号、16ビットのオペコードを22ビットのCPU制御信号に変換します。CPU制御信号（CPU Control Bus）の仕様は次の通りです。
 
 |bit|意味|
 |:--:|:--:|
