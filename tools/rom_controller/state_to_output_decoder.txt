@@ -1,0 +1,11 @@
+# 状態と値の対応
+# base_addr_receive 00000000
+# data_size_receive 00000001
+# data_send 00000010
+# rom_controller_reset 00000011
+
+
+00000000 00001 #base_addr_receive
+00000001 00010 #data_size_receive
+00000010 01100 #data_send
+00000011 10000 #rom_controller_reset
