@@ -243,11 +243,11 @@ FuncInput2
 |ニーモニック|ファンクションコード|FuncInput1|FuncInput2|オペランド|動作
 |:--:|:--:|:--:|:--:|:--:|:--:|
 |setreadburstmode|0x1f|0xf|0xf|0x0000|　読み込みバースト転送モードフラグを1にセットします|
-## unsetreadburstmode
+## clearreadburstmode
 　読み込みバースト転送モードフラグを0にセットします。
 |ニーモニック|ファンクションコード|FuncInput1|FuncInput2|オペランド|動作
 |:--:|:--:|:--:|:--:|:--:|:--:|
-|unsetreadburstmode|0x20|0xf|0xf|0x0000|　読み込みバースト転送モードフラグを0にセットします|
+|clearreadburstmode|0x20|0xf|0xf|0x0000|　読み込みバースト転送モードフラグを0にセットします|
 ## setzerobufferpointer
 　buffer pointerレジスタの値を0にセットします。
 |ニーモニック|ファンクションコード|FuncInput1|FuncInput2|オペランド|動作
@@ -268,6 +268,16 @@ FuncInput2
 |ニーモニック|ファンクションコード|FuncInput1|FuncInput2|オペランド|動作
 |:--:|:--:|:--:|:--:|:--:|:--:|
 |buffertomemval|0x24|0xf|0xf|opd|buffer pointerレジスタの値を0にセットします
+## setintdisableflag
+　割り込み禁止フラグを1にセットします。
+|ニーモニック|ファンクションコード|FuncInput1|FuncInput2|オペランド|動作
+|:--:|:--:|:--:|:--:|:--:|:--:|
+|setintdisableflag|0x25|0xf|0xf|opd|割り込み禁止フラグを1にセットします
+## clearintdisableflag
+　割り込み禁止フラグを0にセットします。
+|ニーモニック|ファンクションコード|FuncInput1|FuncInput2|オペランド|動作
+|:--:|:--:|:--:|:--:|:--:|:--:|
+|clearintdisableflag|0x26|0xf|0xf|opd|割り込み禁止フラグを0にセットします。
 
 ## スタック操作系命令
 ### push
