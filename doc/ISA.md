@@ -232,12 +232,42 @@ FuncInput2
 　入力アドレスをセットします。inaddrレジスタに値をセットします。
 |ニーモニック|ファンクションコード|FuncInput1|FuncInput2|オペランド|動作
 |:--:|:--:|:--:|:--:|:--:|:--:|
-|setinaddr opd|0x1d|0xf|0xf|0x0000|入力アドレスとしてopdをセットします|
+|setinaddr opd|0x1d|0xf|0xf|opd|入力アドレスとしてopdをセットします|
 ## setoutaddr
 　出力アドレスをセットします。outaddrレジスタに値をセットします。
 |ニーモニック|ファンクションコード|FuncInput1|FuncInput2|オペランド|動作
 |:--:|:--:|:--:|:--:|:--:|:--:|
-|setoutaddr opd|0x1e|0xf|0xf|0x0000|出力アドレスとしてopdをセットします|
+|setoutaddr opd|0x1e|0xf|0xf|opd|出力アドレスとしてopdをセットします|
+## setreadburstmode
+　読み込みバースト転送モードフラグを1にセットします。
+|ニーモニック|ファンクションコード|FuncInput1|FuncInput2|オペランド|動作
+|:--:|:--:|:--:|:--:|:--:|:--:|
+|setreadburstmode|0x1f|0xf|0xf|0x0000|　読み込みバースト転送モードフラグを1にセットします|
+## unsetreadburstmode
+　読み込みバースト転送モードフラグを0にセットします。
+|ニーモニック|ファンクションコード|FuncInput1|FuncInput2|オペランド|動作
+|:--:|:--:|:--:|:--:|:--:|:--:|
+|unsetreadburstmode|0x20|0xf|0xf|0x0000|　読み込みバースト転送モードフラグを0にセットします|
+## setzerobufferpointer
+　buffer pointerレジスタの値を0にセットします。
+|ニーモニック|ファンクションコード|FuncInput1|FuncInput2|オペランド|動作
+|:--:|:--:|:--:|:--:|:--:|:--:|
+|setzerobufferpointer|0x21|0xf|0xf|0x0000|buffer pointerレジスタの値を0にセットします
+## incbufferpointer
+　現在のbuffer pointerレジスタの値に1を加算した値を、buffer pointerレジスタにセットします。
+|ニーモニック|ファンクションコード|FuncInput1|FuncInput2|オペランド|動作
+|:--:|:--:|:--:|:--:|:--:|:--:|
+|setzerobufferpointer|0x22|0xf|0xf|0x0000|現在のbuffer pointerレジスタの値に1を加算した値を、buffer pointerレジスタにセットします
+## setbuffersize
+　buffer sizeレジスタの値をセットします。
+|ニーモニック|ファンクションコード|FuncInput1|FuncInput2|オペランド|動作
+|:--:|:--:|:--:|:--:|:--:|:--:|
+|setbuffersize opd|0x23|0xf|0xf|opd|buffer pointerレジスタの値を0にセットします
+## buffertomemval
+　bufferレジスタの値をmemvalレジスタに転送します。
+|ニーモニック|ファンクションコード|FuncInput1|FuncInput2|オペランド|動作
+|:--:|:--:|:--:|:--:|:--:|:--:|
+|buffertomemval|0x24|0xf|0xf|opd|buffer pointerレジスタの値を0にセットします
 
 ## スタック操作系命令
 ### push
