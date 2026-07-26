@@ -233,11 +233,14 @@ FuncInput2
 |ニーモニック|ファンクションコード|FuncInput1|FuncInput2|オペランド|動作
 |:--:|:--:|:--:|:--:|:--:|:--:|
 |setinaddr opd|0x1d|0xf|0xf|opd|入力アドレスとしてopdをセットします|
+|setinaddr r1|0x1d|r1|0xf|0x0000|入力アドレスとして[r1レジスタの値]をセットします|
 ## setoutaddr
 　出力アドレスをセットします。outaddrレジスタに値をセットします。
 |ニーモニック|ファンクションコード|FuncInput1|FuncInput2|オペランド|動作
 |:--:|:--:|:--:|:--:|:--:|:--:|
 |setoutaddr opd|0x1e|0xf|0xf|opd|出力アドレスとしてopdをセットします|
+|setoutaddr r1|0x1e|r1|0xf|0x0000|出力アドレスとして[r1レジスタの値]をセットします|
+
 ## setreadburstmode
 　読み込みバースト転送モードフラグを1にセットします。
 |ニーモニック|ファンクションコード|FuncInput1|FuncInput2|オペランド|動作
@@ -257,7 +260,7 @@ FuncInput2
 　現在のbuffer pointerレジスタの値に1を加算した値を、buffer pointerレジスタにセットします。
 |ニーモニック|ファンクションコード|FuncInput1|FuncInput2|オペランド|動作
 |:--:|:--:|:--:|:--:|:--:|:--:|
-|setzerobufferpointer|0x22|0xf|0xf|0x0000|現在のbuffer pointerレジスタの値に1を加算した値を、buffer pointerレジスタにセットします
+|incbufferpointer|0x22|0xf|0xf|0x0000|現在のbuffer pointerレジスタの値に1を加算した値を、buffer pointerレジスタにセットします
 ## setbuffersize
 　buffer sizeレジスタの値をセットします。
 |ニーモニック|ファンクションコード|FuncInput1|FuncInput2|オペランド|動作
