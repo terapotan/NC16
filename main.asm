@@ -48,15 +48,12 @@ read_rom_data:
     read_rom_data_loop:
         cmp bp,1
         jl read_rom_data_loop
-    ret
-
-;bufferレジスタから指定のメモリ番地にデータを転送する
-buffer_full_int_handler:
+    ;bufferレジスタから指定のメモリ番地にデータを転送する
     clearreadburstmode
     setzerobufferpointer
 
     mov a,0
-    buffer_full_int_handler_loop:
+    read_rom_data_loop_2:
         buffertomemval
         mov memaddr,d
         mov [memaddr+0],memval
@@ -64,8 +61,11 @@ buffer_full_int_handler:
         add a,1
         incbufferpointer
         cmp a,c
-        jl buffer_full_int_handler_loop
+        jl read_rom_data_loop_2
     
-    ;割り込みが発生し、メモリ転送が完了したことを通知
+    ret
+
+buffer_full_int_handler:
+    ;割り込みが発生したことを通知
     mov bp,1
     intret
