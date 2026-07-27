@@ -1,25 +1,71 @@
 #include "nc16_assemble.asm"
 
-interrupt_handler_base_address = 0x5000
-interrupt_number_1 = 1
 
+rom_send_command_ionum = 2
+buffer_full_int_id = 2
+
+interrupt_handler_base_address = 0x5000
 mov memaddr,0x0000
+
 ; 割り込みハンドラを設定
-num1 = interrupt_handler_base_address+interrupt_number_1
-mov memval,int_handler
+num1 = interrupt_handler_base_address+buffer_full_int_id
+mov memval,buffer_full_int_handler
 mov [memaddr+num1],memval
 
-mov a,0
-loop:
-    add a,1
-    setoutaddr 0x1
-    out a
-    jmp loop
+mov a,rom_send_command_ionum
+mov b,0x0000
+mov c,0x000a
+mov d,0x0900
 
-int_handler:
-    setinaddr 0x0
-    setoutaddr 0x0
-    in b
-    out b
-    setoutaddr 0x1
+call read_rom_data
+hlt
+
+
+; read_rom_data
+; 指定したROMからメモリ上にデータを読み込む。
+; aレジスタ：読み込むROMの入力アドレス及びROMコントローラコマンド受信アドレス。両者は同じにしておく必要がある。
+; bレジスタ：どのアドレスからデータを読み込むか。読み込み起点アドレスを指定する。
+; cレジスタ：読み込むデータ長を指定する。
+; dレジスタ：どのアドレスに読み込んだデータを書き込むか。
+
+; bpレジスタをbuffer_full検知用レジスタとして使用する。1のときbuffer_full割り込みが起きたことを示す
+read_rom_data:
+    ;bufferレジスタ関連の初期化処理を行う
+    setzerobufferpointer
+    setbuffersize c
+
+    ;準備が完了したためROMコントローラに送信開始信号を送信する
+    ;アドレスをセットして割り込みが来て、アドレスが変化するのを防ぐため
+    ;コマンドの送信が完了するまで割り込み禁止とする。
+    setintdisableflag
+    setinaddr a
+    setoutaddr a
+    mov bp,0
+    setreadburstmode
+    out b ; ROMコントローラへコマンド送信：読み込み起点アドレス
+    out c ; ROMコントローラへコマンド送信：読み込むデータ長
+    clearintdisableflag
+    read_rom_data_loop:
+        cmp bp,1
+        jl read_rom_data_loop
+    ret
+
+;bufferレジスタから指定のメモリ番地にデータを転送する
+buffer_full_int_handler:
+    clearreadburstmode
+    setzerobufferpointer
+
+    mov a,0
+    buffer_full_int_handler_loop:
+        buffertomemval
+        mov memaddr,d
+        mov [memaddr+0],memval
+        add d,1
+        add a,1
+        incbufferpointer
+        cmp a,c
+        jl buffer_full_int_handler_loop
+    
+    ;割り込みが発生し、メモリ転送が完了したことを通知
+    mov bp,1
     intret

@@ -252,7 +252,7 @@ FuncInput2
 |:--:|:--:|:--:|:--:|:--:|:--:|
 |clearreadburstmode|0x20|0xf|0xf|0x0000|　読み込みバースト転送モードフラグを0にセットします|
 ## setzerobufferpointer
-　buffer pointerレジスタの値を0にセットします。
+　buffer pointerレジスタの値を0にセットします。読み込みバースト転送モードフラグが1であるとき、この命令は何もしません。
 |ニーモニック|ファンクションコード|FuncInput1|FuncInput2|オペランド|動作
 |:--:|:--:|:--:|:--:|:--:|:--:|
 |setzerobufferpointer|0x21|0xf|0xf|0x0000|buffer pointerレジスタの値を0にセットします
@@ -265,23 +265,29 @@ FuncInput2
 　buffer sizeレジスタの値をセットします。
 |ニーモニック|ファンクションコード|FuncInput1|FuncInput2|オペランド|動作
 |:--:|:--:|:--:|:--:|:--:|:--:|
-|setbuffersize opd|0x23|0xf|0xf|opd|buffer pointerレジスタの値を0にセットします
+|setbuffersize opd|0x23|0xf|0xf|opd|buffer sizeレジスタの値をセットします
+|setbuffersize r1|0x23|r1|0xf|0x0000|buffer sizeレジスタの値をセットします
+
 ## buffertomemval
 　bufferレジスタの値をmemvalレジスタに転送します。
 |ニーモニック|ファンクションコード|FuncInput1|FuncInput2|オペランド|動作
 |:--:|:--:|:--:|:--:|:--:|:--:|
-|buffertomemval|0x24|0xf|0xf|opd|buffer pointerレジスタの値を0にセットします
+|buffertomemval|0x24|0xf|0xf|0x0000|bufferレジスタの値をmemvalレジスタに転送します
 ## setintdisableflag
 　割り込み禁止フラグを1にセットします。
 |ニーモニック|ファンクションコード|FuncInput1|FuncInput2|オペランド|動作
 |:--:|:--:|:--:|:--:|:--:|:--:|
-|setintdisableflag|0x25|0xf|0xf|opd|割り込み禁止フラグを1にセットします
+|setintdisableflag|0x25|0xf|0xf|0x0000|割り込み禁止フラグを1にセットします
 ## clearintdisableflag
 　割り込み禁止フラグを0にセットします。
 |ニーモニック|ファンクションコード|FuncInput1|FuncInput2|オペランド|動作
 |:--:|:--:|:--:|:--:|:--:|:--:|
-|clearintdisableflag|0x26|0xf|0xf|opd|割り込み禁止フラグを0にセットします。
-
+|clearintdisableflag|0x26|0xf|0xf|0x0000|割り込み禁止フラグを0にセットします。
+## checkbufferfull
+　buffer_pointerレジスタの値とbuffer_sizeレジスタの値を比較します。``cmp buffer_pointer,buffer_size``と等価です。
+|ニーモニック|ファンクションコード|FuncInput1|FuncInput2|オペランド|動作
+|:--:|:--:|:--:|:--:|:--:|:--:|
+|checkbufferfull|0x27|0xf|0xf|0x0000|buffer_pointerレジスタの値とbuffer_sizeレジスタの値を比較します
 ## スタック操作系命令
 ### push
 　RAMのスタック領域にデータをプッシュします。スタック領域はメモリの上位アドレスから下位アドレスに伸びる仕様となっています。
