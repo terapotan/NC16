@@ -82,7 +82,7 @@
     <a name="appearance" val="logisim_evolution"/>
     <a name="circuit" val="main"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
-    <a name="simulationFrequency" val="128.0"/>
+    <a name="simulationFrequency" val="2000.0"/>
     <comp lib="0" loc="(1450,1680)" name="Bit Extender">
       <a name="in_width" val="16"/>
       <a name="out_width" val="7"/>
@@ -114,8 +114,21 @@
       <a name="addrWidth" val="16"/>
       <a name="appearance" val="logisim_evolution"/>
       <a name="contents">addr/data: 16 16
-dfd fdfd fdcc fddf df dfdf fdfd 4243
-3452 324 36aa 5434 aaaa
+ff22 8f2a 76 11ff 518 80f 0 f
+1 123 0 fff 504 10f 1 23
+0 830 0 8a6 0 8b9 0 6f
+1 11bf 0 86f ffff 1eff 1 aff
+ffff 13ff 0 8af 0 8bf 572 8aa
+5002 80f 2 81f 0 82f a 83f
+900 15ff 0 bf a 16f 1 8a6
+0 8aa 0 11ff 53c 13ff 0 21ff
+0 232f 0 25ff 0 1d0f 0 1e0f
+0 85f 0 1fff 0 a1f 0 a2f
+0 26ff 0 125f 1 1aff 550 20ff
+0 21ff 0 80f 0 24ff 0 8a3
+0 8aa 0 3f 1 f 1 22ff
+0 1202 0 1aff 55a 8a6 0 8b9
+0 6f 1 11bf 0 85f 1 1cff
 </a>
       <a name="dataWidth" val="16"/>
       <a name="label" val="OS_ROM"/>
@@ -128,14 +141,16 @@ dfd fdfd fdcc fddf df dfdf fdfd 4243
       <a name="appearance" val="logisim_evolution"/>
     </comp>
     <comp lib="6" loc="(1230,1510)" name="TTY">
-      <a name="cols" val="64"/>
-      <a name="rows" val="16"/>
+      <a name="cols" val="120"/>
+      <a name="rows" val="48"/>
     </comp>
     <comp lib="6" loc="(1350,1830)" name="Keyboard"/>
     <comp lib="6" loc="(3070,1670)" name="LedBar">
       <a name="matrixcols" val="16"/>
     </comp>
-    <comp lib="6" loc="(700,2220)" name="Button"/>
+    <comp lib="6" loc="(700,2220)" name="Button">
+      <a name="label" val="RESET"/>
+    </comp>
     <comp loc="(1880,1830)" name="in_switcher"/>
     <comp loc="(2060,3760)" name="rom_controller"/>
     <comp loc="(2180,2050)" name="int_controller"/>
@@ -151,6 +166,8 @@ dfd fdfd fdcc fddf df dfdf fdfd 4243
     <wire from="(1210,2160)" to="(1210,3820)"/>
     <wire from="(1210,3820)" to="(1620,3820)"/>
     <wire from="(1240,1520)" to="(1240,1570)"/>
+    <wire from="(1250,1520)" to="(1250,2220)"/>
+    <wire from="(1250,2220)" to="(1390,2220)"/>
     <wire from="(1290,1790)" to="(1290,1960)"/>
     <wire from="(1290,1790)" to="(1530,1790)"/>
     <wire from="(1290,1960)" to="(1350,1960)"/>
@@ -269,7 +286,7 @@ dfd fdfd fdcc fddf df dfdf fdfd 4243
     <wire from="(3080,2510)" to="(3080,3460)"/>
     <wire from="(3140,1870)" to="(3140,3490)"/>
     <wire from="(3230,1690)" to="(3230,1710)"/>
-    <wire from="(700,2220)" to="(1390,2220)"/>
+    <wire from="(700,2220)" to="(1250,2220)"/>
     <wire from="(720,2160)" to="(850,2160)"/>
     <wire from="(810,1570)" to="(1240,1570)"/>
     <wire from="(810,1570)" to="(810,2090)"/>
@@ -3892,10 +3909,6 @@ dfd fdfd fdcc fddf df dfdf fdfd 4243
     <comp lib="0" loc="(1050,1560)" name="Constant">
       <a name="width" val="16"/>
     </comp>
-    <comp lib="0" loc="(1080,1520)" name="Constant">
-      <a name="value" val="0xffff"/>
-      <a name="width" val="16"/>
-    </comp>
     <comp lib="0" loc="(1080,890)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="label" val="mem_data_in"/>
@@ -3940,7 +3953,7 @@ dfd fdfd fdcc fddf df dfdf fdfd 4243
       <a name="width" val="16"/>
     </comp>
     <comp lib="0" loc="(1210,1500)" name="Constant">
-      <a name="value" val="0x2b"/>
+      <a name="value" val="0x255"/>
       <a name="width" val="16"/>
     </comp>
     <comp lib="0" loc="(1240,1560)" name="Constant">
@@ -5941,9 +5954,78 @@ xxxxxxxxx00000101 00000000 # Microcode_Execute_22 -&gt; INT_Check
 11ff 18 80f 0 f 1 123 0
 fff 4 10f 1 23 0 830 0
 8a6 0 8b9 0 6f 1 11bf 0
-86f ffff 8af 0 8bf 26 8aa 5001
-80f 0 f 1 11ff 22 91f 0
-a1f 0 1cff fffd
+86f ffff 8af 0 8bf 58 8aa 5002
+11ff 19e 21ff 0 232f 0 25ff 0
+1d0f 0 1e0f 0 85f 0 1fff 0
+a1f 0 a2f 0 26ff 0 125f 1
+1aff 36 20ff 0 21ff 0 80f 0
+24ff 0 8a3 0 8aa 0 3f 1
+f 1 22ff 0 1202 0 1aff 40
+8a6 0 8b9 0 6f 1 11bf 0
+85f 1 1cff 0 16f 1 8b2 0
+8a6 0 8aa 0 16f 1 8b3 0
+8a6 0 8aa 0 16f 1 8b4 0
+8a6 0 8aa 0 821 0 8a2 0
+839 0 843 0 33f ff00 73f 8
+123f 0 16ff 96 1e0f 0 a3f 0
+34f ff 124f 0 16ff 96 1e0f 0
+a4f 0 2f 1 11ff 76 8a6 0
+849 0 6f 1 8a6 0 839 0
+6f 1 8a6 0 829 0 6f 1
+8a6 0 8b9 0 6f 1 11bf 0
+506f 7765 7265 6420 6279 204e 432d 3136
+2043 5055 202f 2043 7265 6174 6564 2062
+7920 4d6f 6d6f 7465 7261 2e0a 0 4249
+4f53 2073 7461 7274 6564 2073 7563 6365
+7373 6675 6c6c 792e a00 5365 6172 6368
+696e 6720 666f 7220 6f70 6572 6174 696e
+6720 7379 7374 656d 2e2e 2e0a 0 4f70
+6572 6174 696e 6720 7379 7374 656d 2066
+6f75 6e64 2e0a 0 5b45 5252 4f52 5d20
+4e6f 2062 6f6f 7461 626c 6520 4f53 2066
+6f75 6e64 2e0a 506c 6561 7365 206c 6f61
+6420 6120 626f 6f74 6162 6c65 204f 5320
+696e 746f 204f 535f 524f 4d20 616e 6420
+7072 6573 7320 7468 6520 5245 5345 5420
+6275 7474 6f6e 2e0a a4e 6f74 653a 2049
+6620 7468 6973 206d 6573 7361 6765 2070
+6572 7369 7374 7320 6166 7465 7220 6c6f
+6164 696e 672c 2076 6572 6966 7920 7468
+6174 2074 6865 2066 6972 7374 2034 2062
+7974 6573 206f 6620 7468 6520 4f53 2061
+7265 2030 7832 3432 3120 3078 3866 3261
+2e20 5573 6520 6f73 6173 7365 6d62 6c65
+722e 7079 2074 6f20 6765 6e65 7261 7465
+2061 2076 616c 6964 204f 5320 6269 6e61
+7279 2e0a 0 4f53 206c 6f61 6469 6e67
+2063 6f6d 706c 6574 652e a00 5374 6172
+7469 6e67 206f 7065 7261 7469 6e67 2073
+7973 7465 6d2e a00 4c6f 6164 696e 6720
+6f70 6572 6174 696e 6720 7379 7374 656d
+2e2e 2e0a 4*0 80f 0 81f b0 15ff
+0 bf a 16f 1 8a6 0 8aa
+0 11ff 5c 81f c7 15ff 0 bf
+a 16f 1 8a6 0 8aa 0 11ff
+5c 81f d5 15ff 0 bf a 16f
+1 8a6 0 8aa 0 11ff 5c 80f
+2 81f 0 82f 3 83f 19b 15ff
+0 bf a 16f 1 8a6 0 8aa
+0 11ff 22 81f 19b 8a1 0 809
+0 120f ff21 17ff 244 8a1 0 809
+1 120f 8f2a 17ff 244 8a1 0 829
+2 80f 0 81f e7 15ff 0 bf
+a 16f 1 8a6 0 8aa 0 11ff
+5c 81f 18c 15ff 0 bf a 16f
+1 8a6 0 8aa 0 11ff 5c 80f
+2 81f 3 83f 500 15ff 0 bf
+a 16f 1 8a6 0 8aa 0 11ff
+22 80f 0 81f 173 15ff 0 bf
+a 16f 1 8a6 0 8aa 0 11ff
+5c 81f 17e 15ff 0 bf a 16f
+1 8a6 0 8aa 0 11ff 5c 11ff
+500 80f 0 81f f4 15ff 0 bf
+a 16f 1 8a6 0 8aa 0 11ff
+5c 13ff
 </a>
       <a name="dataWidth" val="16"/>
       <a name="label" val="BIOS_ROM"/>
@@ -6103,8 +6185,10 @@ a1f 0 1cff fffd
     <comp lib="9" loc="(1190,1485)" name="Text">
       <a name="text" val="BIOS_SIZE"/>
     </comp>
-    <wire from="(1010,1540)" to="(1050,1540)"/>
-    <wire from="(1080,1520)" to="(1110,1520)"/>
+    <wire from="(1010,1540)" to="(1030,1540)"/>
+    <wire from="(1030,1520)" to="(1030,1540)"/>
+    <wire from="(1030,1520)" to="(1110,1520)"/>
+    <wire from="(1030,1540)" to="(1050,1540)"/>
     <wire from="(1080,1870)" to="(1080,2310)"/>
     <wire from="(1080,2310)" to="(1860,2310)"/>
     <wire from="(1080,890)" to="(1840,890)"/>
@@ -6743,6 +6827,9 @@ a1f 0 1cff fffd
       <a name="facing" val="west"/>
       <a name="label" val="buffer_full_int"/>
       <a name="type" val="output"/>
+    </comp>
+    <comp lib="0" loc="(1810,3210)" name="Clock">
+      <a name="appearance" val="NewPins"/>
     </comp>
     <comp lib="0" loc="(230,2070)" name="Pin">
       <a name="appearance" val="NewPins"/>

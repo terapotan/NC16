@@ -1,10 +1,15 @@
-#include "nc16_assemble.asm"
+#include "nc16_assemble_OS.asm"
 
 
 rom_send_command_ionum = 2
 buffer_full_int_id = 2
 
 interrupt_handler_base_address = 0x5000
+
+setoutaddr 1
+out 0xffff
+hlt
+
 mov memaddr,0x0000
 
 ; 割り込みハンドラを設定
@@ -62,7 +67,7 @@ read_rom_data:
         incbufferpointer
         cmp a,c
         jl read_rom_data_loop_2
-    
+
     ret
 
 buffer_full_int_handler:
