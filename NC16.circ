@@ -82,7 +82,7 @@
     <a name="appearance" val="logisim_evolution"/>
     <a name="circuit" val="main"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
-    <a name="simulationFrequency" val="2000.0"/>
+    <a name="simulationFrequency" val="4000.0"/>
     <comp lib="0" loc="(1450,1680)" name="Bit Extender">
       <a name="in_width" val="16"/>
       <a name="out_width" val="7"/>
@@ -101,11 +101,43 @@
       <a name="fanout" val="16"/>
       <a name="incoming" val="16"/>
     </comp>
-    <comp lib="0" loc="(720,2160)" name="Clock">
+    <comp lib="0" loc="(490,2160)" name="Clock">
       <a name="appearance" val="NewPins"/>
+    </comp>
+    <comp lib="0" loc="(810,2280)" name="Constant">
+      <a name="value" val="0x7d0"/>
+      <a name="width" val="14"/>
+    </comp>
+    <comp lib="0" loc="(810,2300)" name="Constant">
+      <a name="value" val="0x30"/>
+      <a name="width" val="7"/>
+    </comp>
+    <comp lib="0" loc="(810,2380)" name="Constant">
+      <a name="value" val="0x3e8"/>
+      <a name="width" val="14"/>
+    </comp>
+    <comp lib="0" loc="(810,2400)" name="Constant">
+      <a name="value" val="0x30"/>
+      <a name="width" val="7"/>
+    </comp>
+    <comp lib="0" loc="(830,2310)" name="Constant">
+      <a name="facing" val="north"/>
+      <a name="value" val="0x32"/>
+      <a name="width" val="8"/>
+    </comp>
+    <comp lib="0" loc="(830,2410)" name="Constant">
+      <a name="facing" val="north"/>
+      <a name="value" val="0x32"/>
+      <a name="width" val="8"/>
     </comp>
     <comp lib="1" loc="(1370,1890)" name="OR Gate">
       <a name="facing" val="north"/>
+    </comp>
+    <comp lib="11" loc="(810,2290)" name="Buzzer">
+      <a name="waveform" val="Square"/>
+    </comp>
+    <comp lib="11" loc="(810,2390)" name="Buzzer">
+      <a name="waveform" val="Square"/>
     </comp>
     <comp lib="5" loc="(1670,3650)" name="D Flip-Flop">
       <a name="appearance" val="logisim_evolution"/>
@@ -114,21 +146,35 @@
       <a name="addrWidth" val="16"/>
       <a name="appearance" val="logisim_evolution"/>
       <a name="contents">addr/data: 16 16
-ff22 8f2a 76 11ff 518 80f 0 f
+ff21 8f2a e6 11ff 518 80f 0 f
 1 123 0 fff 504 10f 1 23
 0 830 0 8a6 0 8b9 0 6f
-1 11bf 0 86f ffff 1eff 1 aff
-ffff 13ff 0 8af 0 8bf 572 8aa
-5002 80f 2 81f 0 82f a 83f
-900 15ff 0 bf a 16f 1 8a6
-0 8aa 0 11ff 53c 13ff 0 21ff
-0 232f 0 25ff 0 1d0f 0 1e0f
-0 85f 0 1fff 0 a1f 0 a2f
-0 26ff 0 125f 1 1aff 550 20ff
-0 21ff 0 80f 0 24ff 0 8a3
-0 8aa 0 3f 1 f 1 22ff
-0 1202 0 1aff 55a 8a6 0 8b9
-0 6f 1 11bf 0 85f 1 1cff
+1 11bf 0 86f ffff a48 656c 6c6f
+2c20 4d6f 6d6f 4f53 2057 6f72 6c64 2021
+a00 1eff 1 aff ffff 80f 0 81f
+51a 15ff 0 bf a 16f 1 8a6
+0 8aa 0 11ff 592 13ff 0 8af
+0 8bf 58e 8aa 5002 80f 2 81f
+0 82f a 83f 900 15ff 0 bf
+a 16f 1 8a6 0 8aa 0 11ff
+558 13ff 0 21ff 0 232f 0 25ff
+0 1d0f 0 1e0f 0 85f 0 1fff
+0 a1f 0 a2f 0 26ff 0 125f
+1 1aff 56c 20ff 0 21ff 0 80f
+0 24ff 0 8a3 0 8aa 0 3f
+1 f 1 22ff 0 1202 0 1aff
+576 8a6 0 8b9 0 6f 1 11bf
+0 85f 1 1cff 0 16f 1 8b2
+0 8a6 0 8aa 0 16f 1 8b3
+0 8a6 0 8aa 0 16f 1 8b4
+0 8a6 0 8aa 0 821 0 8a2
+0 839 0 843 0 33f ff00 73f
+8 123f 0 16ff 5cc 1e0f 0 a3f
+0 34f ff 124f 0 16ff 5cc 1e0f
+0 a4f 0 2f 1 11ff 5ac 8a6
+0 849 0 6f 1 8a6 0 839
+0 6f 1 8a6 0 829 0 6f
+1 8a6 0 8b9 0 6f 1 11bf
 </a>
       <a name="dataWidth" val="16"/>
       <a name="label" val="OS_ROM"/>
@@ -140,16 +186,18 @@ ffff 13ff 0 8af 0 8bf 572 8aa
     <comp lib="5" loc="(990,1930)" name="D Flip-Flop">
       <a name="appearance" val="logisim_evolution"/>
     </comp>
+    <comp lib="6" loc="(1110,1320)" name="Button">
+      <a name="label" val="RESET"/>
+    </comp>
     <comp lib="6" loc="(1230,1510)" name="TTY">
+      <a name="bg" val="#000000"/>
+      <a name="color" val="#fffef9"/>
       <a name="cols" val="120"/>
       <a name="rows" val="48"/>
     </comp>
     <comp lib="6" loc="(1350,1830)" name="Keyboard"/>
     <comp lib="6" loc="(3070,1670)" name="LedBar">
       <a name="matrixcols" val="16"/>
-    </comp>
-    <comp lib="6" loc="(700,2220)" name="Button">
-      <a name="label" val="RESET"/>
     </comp>
     <comp loc="(1880,1830)" name="in_switcher"/>
     <comp loc="(2060,3760)" name="rom_controller"/>
@@ -158,6 +206,8 @@ ffff 13ff 0 8af 0 8bf 572 8aa
     <comp loc="(2890,1830)" name="out_switcher"/>
     <wire from="(1040,1940)" to="(1090,1940)"/>
     <wire from="(1090,1940)" to="(1090,2090)"/>
+    <wire from="(1110,1320)" to="(1120,1320)"/>
+    <wire from="(1120,1320)" to="(1120,1340)"/>
     <wire from="(1200,1500)" to="(1200,1740)"/>
     <wire from="(1200,1500)" to="(1230,1500)"/>
     <wire from="(1200,1740)" to="(1480,1740)"/>
@@ -286,8 +336,10 @@ ffff 13ff 0 8af 0 8bf 572 8aa
     <wire from="(3080,2510)" to="(3080,3460)"/>
     <wire from="(3140,1870)" to="(3140,3490)"/>
     <wire from="(3230,1690)" to="(3230,1710)"/>
-    <wire from="(700,2220)" to="(1250,2220)"/>
-    <wire from="(720,2160)" to="(850,2160)"/>
+    <wire from="(490,2160)" to="(850,2160)"/>
+    <wire from="(760,1340)" to="(1120,1340)"/>
+    <wire from="(760,1340)" to="(760,2220)"/>
+    <wire from="(760,2220)" to="(1250,2220)"/>
     <wire from="(810,1570)" to="(1240,1570)"/>
     <wire from="(810,1570)" to="(810,2090)"/>
     <wire from="(810,2090)" to="(1090,2090)"/>

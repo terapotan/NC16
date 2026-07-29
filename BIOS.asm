@@ -186,7 +186,7 @@ bios_start:
     ; OSの読み込み完了の旨のメッセージ出力
     mov a,0
     mov b,bios_message_6
-    call output_string    
+    call output_string
 
     ; OS起動
     mov a,0
