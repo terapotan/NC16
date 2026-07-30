@@ -196,6 +196,15 @@ a 16f 1 8a6 0 8aa 0 11ff
       <a name="rows" val="48"/>
     </comp>
     <comp lib="6" loc="(1350,1830)" name="Keyboard"/>
+    <comp lib="6" loc="(2300,1150)" name="RGB Video">
+      <a name="height" val="256"/>
+      <a name="width" val="256"/>
+    </comp>
+    <comp lib="6" loc="(2390,1400)" name="DotMatrix">
+      <a name="dotshape" val="circle"/>
+      <a name="matrixcols" val="32"/>
+      <a name="matrixrows" val="16"/>
+    </comp>
     <comp lib="6" loc="(3070,1670)" name="LedBar">
       <a name="matrixcols" val="16"/>
     </comp>

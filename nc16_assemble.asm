@@ -1,4 +1,3 @@
-
 ; --- レジスタ定義 ---
 ; FuncInput1, FuncInput2 で使用される4ビットの値
 #subruledef regs {
@@ -14,14 +13,6 @@
     out => 0x9
     none => 0xf
 }
-#bankdef nc16bank
-{
-    addr = 0x0000      
-    size = 0x10000     
-    outp = 0          
-    bits = 16
-}
-#bank nc16bank
 
 ; --- 命令セット定義 ---
 ; ビット構成: {func:8}{in1:4}{in2:4}{opd:16}

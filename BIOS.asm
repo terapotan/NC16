@@ -1,4 +1,4 @@
-#include "nc16_assemble.asm"
+#include "nc16_assemble_BIOS.asm"
 
 os_rom_send_command_ionum = 2
 buffer_full_int_id = 2
