@@ -206,22 +206,22 @@
 }
 
 
-jmp nc16_assemble_start
-
-; 除算を計算する
-; cレジスタに割られる数、dレジスタに割る数を格納し
-; cレジスタに余り、dレジスタに商を除算結果として格納する
-; 符号付き整数には対応していない
-div:
-    mov a,0
-div_inner_loop_28437293731:
-    add a,1
-    sub c,d
-    jns div_inner_loop_28437293731
-    sub a,1
-    add c,d
-    mov d,a
-    ret
+;jmp nc16_assemble_start
+;
+;; 除算を計算する
+;; cレジスタに割られる数、dレジスタに割る数を格納し
+;; cレジスタに余り、dレジスタに商を除算結果として格納する
+;; 符号付き整数には対応していない
+;div:
+;    mov a,0
+;div_inner_loop_28437293731:
+;    add a,1
+;    sub c,d
+;    jns div_inner_loop_28437293731
+;    sub a,1
+;    add c,d
+;    mov d,a
+;    ret
 
 nc16_assemble_start:
 ; 初期化
