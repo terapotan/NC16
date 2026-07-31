@@ -12,10 +12,13 @@ jmp os_start
 os_message_1:
     #d "\nHello, MomoOS World !\nReady for command.\n\0"
     #align 16
-command_buffer:
-    #res 256
+command_buffer_addr:
+    #d 0x0000 ;キーボード入力された文字列を格納するためのメモリ領域（コマンドバッファ）のアドレス
 command_buffer_pointer:
-    #d 0x0000
+    #d 0x0000 ;現在コマンドバッファにおいてどこまで文字列が入力されているか指し示す値（コマンドバッファポインタ）
+
+data:
+    #res 512
 
 interrupt_handler_base_address = 0x5000
 
@@ -37,8 +40,43 @@ os_start:
     mov memval,keyboard_int_handler
     mov [memaddr+num2],memval
 
-os_main_loop:
-    jmp os_main_loop
+
+mov a,data
+call input_user_string
+
+mov a,tty_out_id
+mov b,data
+call output_string
+
+hlt
+
+
+; input_user_string
+; ユーザーからのキーボード入力を取得する
+; aレジスタ：キーボード入力を保持するメモリ領域のアドレス
+
+;FIXME:input_user_stringには最大入力可能文字数のチェック機構が存在しない。aレジスタで指定した入力文字列
+;を保持するメモリ領域が256文字までしか格納できなかったとする。このとき256文字以上は入力できないようにするべきだが
+;現状のプログラムでは入力できてしまう。256文字以上入力すると何が起きるかというと、無関係のメモリ領域を破壊してしまう。
+;大抵の場合プログラムを破壊し、正常に実行できなくなるだろう。
+;早急に修正すること。
+
+input_user_string:
+    mov memaddr,command_buffer_addr
+    mov memval,a
+    mov [memaddr+0],memval ;command_buffer_addrに文字列を格納すべきメモリ領域のアドレスを格納
+
+    mov bp,1 ;キーボード割り込みハンドラを有効化
+    input_user_str_loop:
+        cmp bp,0 ;キーボード割り込み処理が終わった
+        jne input_user_str_loop
+    
+    ret
+
+
+
+
+
 
 ; read_rom_data
 ; 指定したROMからメモリ上にデータを読み込む。
@@ -47,7 +85,7 @@ os_main_loop:
 ; cレジスタ：読み込むデータ長を指定する。
 ; dレジスタ：どのアドレスに読み込んだデータを書き込むか。
 
-; bpレジスタをbuffer_full検知用レジスタとして使用する。1のときbuffer_full割り込みが起きたことを示す
+; eレジスタをbuffer_full検知用レジスタとして使用する。1のときbuffer_full割り込みが起きたことを示す
 read_rom_data:
     ;bufferレジスタ関連の初期化処理を行う
     setzerobufferpointer
@@ -59,13 +97,13 @@ read_rom_data:
     setintdisableflag
     setinaddr a
     setoutaddr a
-    mov bp,0
+    mov e,0
     setreadburstmode
     out b ; ROMコントローラへコマンド送信：読み込み起点アドレス
     out c ; ROMコントローラへコマンド送信：読み込むデータ長
     clearintdisableflag
     read_rom_data_loop:
-        cmp bp,1
+        cmp e,1
         jl read_rom_data_loop
     ;bufferレジスタから指定のメモリ番地にデータを転送する
     clearreadburstmode
@@ -85,7 +123,7 @@ read_rom_data:
 
 buffer_full_int_handler:
     ;割り込みが発生したことを通知
-    mov bp,1
+    mov e,1
     intret
 
 
@@ -140,7 +178,13 @@ output_string:
         pop c
         ret
 
+
+; bpレジスタが1であるとき、このハンドラを有効化する
+; それ以外の値であるとき、このハンドラは実行されない
 keyboard_int_handler:
+    cmp bp,1
+    jne keyboard_int_handler_skip
+
     keyboard_int_handler_enterkey = 0x0a
     keyboard_int_handler_backspacekey = 0x08
     push a
@@ -167,7 +211,8 @@ keyboard_int_handler:
 
     ;コマンドバッファとコマンドバッファポインタから
     ;次追記すべきメモリアドレスを算出する
-    mov c,command_buffer
+    mov memaddr,command_buffer_addr
+    mov c,[memaddr+0]
     mov memaddr,command_buffer_pointer
     add c,[memaddr+0]
 
@@ -187,16 +232,10 @@ keyboard_int_handler:
         pop c
         pop b
         pop a
+    keyboard_int_handler_skip:
         intret
 
     keyboard_int_handler_input_backspacekey:
-        ;mov c,command_buffer
-        ;mov memaddr,command_buffer_pointer
-        ;add c,[memaddr+0]
-        ;;現在のコマンドバッファポインタの一つ前（現在格納されている文字列の一番先端）が指しているところをNULL文字で埋める
-        ;sub c,1
-        ;mov [c+0],0x0000
-
         mov memaddr,command_buffer_pointer
         mov c,[memaddr+0] ;コマンドバッファポインタの値をcレジスタに格納
         cmp c,0x0000 ;コマンドバッファポインタが0なら何もしない
@@ -208,11 +247,13 @@ keyboard_int_handler:
 
 
     keyboard_int_handler_input_enterkey:
-            ;コマンドバッファにNULL文字を追記する
+            ;コマンドバッファのアドレスを読み出す
+            mov memaddr,command_buffer_addr
+            mov c,[memaddr+0]
+            mov e,c
 
             ;コマンドバッファとコマンドバッファポインタから
             ;次追記すべきメモリアドレスを算出する
-            mov c,command_buffer
             mov memaddr,command_buffer_pointer
             add c,[memaddr+0]
             ;コマンドバッファへNULL文字を追記する
@@ -221,9 +262,12 @@ keyboard_int_handler:
             ;output_stringに入力できる形式に変換する
             ;現状だとコマンドバッファには0x000a,0x0012,0x0023...のように本来1バイトで済む内容を2バイトにして書き込んでいる
             ;output_stringに入力するには、これを0x0a,0x12,0x23...のように連続させたデータにしなければならない
-            mov a,command_buffer-2
-            mov d,command_buffer-1 ; 書き込みポインタ
+            sub e,1
+            mov d,e ; 書き込みポインタ(command_buffer -1)
+            sub e,1
+            mov a,e ; 読み出しポインタ(command_buffer -2)
             mov e,c
+            ;jmp STOP
             keyboard_int_handler_input_enterkey_loop:
                 add a,2
                 add d,1
@@ -244,16 +288,13 @@ keyboard_int_handler:
                 jmp keyboard_int_handler_input_enterkey_loop
             
             keyboard_int_handler_string_output:
-                ;jmp STOP
-                mov a,tty_out_id
-                mov b,command_buffer
-                call output_string
 
                 ;コマンドバッファポインタを0に初期化する
                 mov memaddr,command_buffer_pointer
                 mov memval,0x0000
                 mov [memaddr+0],memval
 
+                mov bp,0 ;キーボード入力処理終了を通知する
                 jmp keyboard_int_handler_intret
 
 STOP:
