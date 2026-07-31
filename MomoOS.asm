@@ -12,13 +12,22 @@ jmp os_start
 os_message_1:
     #d "\nHello, MomoOS World !\nReady for command.\n\0"
     #align 16
+os_message_2:
+    #d "equall!\0"
+    #align 16
+os_message_3:
+    #d "not equall!\0"
+    #align 16
 command_buffer_addr:
     #d 0x0000 ;キーボード入力された文字列を格納するためのメモリ領域（コマンドバッファ）のアドレス
 command_buffer_pointer:
     #d 0x0000 ;現在コマンドバッファにおいてどこまで文字列が入力されているか指し示す値（コマンドバッファポインタ）
 
-data:
-    #res 512
+data1:
+    #res 128
+data2:
+    #res 128
+
 
 interrupt_handler_base_address = 0x5000
 
@@ -40,13 +49,28 @@ os_start:
     mov memval,keyboard_int_handler
     mov [memaddr+num2],memval
 
+main_loop:
+    mov a,data1
+    call input_user_string
+    mov a,data2
+    call input_user_string
 
-mov a,data
-call input_user_string
+    mov a,data1
+    mov b,data2
+    call compare_to_string
 
-mov a,tty_out_id
-mov b,data
-call output_string
+    cmp c,1
+    je string_equal
+    mov a,tty_out_id
+    mov b,os_message_3
+    call output_string
+    jmp main_loop
+
+    string_equal:
+        mov a,tty_out_id
+        mov b,os_message_2
+        call output_string
+        jmp main_loop
 
 hlt
 
@@ -74,8 +98,56 @@ input_user_string:
     ret
 
 
+;compare_to_string
+;二つの文字列を比較する
+
+; aレジスタ：比較したい文字列が確保されているメモリ領域の先頭アドレス
+; bレジスタ：比較したい文字列が確保されているメモリ領域の先頭アドレス
+; cレジスタ：二つの文字列が等しければ1、等しくなければ0を返す。
+compare_to_string:
+
+    compare_to_string_loop:
+        mov memaddr,a
+        mov d,[memaddr+0] ;文字列1、文字読み出し
+
+        mov memaddr,b
+        mov e,[memaddr+0] ;文字列2,文字読み出し
+
+        mov bp,d
+        and bp,0xff00
+        cmp bp,0x0000 ;0x00XX、上位8bitがNULL文字であった場合
+        je compare_to_string_char_zero
+
+        cmp d,e
+        je compare_to_string_char_eq
+        jne compare_to_string_char_noteq
+
+        compare_to_string_char_zero:
+            ;文字列1が0x00XXのとき、文字列2も0x00XXの形式になっているかどうか検証する
+            mov bp,e
+            and bp,0xff00
+            cmp bp,0x0000 ;0x00XX、上位8bitがNULL文字であった場合
+            je compare_to_string_string_eq
+            jne compare_to_string_char_noteq
 
 
+        compare_to_string_char_eq:
+            mov bp,d
+            and bp,0x00ff
+            cmp bp,0x0000 ;0xXX00、下位8bitがNULL文字であった場合            
+            je compare_to_string_string_eq
+
+            add a,1
+            add b,1
+            jmp compare_to_string_loop
+        
+        compare_to_string_char_noteq:
+            mov c,0
+            ret
+
+        compare_to_string_string_eq:
+            mov c,1
+            ret
 
 
 ; read_rom_data
