@@ -1,7 +1,7 @@
 #include "nc16_assemble_USERPROGRAM.asm"
 
+mov a,0
 loop:
-    mov a,0
     setoutaddr 1
     out a
     add a,1

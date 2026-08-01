@@ -45,6 +45,7 @@ program_header:
     #res 3
 os_command_help:
     #d "help\0"
+    
     #align 16
 os_command_load_rom1:
     #d "load rom1\0"
@@ -59,7 +60,7 @@ os_command_run:
     #d "run\0"
     #align 16
 os_command_not_found:
-    #d "command not found.\0"
+    #d "command not found.\n\0"
     #align 16
 
 interrupt_handler_base_address = 0x5000
@@ -144,9 +145,7 @@ os_command_load_rom3_process:
     jmp load_program_data_from_rom
 
 os_command_run_process:
-    mov a,tty_out_id
-    mov b,os_command_run
-    call output_string
+    call program_data_address
     jmp main_loop
 
 os_command_not_found_process:
