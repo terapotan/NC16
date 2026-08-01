@@ -2,6 +2,11 @@
 
 
 rom_send_command_ionum = 2
+
+rom1_send_command_ionum = 3
+rom2_send_command_ionum = 4
+rom3_send_command_ionum = 5
+
 buffer_full_int_id = 2
 keyboard_int_id = 1
 tty_out_id = 0
@@ -22,12 +27,30 @@ command_buffer_addr:
     #d 0x0000 ;キーボード入力された文字列を格納するためのメモリ領域（コマンドバッファ）のアドレス
 command_buffer_pointer:
     #d 0x0000 ;現在コマンドバッファにおいてどこまで文字列が入力されているか指し示す値（コマンドバッファポインタ）
-
-data1:
-    #res 128
-data2:
-    #res 128
-
+user_program_size:
+    #d 0x0000
+os_load_romnum:
+    #d 0x0000 ;プログラムを読み込むrom番号。一時的に使用する変数。
+command_buffer:
+    #res 256
+os_command_help:
+    #d "help\0"
+    #align 16
+os_command_load_rom1:
+    #d "load rom1\0"
+    #align 16
+os_command_load_rom2:
+    #d "load rom2\0"
+    #align 16
+os_command_load_rom3:
+    #d "load rom3\0"
+    #align 16
+os_command_run:
+    #d "run\0"
+    #align 16
+os_command_not_found:
+    #d "command not found.\0"
+    #align 16
 
 interrupt_handler_base_address = 0x5000
 
@@ -50,27 +73,82 @@ os_start:
     mov [memaddr+num2],memval
 
 main_loop:
-    mov a,data1
-    call input_user_string
-    mov a,data2
+    mov a,command_buffer
     call input_user_string
 
-    mov a,data1
-    mov b,data2
+    ;各コマンド文字列との比較
+    mov a,command_buffer
+    mov b,os_command_help
     call compare_to_string
-
     cmp c,1
-    je string_equal
+    je os_command_help_process
+
+    mov a,command_buffer
+    mov b,os_command_load_rom1
+    call compare_to_string
+    cmp c,1
+    je os_command_load_rom1_process
+
+    mov a,command_buffer
+    mov b,os_command_load_rom2
+    call compare_to_string
+    cmp c,1
+    je os_command_load_rom2_process
+
+    mov a,command_buffer
+    mov b,os_command_load_rom3
+    call compare_to_string
+    cmp c,1
+    je os_command_load_rom3_process
+
+    mov a,command_buffer
+    mov b,os_command_run
+    call compare_to_string
+    cmp c,1
+    je os_command_run_process
+
+    jmp os_command_not_found_process
+
+os_command_help_process:
     mov a,tty_out_id
-    mov b,os_message_3
+    mov b,os_command_help
+    call output_string
+    jmp main_loop
+os_command_load_rom1_process:
+    mov a,tty_out_id
+    mov b,os_command_load_rom1
     call output_string
     jmp main_loop
 
-    string_equal:
-        mov a,tty_out_id
-        mov b,os_message_2
-        call output_string
-        jmp main_loop
+os_command_load_rom2_process:
+    mov a,tty_out_id
+    mov b,os_command_load_rom2
+    call output_string
+    jmp main_loop
+
+os_command_load_rom3_process:
+    mov a,tty_out_id
+    mov b,os_command_load_rom3
+    call output_string
+    jmp main_loop
+
+os_command_run_process:
+    mov a,tty_out_id
+    mov b,os_command_run
+    call output_string
+    jmp main_loop
+
+os_command_not_found_process:
+    mov a,tty_out_id
+    mov b,os_command_not_found
+    call output_string
+    jmp main_loop
+
+
+
+
+load_program_data_from_rom:
+    
 
 hlt
 

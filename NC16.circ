@@ -81,7 +81,7 @@
     <a name="appearance" val="logisim_evolution"/>
     <a name="circuit" val="main"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
-    <a name="simulationFrequency" val="128.0"/>
+    <a name="simulationFrequency" val="2048000.0"/>
     <comp lib="0" loc="(1450,1680)" name="Bit Extender">
       <a name="in_width" val="16"/>
       <a name="out_width" val="7"/>
@@ -142,79 +142,100 @@
       <a name="addrWidth" val="16"/>
       <a name="appearance" val="logisim_evolution"/>
       <a name="contents">addr/data: 16 16
-ff21 8f2a 344 86f ffff 11ff 626 a48
+ff21 8f2a 3ef 86f ffff 11ff 645 a48
 656c 6c6f 2c20 4d6f 6d6f 4f53 2057 6f72
 6c64 2021 a52 6561 6479 2066 6f72 2063
 6f6d 6d61 6e64 2e0a 0 6571 7561 6c6c
-2100 6e6f 7420 6571 7561 6c6c 2100 258*0
-1eff 1 aff ffff 80f 0 81f 504
-15ff 0 bf a 16f 1 8a6 0
-8aa 0 11ff 72a 8af 0 8bf 726
-8aa 5002 8bf 77e 8aa 5001 80f 526
-15ff 0 bf a 16f 1 8a6 0
-8aa 0 11ff 69a 80f 5a6 15ff 0
+2100 6e6f 7420 6571 7561 6c6c 2100 259*0
+6865 6c70 0 6c6f 6164 2072 6f6d 3100
+6c6f 6164 2072 6f6d 3200 6c6f 6164 2072
+6f6d 3300 7275 6e00 636f 6d6d 616e 6420
+6e6f 7420 666f 756e 642e 0 1eff 1
+aff ffff 80f 0 81f 504 15ff 0
 bf a 16f 1 8a6 0 8aa 0
-11ff 69a 80f 526 81f 5a6 15ff 0
+11ff 7d5 8af 0 8bf 7d1 8aa 5002
+8bf 829 8aa 5001 80f 527 15ff 0
 bf a 16f 1 8a6 0 8aa 0
-11ff 6ae 122f 1 16ff 686 80f 0
-81f 51e 15ff 0 bf a 16f 1
-8a6 0 8aa 0 11ff 72a 11ff 644
-80f 0 81f 51a 15ff 0 bf a
-16f 1 8a6 0 8aa 0 11ff 72a
-11ff 644 13ff 0 8af 524 8b0 0
-8aa 0 85f 1 125f 0 17ff 6a2
-8a6 0 8b9 0 6f 1 11bf 0
-8a0 0 839 0 8a1 0 849 0
-853 0 35f ff00 125f 0 16ff 6c4
-1234 0 16ff 6ce 17ff 6dc 854 0
-35f ff00 125f 0 16ff 6e6 17ff 6dc
-853 0 35f ff 125f 0 16ff 6e6
-f 1 1f 1 11ff 6ae 82f 0
-8a6 0 8b9 0 6f 1 11bf 0
-82f 1 8a6 0 8b9 0 6f 1
-11bf 0 21ff 0 232f 0 25ff 0
-1d0f 0 1e0f 0 84f 0 1fff 0
-a1f 0 a2f 0 26ff 0 124f 1
-1aff 704 20ff 0 21ff 0 80f 0
-24ff 0 8a3 0 8aa 0 3f 1
-f 1 22ff 0 1202 0 1aff 70e
-8a6 0 8b9 0 6f 1 11bf 0
-84f 1 1cff 0 16f 1 8b2 0
-8a6 0 8aa 0 16f 1 8b3 0
-8a6 0 8aa 0 16f 1 8b4 0
-8a6 0 8aa 0 821 0 8a2 0
-839 0 843 0 33f ff00 73f 8
-123f 0 16ff 764 1e0f 0 a3f 0
-34f ff 124f 0 16ff 764 1e0f 0
-a4f 0 2f 1 11ff 744 8a6 0
+11ff 745 80f 527 81f 627 15ff 0
+bf a 16f 1 8a6 0 8aa 0
+11ff 759 122f 1 16ff 6d7 80f 527
+81f 62a 15ff 0 bf a 16f 1
+8a6 0 8aa 0 11ff 759 122f 1
+16ff 6e9 80f 527 81f 62f 15ff 0
+bf a 16f 1 8a6 0 8aa 0
+11ff 759 122f 1 16ff 6fb 80f 527
+81f 634 15ff 0 bf a 16f 1
+8a6 0 8aa 0 11ff 759 122f 1
+16ff 70d 80f 527 81f 639 15ff 0
+bf a 16f 1 8a6 0 8aa 0
+11ff 759 122f 1 16ff 71f 11ff 731
+80f 0 81f 627 15ff 0 bf a
+16f 1 8a6 0 8aa 0 11ff 7d5
+11ff 663 80f 0 81f 62a 15ff 0
+bf a 16f 1 8a6 0 8aa 0
+11ff 7d5 11ff 663 80f 0 81f 62f
+15ff 0 bf a 16f 1 8a6 0
+8aa 0 11ff 7d5 11ff 663 80f 0
+81f 634 15ff 0 bf a 16f 1
+8a6 0 8aa 0 11ff 7d5 11ff 663
+80f 0 81f 639 15ff 0 bf a
+16f 1 8a6 0 8aa 0 11ff 7d5
+11ff 663 80f 0 81f 63b 15ff 0
+bf a 16f 1 8a6 0 8aa 0
+11ff 7d5 11ff 663 13ff 0 8af 524
+8b0 0 8aa 0 85f 1 125f 0
+17ff 74d 8a6 0 8b9 0 6f 1
+11bf 0 8a0 0 839 0 8a1 0
+849 0 853 0 35f ff00 125f 0
+16ff 76f 1234 0 16ff 779 17ff 787
+854 0 35f ff00 125f 0 16ff 791
+17ff 787 853 0 35f ff 125f 0
+16ff 791 f 1 1f 1 11ff 759
+82f 0 8a6 0 8b9 0 6f 1
+11bf 0 82f 1 8a6 0 8b9 0
+6f 1 11bf 0 21ff 0 232f 0
+25ff 0 1d0f 0 1e0f 0 84f 0
+1fff 0 a1f 0 a2f 0 26ff 0
+124f 1 1aff 7af 20ff 0 21ff 0
+80f 0 24ff 0 8a3 0 8aa 0
+3f 1 f 1 22ff 0 1202 0
+1aff 7b9 8a6 0 8b9 0 6f 1
+11bf 0 84f 1 1cff 0 16f 1
+8b2 0 8a6 0 8aa 0 16f 1
+8b3 0 8a6 0 8aa 0 16f 1
+8b4 0 8a6 0 8aa 0 821 0
+8a2 0 839 0 843 0 33f ff00
+73f 8 123f 0 16ff 80f 1e0f 0
+a3f 0 34f ff 124f 0 16ff 80f
+1e0f 0 a4f 0 2f 1 11ff 7ef
+8a6 0 849 0 6f 1 8a6 0
+839 0 6f 1 8a6 0 829 0
+6f 1 8a6 0 8b9 0 6f 1
+11bf 0 125f 1 17ff 89b 16f 1
+8b0 0 8a6 0 8aa 0 16f 1
+8b1 0 8a6 0 8aa 0 16f 1
+8b2 0 8a6 0 8aa 0 16f 1
+8b3 0 8a6 0 8aa 0 16f 1
+8b4 0 8a6 0 8aa 0 1dff 0
+91f 0 1eff 0 a1f 0 121f a
+16ff 8ad 121f 8 16ff 89d 8af 524
+829 0 8af 525 29 0 8a2 0
+8b1 0 8aa 0 8af 525 829 0
+2f 1 8b2 0 8aa 0 8a6 0
 849 0 6f 1 8a6 0 839 0
 6f 1 8a6 0 829 0 6f 1
-8a6 0 8b9 0 6f 1 11bf 0
-125f 1 17ff 7f0 16f 1 8b0 0
-8a6 0 8aa 0 16f 1 8b1 0
-8a6 0 8aa 0 16f 1 8b2 0
-8a6 0 8aa 0 16f 1 8b3 0
-8a6 0 8aa 0 16f 1 8b4 0
-8a6 0 8aa 0 1dff 0 91f 0
-1eff 0 a1f 0 121f a 16ff 802
-121f 8 16ff 7f2 8af 524 829 0
-8af 525 29 0 8a2 0 8b1 0
-8aa 0 8af 525 829 0 2f 1
-8b2 0 8aa 0 8a6 0 849 0
-6f 1 8a6 0 839 0 6f 1
-8a6 0 829 0 6f 1 8a6 0
-819 0 6f 1 8a6 0 809 0
-6f 1 1cff 0 8af 525 829 0
-122f 0 16ff 7d2 12f 1 8b2 0
-8aa 0 11ff 7d2 8af 524 829 0
-842 0 8af 525 29 0 8a2 0
-8bf 0 8aa 0 14f 1 834 0
-14f 1 804 0 842 0 f 2
-3f 1 1204 0 18ff 838 8a0 0
-819 0 829 1 21f 100 32f ff
-412 0 8b1 0 8a3 0 8aa 0
-11ff 81c 8af 525 8bf 0 8aa 0
-85f 0 11ff 7d2 13ff
+8a6 0 819 0 6f 1 8a6 0
+809 0 6f 1 1cff 0 8af 525
+829 0 122f 0 16ff 87d 12f 1
+8b2 0 8aa 0 11ff 87d 8af 524
+829 0 842 0 8af 525 29 0
+8a2 0 8bf 0 8aa 0 14f 1
+834 0 14f 1 804 0 842 0
+f 2 3f 1 1204 0 18ff 8e3
+8a0 0 819 0 829 1 21f 100
+32f ff 412 0 8b1 0 8a3 0
+8aa 0 11ff 8c7 8af 525 8bf 0
+8aa 0 85f 0 11ff 87d 13ff
 </a>
       <a name="dataWidth" val="16"/>
       <a name="label" val="OS_ROM"/>
