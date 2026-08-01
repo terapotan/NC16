@@ -23,6 +23,14 @@ os_message_2:
 os_message_3:
     #d "not equall!\0"
     #align 16
+os_message_4:
+    #d "The file you are trying to load is not a program.\n\0"
+    #align 16
+os_message_5:
+    #d "Load complete.\n\0"
+    #align 16
+
+
 command_buffer_addr:
     #d 0x0000 ;キーボード入力された文字列を格納するためのメモリ領域（コマンドバッファ）のアドレス
 command_buffer_pointer:
@@ -33,6 +41,8 @@ os_load_romnum:
     #d 0x0000 ;プログラムを読み込むrom番号。一時的に使用する変数。
 command_buffer:
     #res 256
+program_header:
+    #res 3
 os_command_help:
     #d "help\0"
     #align 16
@@ -53,6 +63,7 @@ os_command_not_found:
     #align 16
 
 interrupt_handler_base_address = 0x5000
+program_data_address = 0x5600
 
 os_start:
     setoutaddr 1
@@ -115,22 +126,22 @@ os_command_help_process:
     call output_string
     jmp main_loop
 os_command_load_rom1_process:
-    mov a,tty_out_id
-    mov b,os_command_load_rom1
-    call output_string
-    jmp main_loop
+    mov memaddr,os_load_romnum
+    mov memval,rom1_send_command_ionum
+    mov [memaddr+0],memval
+    jmp load_program_data_from_rom
 
 os_command_load_rom2_process:
-    mov a,tty_out_id
-    mov b,os_command_load_rom2
-    call output_string
-    jmp main_loop
+    mov memaddr,os_load_romnum
+    mov memval,rom2_send_command_ionum
+    mov [memaddr+0],memval
+    jmp load_program_data_from_rom
 
 os_command_load_rom3_process:
-    mov a,tty_out_id
-    mov b,os_command_load_rom3
-    call output_string
-    jmp main_loop
+    mov memaddr,os_load_romnum
+    mov memval,rom3_send_command_ionum
+    mov [memaddr+0],memval
+    jmp load_program_data_from_rom
 
 os_command_run_process:
     mov a,tty_out_id
@@ -148,9 +159,47 @@ os_command_not_found_process:
 
 
 load_program_data_from_rom:
+    ; 最初の6バイトを読み出す
+    mov memaddr,os_load_romnum
+    mov a,[memaddr+0]
+    mov b,0x0000
+    mov c,3
+    mov d,program_header
+    call read_rom_data
     
+    ; 識別子チェック
+    mov b,program_header
+    mov a,[b+0]
+    cmp a,0xff02
+    jne program_load_faild
+    mov a,[b+1]
+    cmp a,0x2019
+    jne program_load_faild
+
+    ; プログラムのサイズを読み出す
+    mov c,[b+2] 
+
+    mov memaddr,os_load_romnum
+    mov a,[memaddr+0]
+    mov b,0x0003
+    mov d,program_data_address
+    call read_rom_data
+
+    mov a,tty_out_id
+    mov b,os_message_5
+    call output_string
+    jmp main_loop
+
+program_load_faild:
+    mov a,tty_out_id
+    mov b,os_message_4
+    call output_string
+    jmp main_loop
+
+
 
 hlt
+
 
 
 ; input_user_string

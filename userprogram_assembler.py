@@ -32,7 +32,7 @@ def assemble(input_file: str, output_file: str) -> None:
     word_count = byte_size // 2
 
     # ヘッダ: 0xff02, 0x2019, word_count (各16bit）
-    header = struct.pack(">HHH", 0xff21, 0x8f2a, word_count)
+    header = struct.pack(">HHH", 0xff02, 0x2019, word_count)
 
     # ヘッダを先頭に付与して書き戻す
     with open(output_file, "wb") as f:
