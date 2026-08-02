@@ -31,3 +31,8 @@ https://github.com/hlorenzi/customasm
 ## ドキュメント
 　NC-16のドキュメントは以下のリンクから飛べます。
 [ドキュメント](./doc/Document.md)
+
+## ファイル構成
+　本リポジトリのファイル構成については、以下のリンクをご覧ください。
+
+[ファイル構成](./FileTree.md)
