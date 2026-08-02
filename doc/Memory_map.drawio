@@ -1,0 +1,58 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.0.3 Chrome/140.0.7339.249 Electron/38.7.0 Safari/537.36" version="29.0.3">
+  <diagram name="ページ1" id="Gp5jHuK_Z1fvKyzPAvC4">
+    <mxGraphModel dx="815" dy="481" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="b7Qtd1ZJBGuUlivzuYQd-1" value="BIOS" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Source Han Sans VF;" vertex="1" parent="1">
+          <mxGeometry x="320" y="120" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="b7Qtd1ZJBGuUlivzuYQd-2" value="0x0000" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontFamily=Source Han Sans VF;" vertex="1" parent="1">
+          <mxGeometry x="260" y="100" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="b7Qtd1ZJBGuUlivzuYQd-3" value="address" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontFamily=Source Han Sans VF;" vertex="1" parent="1">
+          <mxGeometry x="260" y="60" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="b7Qtd1ZJBGuUlivzuYQd-4" value="0x04ff" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontFamily=Source Han Sans VF;" vertex="1" parent="1">
+          <mxGeometry x="260" y="140" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="b7Qtd1ZJBGuUlivzuYQd-5" value="0x0500" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontFamily=Source Han Sans VF;" vertex="1" parent="1">
+          <mxGeometry x="260" y="160" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="b7Qtd1ZJBGuUlivzuYQd-6" value="OS" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Source Han Sans VF;" vertex="1" parent="1">
+          <mxGeometry x="320" y="170" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="b7Qtd1ZJBGuUlivzuYQd-7" value="0x49ff" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontFamily=Source Han Sans VF;" vertex="1" parent="1">
+          <mxGeometry x="260" y="230" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="b7Qtd1ZJBGuUlivzuYQd-8" value="0x5000" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontFamily=Source Han Sans VF;" vertex="1" parent="1">
+          <mxGeometry x="260" y="250" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="b7Qtd1ZJBGuUlivzuYQd-9" value="Interrupt Handler Address Table" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Source Han Sans VF;" vertex="1" parent="1">
+          <mxGeometry x="320" y="260" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="b7Qtd1ZJBGuUlivzuYQd-10" value="0x51FF" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontFamily=Source Han Sans VF;" vertex="1" parent="1">
+          <mxGeometry x="260" y="290" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="b7Qtd1ZJBGuUlivzuYQd-11" value="Reserved" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Source Han Sans VF;" vertex="1" parent="1">
+          <mxGeometry x="320" y="300" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="b7Qtd1ZJBGuUlivzuYQd-12" value="0x55FF" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontFamily=Source Han Sans VF;" vertex="1" parent="1">
+          <mxGeometry x="260" y="320" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="b7Qtd1ZJBGuUlivzuYQd-13" value="0x5600" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontFamily=Source Han Sans VF;" vertex="1" parent="1">
+          <mxGeometry x="260" y="340" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="b7Qtd1ZJBGuUlivzuYQd-14" value="User Program" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Source Han Sans VF;" vertex="1" parent="1">
+          <mxGeometry x="320" y="340" width="120" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="b7Qtd1ZJBGuUlivzuYQd-15" value="Stack" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Source Han Sans VF;" vertex="1" parent="1">
+          <mxGeometry x="320" y="500" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="b7Qtd1ZJBGuUlivzuYQd-16" value="0xFFFF" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontFamily=Source Han Sans VF;" vertex="1" parent="1">
+          <mxGeometry x="260" y="530" width="60" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
