@@ -26,6 +26,22 @@
 # Microcode_Execute_75 00011000
 # Microcode_Execute_76 00011001
 # Microcode_Execute_77 00011010
+# Microcode_Execute_61    00011011
+# Microcode_Execute_62    00011100
+# Microcode_Execute_63    00011101
+# Microcode_Execute_64    00011110
+# Microcode_Execute_65    00011111
+# Microcode_Execute_66    00100000
+# Microcode_Execute_10_1  00100001
+# Microcode_Execute_10_2  00100010
+# Microcode_Execute_10_3  00100011
+# Microcode_Execute_10_4  00100100
+# Microcode_Execute_10_5  00100101
+# Microcode_Execute_10_6  00100110
+# Microcode_Execute_10_7  00100111
+# Microcode_Execute_10_8  00101000
+# Microcode_Execute_10_9  00101001
+# Microcode_Execute_10_10 00101010
 
 
 0xxxxxxxx00000000 00000001 # INT_Check -> Instruction_Fetch_1
@@ -49,7 +65,16 @@ xxxxxxxxx00000010 00000110 # Instruction_Fetch_2 -> Instruction_Check
 
 x0000000100000110 00000011 # Instruction_Check -> Microcode_Execute_11
 x0000001000000110 00000100 # Instruction_Check -> Microcode_Execute_21
+x0000011000000110 00011011 # Instruction_Check -> Microcode_Execute_61
 x0000011100000110 00010100 # Instruciton_Check -> Microcode_Execute_71
+x0000101000000110 00100001 # Instruciton_Check -> Microcode_Execute_10_1
+
+xxxxxxxxx00011011 00011100 # Microcode_Execute_61 -> Microcode_Execute_62
+xxxxxxxxx00011100 00011101 # Microcode_Execute_62 -> Microcode_Execute_63
+xxxxxxxxx00011101 00011110 # Microcode_Execute_63 -> Microcode_Execute_64
+xxxxxxxxx00011110 00011111 # Microcode_Execute_64 -> Microcode_Execute_65
+xxxxxxxxx00011111 00100000 # Microcode_Execute_65 -> Microcode_Execute_66
+xxxxxxxxx00100000 00000000 # Microcode_Execute_66 -> INT_Check
 
 xxxxxxxxx00010100 00010101 # Microcode_Execute_71 -> Microcode_Execute_72
 xxxxxxxxx00010101 00010110 # Microcode_Execute_72 -> Microcode_Execute_73
@@ -59,6 +84,16 @@ xxxxxxxxx00011000 00011001 # Microcode_Execute_75 -> Microcode_Execute_76
 xxxxxxxxx00011001 00011010 # Microcode_Execute_76 -> Microcode_Execute_77
 xxxxxxxxx00011010 00000000 # Microcode_Execute_77 -> INT_Check
 
+xxxxxxxxx00100001 00100010 # Microcode_Execute_10_1 -> Microcode_Execute_10_2
+xxxxxxxxx00100010 00100011 # Microcode_Execute_10_2  -> Microcode_Execute_10_3 
+xxxxxxxxx00100011 00100100 # Microcode_Execute_10_3  -> Microcode_Execute_10_4 
+xxxxxxxxx00100100 00100101 # Microcode_Execute_10_4  -> Microcode_Execute_10_5 
+xxxxxxxxx00100101 00100110 # Microcode_Execute_10_5  -> Microcode_Execute_10_6 
+xxxxxxxxx00100110 00100111 # Microcode_Execute_10_6  -> Microcode_Execute_10_7 
+xxxxxxxxx00100111 00101000 # Microcode_Execute_10_7  -> Microcode_Execute_10_8 
+xxxxxxxxx00101000 00101001 # Microcode_Execute_10_8  -> Microcode_Execute_10_9 
+xxxxxxxxx00101001 00101010 # Microcode_Execute_10_9  -> Microcode_Execute_10_10
+xxxxxxxxx00101010 00000000 # Microcode_Execute_10_10 -> INT_Check
 
 xxxxxxxxx00000011 00000000 # Microcode_Execute_11 -> INT_Check
 

@@ -161,6 +161,31 @@ CCB_WIDTH = 22
 class MicrocodeError(ValueError):
     pass
 
+# --- 追加修正: 2進数文字列（"0b"プレフィックスなし）にも対応するための入力パーサ -----
+def _parse_word_str(raw: str) -> int:
+    """
+    Microcodeワードの文字列表現をintへ変換する。
+
+    この関数では、
+      1. "0x"/"0X"/"0o"/"0O" プレフィックスが付いている場合はそのまま int(raw, 0) で解釈
+      2. "0b"/"0B" プレフィックスが付いている場合もそのまま int(raw, 0) で解釈
+      3. プレフィックスが無く、文字列が "0" と "1" のみで構成されている場合は
+         2進数とみなして int(raw, 2) で解釈する
+      4. それ以外（プレフィックス無しの数字列で0/1以外の数字を含む場合など）は
+         従来通り int(raw, 0) で10進数として解釈する
+    """
+    s = raw.strip().replace("_", "")  # 桁区切りの "_" は無視できるようにしておく
+ 
+    # 1. / 2. 明示的なプレフィックスがある場合は従来通りの挙動
+    if s.lower().startswith(("0x", "0o", "0b")):
+        return int(s, 0)
+ 
+    # 3. プレフィックス無しでも "0"と"1"だけの文字列なら2進数とみなす
+    if len(s) > 0 and all(ch in "01" for ch in s):
+        return int(s, 2)
+ 
+    # 4. それ以外は従来通り10進数（明示プレフィックス無しの数値）として解釈
+    return int(s, 0)
 
 # ---------------------------------------------------------------------------
 # Microcode組み立てロジック
@@ -496,7 +521,7 @@ def main():
             print(format_result(word))
 
         elif args.command == "decode":
-            word = int(args.word, 0)
+            word = _parse_word_str(args.word)
             print(decode_microcode(word))
 
         elif args.command == "fields":

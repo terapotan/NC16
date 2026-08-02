@@ -145,7 +145,8 @@ os_command_load_rom3_process:
     jmp load_program_data_from_rom
 
 os_command_run_process:
-    call program_data_address
+    hlt
+    usercall program_data_address
     jmp main_loop
 
 os_command_not_found_process:

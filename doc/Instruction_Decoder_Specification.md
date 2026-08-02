@@ -130,7 +130,30 @@ stateDiagram-v2
         Microcode_Execute_76<br>0010100 --> Microcode_Execute_77<br>1001100 :XX
         Microcode_Execute_77<br>1001100 --> [*]
     }
+    state Instruction_Class_6{
+        [*] --> Microcode_Execute_61<br>0010100
 
+        Microcode_Execute_61<br>0010100 --> Microcode_Execute_62<br>0010100 :XX
+        Microcode_Execute_62<br>0010100 --> Microcode_Execute_63<br>0010100 :XX
+        Microcode_Execute_63<br>0010100 --> Microcode_Execute_64<br>0010100 :XX
+        Microcode_Execute_64<br>0010100 --> Microcode_Execute_65<br>0010100 :XX
+        Microcode_Execute_65<br>0010100 --> Microcode_Execute_66<br>0001100 :XX
+        Microcode_Execute_66<br>0001100 --> [*]
+    }
+    state Instruction_Class_10{
+        [*] --> Microcode_Execute_10_1<br>0010100
+
+        Microcode_Execute_10_1<br>0010100 --> Microcode_Execute_10_2<br>0010100 :XX
+        Microcode_Execute_10_2<br>0010100 --> Microcode_Execute_10_3<br>0010100 :XX
+        Microcode_Execute_10_3<br>0010100 --> Microcode_Execute_10_4<br>0010100 :XX
+        Microcode_Execute_10_4<br>0010100 --> Microcode_Execute_10_5<br>0010100 :XX
+        Microcode_Execute_10_5<br>0010100 --> Microcode_Execute_10_6<br>0010100 :XX
+        Microcode_Execute_10_6<br>0010100 --> Microcode_Execute_10_7<br>1001100 :XX
+        Microcode_Execute_10_7<br>1001100 --> Microcode_Execute_10_8<br>1001100 :XX
+        Microcode_Execute_10_8<br>1001100 --> Microcode_Execute_10_9<br>1001100 :XX
+        Microcode_Execute_10_9<br>1001100 --> Microcode_Execute_10_10<br>0001100 :XX
+        Microcode_Execute_10_10<br>0001100 --> [*]
+    }
 
     [*] --> INT_Check<br>0000001: reset
     INT_Check<br>0000001 --> Instruction_Fetch_1<br>0100010: X0
@@ -147,12 +170,16 @@ stateDiagram-v2
     Instruction_Class_1 --> INT_Check<br>0000001 :XX
 
     Instruction_Check<br>0000000 --> Instruction_Class_2 : 2X
-
     Instruction_Class_2 --> INT_Check<br>0000001 :XX
+
+    Instruction_Check<br>0000000 --> Instruction_Class_6 : 6X
+    Instruction_Class_6 --> INT_Check<br>0000001 :XX
 
     Instruction_Check<br>0000000 --> Instruction_Class_7 : 5X
     Instruction_Class_7 --> INT_Check<br>0000001 :XX
 
+    Instruction_Check<br>0000000 --> Instruction_Class_10 : 10_X
+    Instruction_Class_10 --> INT_Check<br>0000001 :XX
 
 ```
 
@@ -186,6 +213,22 @@ stateDiagram-v2
 |Microcode_Execute_75|24
 |Microcode_Execute_76|25
 |Microcode_Execute_77|26
+|Microcode_Execute_61|27
+|Microcode_Execute_62|28
+|Microcode_Execute_63|29
+|Microcode_Execute_64|30
+|Microcode_Execute_65|31
+|Microcode_Execute_66|32
+|Microcode_Execute_10_1|33
+|Microcode_Execute_10_2|34
+|Microcode_Execute_10_3|35
+|Microcode_Execute_10_4|36
+|Microcode_Execute_10_5|37
+|Microcode_Execute_10_6|38
+|Microcode_Execute_10_7|39
+|Microcode_Execute_10_8|40
+|Microcode_Execute_10_9|41
+|Microcode_Execute_10_10|42
 
 
 　現在ある状態にいる状態で、クロックを立ち上げると、現在の状態で出力されている信号が実行されます。例えばINT_Checkにいる状態でクロックを立ち上げると、そのクロック立ち上げでは出力000000で実行される命令が実行され、次の状態に移動します。これは、クロックを立ち上げてもすぐには出力が変化しないためです。
@@ -326,4 +369,4 @@ RAMアドレス端子へどの信号を入力するか選択します。仕様�
 |1|0|オペランド|
 |1|1|禁止|
 ### RAM Write Enable
-RAM Write Enableが0b1のとき、次のクロック立ち上がりでBレジスタの値をRAM Address Selectで選択された信号のアドレス値に書き込みます。0b0のときは、次のクロック立ち上がりで何もしません。
+RAM Write Enableが0b1のとき、次のクロック立ち上がりでmemvalレジスタの値をRAM Address Selectで選択された信号のアドレス値に書き込みます。0b0のときは、次のクロック立ち上がりで何もしません。

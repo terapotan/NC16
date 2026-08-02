@@ -142,7 +142,7 @@
       <a name="addrWidth" val="16"/>
       <a name="appearance" val="logisim_evolution"/>
       <a name="contents">addr/data: 16 16
-ff21 8f2a 457 86f ffff 11ff 66b a48
+ff21 8f2a 44f 86f ffff 11ff 66b a48
 656c 6c6f 2c20 4d6f 6d6f 4f53 2057 6f72
 6c64 2021 a52 6561 6479 2066 6f72 2063
 6f6d 6d61 6e64 2e0a 0 6571 7561 6c6c
@@ -154,84 +154,83 @@ ff21 8f2a 457 86f ffff 11ff 66b a48
 a00 263*0 6865 6c70 0 6c6f 6164 2072
 6f6d 3100 6c6f 6164 2072 6f6d 3200 6c6f
 6164 2072 6f6d 3300 7275 6e00 636f 6d6d
-616e 6420 6e6f 7420 666f 756e 642e 0
+616e 6420 6e6f 7420 666f 756e 642e a00
 1eff 1 aff ffff 80f 0 81f 504
 15ff 0 bf a 16f 1 8a6 0
-8aa 0 11ff 83d 8af 0 8bf 839
-8aa 5002 8bf 891 8aa 5001 80f 54a
+8aa 0 11ff 835 8af 0 8bf 831
+8aa 5002 8bf 889 8aa 5001 80f 54a
 15ff 0 bf a 16f 1 8a6 0
-8aa 0 11ff 7ad 80f 54a 81f 64d
+8aa 0 11ff 7a5 80f 54a 81f 64d
 15ff 0 bf a 16f 1 8a6 0
-8aa 0 11ff 7c1 122f 1 16ff 6fd
+8aa 0 11ff 7b9 122f 1 16ff 6fd
 80f 54a 81f 650 15ff 0 bf a
-16f 1 8a6 0 8aa 0 11ff 7c1
+16f 1 8a6 0 8aa 0 11ff 7b9
 122f 1 16ff 70f 80f 54a 81f 655
 15ff 0 bf a 16f 1 8a6 0
-8aa 0 11ff 7c1 122f 1 16ff 717
+8aa 0 11ff 7b9 122f 1 16ff 717
 80f 54a 81f 65a 15ff 0 bf a
-16f 1 8a6 0 8aa 0 11ff 7c1
+16f 1 8a6 0 8aa 0 11ff 7b9
 122f 1 16ff 71f 80f 54a 81f 65f
 15ff 0 bf a 16f 1 8a6 0
-8aa 0 11ff 7c1 122f 1 16ff 727
-11ff 735 80f 0 81f 64d 15ff 0
+8aa 0 11ff 7b9 122f 1 16ff 727
+11ff 72d 80f 0 81f 64d 15ff 0
 bf a 16f 1 8a6 0 8aa 0
-11ff 83d 11ff 689 8af 549 8bf 3
-8aa 0 11ff 747 8af 549 8bf 4
-8aa 0 11ff 747 8af 549 8bf 5
-8aa 0 11ff 747 15ff 0 bf a
-16f 1 8a6 0 8aa 0 11ff 5600
+11ff 835 11ff 689 8af 549 8bf 3
+8aa 0 11ff 73f 8af 549 8bf 4
+8aa 0 11ff 73f 8af 549 8bf 5
+8aa 0 11ff 73f 13ff 0 28ff 5600
 11ff 689 80f 0 81f 661 15ff 0
 bf a 16f 1 8a6 0 8aa 0
-11ff 83d 11ff 689 8af 549 809 0
+11ff 835 11ff 689 8af 549 809 0
 81f 0 82f 3 83f 64a 15ff 0
 bf a 16f 1 8a6 0 8aa 0
-11ff 803 81f 64a 8a1 0 809 0
-120f ff02 17ff 799 8a1 0 809 1
-120f 2019 17ff 799 8a1 0 829 2
+11ff 7fb 81f 64a 8a1 0 809 0
+120f ff02 17ff 791 8a1 0 809 1
+120f 2019 17ff 791 8a1 0 829 2
 8af 549 809 0 81f 3 83f 5600
 15ff 0 bf a 16f 1 8a6 0
-8aa 0 11ff 803 80f 0 81f 53e
+8aa 0 11ff 7fb 80f 0 81f 53e
 15ff 0 bf a 16f 1 8a6 0
-8aa 0 11ff 83d 11ff 689 80f 0
+8aa 0 11ff 835 11ff 689 80f 0
 81f 524 15ff 0 bf a 16f 1
-8a6 0 8aa 0 11ff 83d 11ff 689
+8a6 0 8aa 0 11ff 835 11ff 689
 13ff 0 8af 546 8b0 0 8aa 0
-85f 1 125f 0 17ff 7b5 8a6 0
+85f 1 125f 0 17ff 7ad 8a6 0
 8b9 0 6f 1 11bf 0 8a0 0
 839 0 8a1 0 849 0 853 0
-35f ff00 125f 0 16ff 7d7 1234 0
-16ff 7e1 17ff 7ef 854 0 35f ff00
-125f 0 16ff 7f9 17ff 7ef 853 0
-35f ff 125f 0 16ff 7f9 f 1
-1f 1 11ff 7c1 82f 0 8a6 0
+35f ff00 125f 0 16ff 7cf 1234 0
+16ff 7d9 17ff 7e7 854 0 35f ff00
+125f 0 16ff 7f1 17ff 7e7 853 0
+35f ff 125f 0 16ff 7f1 f 1
+1f 1 11ff 7b9 82f 0 8a6 0
 8b9 0 6f 1 11bf 0 82f 1
 8a6 0 8b9 0 6f 1 11bf 0
 21ff 0 232f 0 25ff 0 1d0f 0
 1e0f 0 84f 0 1fff 0 a1f 0
-a2f 0 26ff 0 124f 1 1aff 817
+a2f 0 26ff 0 124f 1 1aff 80f
 20ff 0 21ff 0 80f 0 24ff 0
 8a3 0 8aa 0 3f 1 f 1
-22ff 0 1202 0 1aff 821 8a6 0
+22ff 0 1202 0 1aff 819 8a6 0
 8b9 0 6f 1 11bf 0 84f 1
 1cff 0 16f 1 8b2 0 8a6 0
 8aa 0 16f 1 8b3 0 8a6 0
 8aa 0 16f 1 8b4 0 8a6 0
 8aa 0 821 0 8a2 0 839 0
 843 0 33f ff00 73f 8 123f 0
-16ff 877 1e0f 0 a3f 0 34f ff
-124f 0 16ff 877 1e0f 0 a4f 0
-2f 1 11ff 857 8a6 0 849 0
+16ff 86f 1e0f 0 a3f 0 34f ff
+124f 0 16ff 86f 1e0f 0 a4f 0
+2f 1 11ff 84f 8a6 0 849 0
 6f 1 8a6 0 839 0 6f 1
 8a6 0 829 0 6f 1 8a6 0
 8b9 0 6f 1 11bf 0 125f 1
-17ff 903 16f 1 8b0 0 8a6 0
+17ff 8fb 16f 1 8b0 0 8a6 0
 8aa 0 16f 1 8b1 0 8a6 0
 8aa 0 16f 1 8b2 0 8a6 0
 8aa 0 16f 1 8b3 0 8a6 0
 8aa 0 16f 1 8b4 0 8a6 0
 8aa 0 1dff 0 91f 0 1eff 0
-a1f 0 121f a 16ff 915 121f 8
-16ff 905 8af 546 829 0 8af 547
+a1f 0 121f a 16ff 90d 121f 8
+16ff 8fd 8af 546 829 0 8af 547
 29 0 8a2 0 8b1 0 8aa 0
 8af 547 829 0 2f 1 8b2 0
 8aa 0 8a6 0 849 0 6f 1
@@ -239,16 +238,16 @@ a1f 0 121f a 16ff 915 121f 8
 829 0 6f 1 8a6 0 819 0
 6f 1 8a6 0 809 0 6f 1
 1cff 0 8af 547 829 0 122f 0
-16ff 8e5 12f 1 8b2 0 8aa 0
-11ff 8e5 8af 546 829 0 842 0
+16ff 8dd 12f 1 8b2 0 8aa 0
+11ff 8dd 8af 546 829 0 842 0
 8af 547 29 0 8a2 0 8bf 0
 8aa 0 14f 1 834 0 14f 1
 804 0 842 0 f 2 3f 1
-1204 0 18ff 94b 8a0 0 819 0
+1204 0 18ff 943 8a0 0 819 0
 829 1 21f 100 32f ff 412 0
-8b1 0 8a3 0 8aa 0 11ff 92f
+8b1 0 8a3 0 8aa 0 11ff 927
 8af 547 8bf 0 8aa 0 85f 0
-11ff 8e5 13ff
+11ff 8dd 13ff
 </a>
       <a name="dataWidth" val="16"/>
       <a name="label" val="OS_ROM"/>
@@ -258,8 +257,8 @@ a1f 0 121f a 16ff 915 121f 8
       <a name="addrWidth" val="16"/>
       <a name="appearance" val="logisim_evolution"/>
       <a name="contents">addr/data: 16 16
-ff02 2019 c 86f ffff 80f 0 1eff
-1 a0f 0 f 1 11ff 5604
+ff02 2019 c 86f ffff 80f ffff 1eff
+1 a0f 0 13ff 0 29ff
 </a>
       <a name="dataWidth" val="16"/>
       <a name="label" val="ROM_1"/>
@@ -311,6 +310,9 @@ ff02 2019 c 86f ffff 80f 0 1eff
     <comp lib="6" loc="(3070,1670)" name="LedBar">
       <a name="matrixcols" val="16"/>
     </comp>
+    <comp lib="9" loc="(1415,1805)" name="Text">
+      <a name="text" val="KEYBOARD(To use,click this!)"/>
+    </comp>
     <comp loc="(1880,1830)" name="in_switcher"/>
     <comp loc="(2060,3760)" name="rom_controller"/>
     <comp loc="(2180,2050)" name="int_controller"/>
@@ -335,8 +337,8 @@ ff02 2019 c 86f ffff 80f 0 1eff
     <wire from="(1240,1520)" to="(1240,1570)"/>
     <wire from="(1250,1520)" to="(1250,2220)"/>
     <wire from="(1250,2220)" to="(1390,2220)"/>
-    <wire from="(1290,1790)" to="(1290,1960)"/>
-    <wire from="(1290,1790)" to="(1530,1790)"/>
+    <wire from="(1290,1780)" to="(1290,1960)"/>
+    <wire from="(1290,1780)" to="(1530,1780)"/>
     <wire from="(1290,1960)" to="(1350,1960)"/>
     <wire from="(1350,1940)" to="(1350,1960)"/>
     <wire from="(1350,1980)" to="(1350,3710)"/>
@@ -375,7 +377,7 @@ ff02 2019 c 86f ffff 80f 0 1eff
     <wire from="(1510,2550)" to="(1510,3590)"/>
     <wire from="(1510,2550)" to="(1660,2550)"/>
     <wire from="(1510,3590)" to="(3650,3590)"/>
-    <wire from="(1530,1710)" to="(1530,1790)"/>
+    <wire from="(1530,1710)" to="(1530,1780)"/>
     <wire from="(1530,1710)" to="(2350,1710)"/>
     <wire from="(1540,2530)" to="(1540,3390)"/>
     <wire from="(1540,2530)" to="(1660,2530)"/>
@@ -648,6 +650,7 @@ ff02 2019 c 86f ffff 80f 0 1eff
       <a name="appearance" val="NewPins"/>
       <a name="label" val="input_st"/>
     </comp>
+    <comp lib="0" loc="(700,1660)" name="Constant"/>
     <comp lib="0" loc="(840,1350)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="label" val="INT_NUM"/>
@@ -697,8 +700,12 @@ ff02 2019 c 86f ffff 80f 0 1eff
     <comp lib="2" loc="(2290,1400)" name="Demultiplexer">
       <a name="width" val="16"/>
     </comp>
+    <comp lib="2" loc="(730,1650)" name="Multiplexer"/>
     <comp lib="5" loc="(2100,2110)" name="D Flip-Flop">
       <a name="appearance" val="logisim_evolution"/>
+    </comp>
+    <comp lib="6" loc="(620,1700)" name="DipSwitch">
+      <a name="number" val="1"/>
     </comp>
     <comp loc="(1420,1260)" name="registers"/>
     <comp loc="(1430,1960)" name="Instruction_Control"/>
@@ -959,6 +966,7 @@ ff02 2019 c 86f ffff 80f 0 1eff
     <wire from="(2080,2160)" to="(2090,2160)"/>
     <wire from="(2120,1620)" to="(2120,1740)"/>
     <wire from="(2120,1760)" to="(2200,1760)"/>
+    <wire from="(2120,2170)" to="(2120,2380)"/>
     <wire from="(2140,1460)" to="(2280,1460)"/>
     <wire from="(2150,2120)" to="(2190,2120)"/>
     <wire from="(2200,1630)" to="(2200,1760)"/>
@@ -992,12 +1000,15 @@ ff02 2019 c 86f ffff 80f 0 1eff
     <wire from="(3040,1380)" to="(3040,1390)"/>
     <wire from="(3040,1390)" to="(3050,1390)"/>
     <wire from="(3050,730)" to="(3050,1390)"/>
+    <wire from="(630,1700)" to="(710,1700)"/>
     <wire from="(650,1610)" to="(780,1610)"/>
     <wire from="(660,1800)" to="(910,1800)"/>
     <wire from="(660,1890)" to="(890,1890)"/>
-    <wire from="(770,1650)" to="(770,2180)"/>
-    <wire from="(770,1650)" to="(780,1650)"/>
-    <wire from="(770,2180)" to="(1720,2180)"/>
+    <wire from="(680,1640)" to="(680,2180)"/>
+    <wire from="(680,1640)" to="(700,1640)"/>
+    <wire from="(680,2180)" to="(1720,2180)"/>
+    <wire from="(710,1670)" to="(710,1700)"/>
+    <wire from="(730,1650)" to="(780,1650)"/>
     <wire from="(830,1630)" to="(850,1630)"/>
     <wire from="(840,1350)" to="(960,1350)"/>
     <wire from="(840,1390)" to="(890,1390)"/>
@@ -1018,6 +1029,8 @@ ff02 2019 c 86f ffff 80f 0 1eff
     <wire from="(910,1300)" to="(910,1800)"/>
     <wire from="(910,1800)" to="(910,2140)"/>
     <wire from="(910,2140)" to="(1050,2140)"/>
+    <wire from="(910,2140)" to="(910,2380)"/>
+    <wire from="(910,2380)" to="(2120,2380)"/>
     <wire from="(940,1280)" to="(1200,1280)"/>
     <wire from="(940,1280)" to="(940,1630)"/>
     <wire from="(940,1630)" to="(940,1940)"/>
@@ -4371,7 +4384,15 @@ xxxxxxxxx00000001 00000010 # Instruction_Fetch_1 -&gt; Instruction_Fetch_2
 xxxxxxxxx00000010 00000110 # Instruction_Fetch_2 -&gt; Instruction_Check
 x0000000100000110 00000011 # Instruction_Check -&gt; Microcode_Execute_11
 x0000001000000110 00000100 # Instruction_Check -&gt; Microcode_Execute_21
+x0000011000000110 00011011 # Instruction_Check -&gt; Microcode_Execute_61
 x0000011100000110 00010100 # Instruciton_Check -&gt; Microcode_Execute_71
+x0000101000000110 00100001 # Instruciton_Check -&gt; Microcode_Execute_10_1
+xxxxxxxxx00011011 00011100 # Microcode_Execute_61 -&gt; Microcode_Execute_62
+xxxxxxxxx00011100 00011101 # Microcode_Execute_62 -&gt; Microcode_Execute_63
+xxxxxxxxx00011101 00011110 # Microcode_Execute_63 -&gt; Microcode_Execute_64
+xxxxxxxxx00011110 00011111 # Microcode_Execute_64 -&gt; Microcode_Execute_65
+xxxxxxxxx00011111 00100000 # Microcode_Execute_65 -&gt; Microcode_Execute_66
+xxxxxxxxx00100000 00000000 # Microcode_Execute_66 -&gt; INT_Check
 xxxxxxxxx00010100 00010101 # Microcode_Execute_71 -&gt; Microcode_Execute_72
 xxxxxxxxx00010101 00010110 # Microcode_Execute_72 -&gt; Microcode_Execute_73
 xxxxxxxxx00010110 00010111 # Microcode_Execute_73 -&gt; Microcode_Execute_74
@@ -4379,6 +4400,16 @@ xxxxxxxxx00010111 00011000 # Microcode_Execute_74 -&gt; Microcode_Execute_75
 xxxxxxxxx00011000 00011001 # Microcode_Execute_75 -&gt; Microcode_Execute_76
 xxxxxxxxx00011001 00011010 # Microcode_Execute_76 -&gt; Microcode_Execute_77
 xxxxxxxxx00011010 00000000 # Microcode_Execute_77 -&gt; INT_Check
+xxxxxxxxx00100001 00100010 # Microcode_Execute_10_1 -&gt; Microcode_Execute_10_2
+xxxxxxxxx00100010 00100011 # Microcode_Execute_10_2  -&gt; Microcode_Execute_10_3
+xxxxxxxxx00100011 00100100 # Microcode_Execute_10_3  -&gt; Microcode_Execute_10_4
+xxxxxxxxx00100100 00100101 # Microcode_Execute_10_4  -&gt; Microcode_Execute_10_5
+xxxxxxxxx00100101 00100110 # Microcode_Execute_10_5  -&gt; Microcode_Execute_10_6
+xxxxxxxxx00100110 00100111 # Microcode_Execute_10_6  -&gt; Microcode_Execute_10_7
+xxxxxxxxx00100111 00101000 # Microcode_Execute_10_7  -&gt; Microcode_Execute_10_8
+xxxxxxxxx00101000 00101001 # Microcode_Execute_10_8  -&gt; Microcode_Execute_10_9
+xxxxxxxxx00101001 00101010 # Microcode_Execute_10_9  -&gt; Microcode_Execute_10_10
+xxxxxxxxx00101010 00000000 # Microcode_Execute_10_10 -&gt; INT_Check
 xxxxxxxxx00000011 00000000 # Microcode_Execute_11 -&gt; INT_Check
 xxxxxxxxx00000100 00000101 # Microcode_Execute_21 -&gt; Microcode_Execute_22
 xxxxxxxxx00000101 00000000 # Microcode_Execute_22 -&gt; INT_Check
@@ -4416,6 +4447,22 @@ xxxxxxxxx00000101 00000000 # Microcode_Execute_22 -&gt; INT_Check
 00011000 0010101 # Microcode_Execute_75
 00011001 0010101 # Microcode_Execute_76
 00011010 1001101 # Microcode_Execute_77
+00011011 0010100 # Microcode_Execute_61
+00011100 0010100 # Microcode_Execute_62
+00011101 0010100 # Microcode_Execute_63
+00011110 0010100 # Microcode_Execute_64
+00011111 0010100 # Microcode_Execute_65
+00100000 0001100 # Microcode_Execute_66
+00100001 0010100 # Microcode_Execute_10_1
+00100010 0010100 # Microcode_Execute_10_2
+00100011 0010100 # Microcode_Execute_10_3
+00100100 0010100 # Microcode_Execute_10_4
+00100101 0010100 # Microcode_Execute_10_5
+00100110 0010100 # Microcode_Execute_10_6
+00100111 0010100 # Microcode_Execute_10_7
+00101000 0010100 # Microcode_Execute_10_8
+00101001 0010100 # Microcode_Execute_10_9
+00101010 0001100 # Microcode_Execute_10_10
 </a>
     </comp>
     <comp lib="1" loc="(2560,1430)" name="PLA">
@@ -5274,9 +5321,12 @@ xxxxxxxxx00000101 00000000 # Microcode_Execute_22 -&gt; INT_Check
 0xxx10010001101011111 00000001 # setbuffersize bp
 0xxx10010001101101111 00000001 # setbuffersize sp
 0xxx10010010011111111 00000001 # buffertomemval
-0xxx10001111111111111 00000010 # setintdisableflag
-0xxx10010000011111111 00000010 # clearintdisableflag
+0xxx10010010111111111 00000010 # setintdisableflag
+0xxx10010011011111111 00000010 # clearintdisableflag
 0xxx10001110011111111 00000111 # intret
+0xxx10010011111111111 00000110 # syscall
+0xxx10010100011111111 00001010 # usercall
+0xxx10010100111111111 00000110 # userret
 1xxxxxxxxxxxxxxxxxxxx 00000000 # Interrupt
 </a>
     </comp>
@@ -6136,10 +6186,13 @@ xxxxxxxxx00000101 00000000 # Microcode_Execute_22 -&gt; INT_Check
 0xxx10010001101011111 0000001101010101 # setbuffersize bp
 0xxx10010001101101111 0000001101010110 # setbuffersize sp
 0xxx10010010011111111 0000001101010111 # buffertomemval
-0xxx10001111111111111 0000001101011000 # setintdisableflag
-0xxx10010000011111111 0000001101011010 # clearintdisableflag
+0xxx10010010111111111 0000001101011000 # setintdisableflag
+0xxx10010011011111111 0000001101011010 # clearintdisableflag
 0xxx10001110011111111 0000001101011100 # intret
-1xxxxxxxxxxxxxxxxxxxx 0000001101100011 # Interrupt
+0xxx10010011111111111 0000001101100011 # syscall
+0xxx10010100011111111 0000001101101001 # usercall
+0xxx10010100111111111 0000001101110011 # userret
+1xxxxxxxxxxxxxxxxxxxx 0000001101111001 # Interrupt
 </a>
     </comp>
     <comp lib="1" loc="(2710,1500)" name="AND Gate">
@@ -6415,8 +6468,11 @@ a 16f 1 8a6 0 8aa 0 11ff
 467c58 80ffdf 467b58 800000 438088 800001 48f888 38090
 90 8090 10090 18090 20090 28090 30090 80050
 800010 467c58 80ffef 467b58 30048 800000 44803a 800001
-437830 80ffcf 467b58 805000 46f860 50050 800001 437930
-30048 800000 40007b 68048 448052 58038 80fff7 467b58
+437830 80ffcf 467b58 80ffdf 467b58 8001ff 438060 800008
+467b58 800020 467c58 50050 800000 45f850 805120 438048
+800000 45807b 38038 80ffdf 467b58 805120 438048 800000
+44803a 805000 46f860 50050 800001 437930 30048 800000
+40007b 68048 448052 58038 80fff7 467b58
 </a>
       <a name="dataWidth" val="24"/>
       <a name="label" val="Microcode_ROM"/>
