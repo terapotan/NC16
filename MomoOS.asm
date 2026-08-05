@@ -65,15 +65,22 @@ os_command_not_found:
     #d "command not found.\n\0"
     #align 16
 
+systemcall_address_list:
+    #res 4
+
 interrupt_handler_base_address = 0x5000
 program_data_address = 0x5600
 
 syscall_handler:
-    mov a,tty_out_id
-    mov b,os_message_6
-    call output_string
+    ;ふつう割り込みハンドラ処理中は割り込み禁止だが
+    ;システムコールによる割り込み処理中は割り込みOKとする
+    ;そうしないと、各種処理が正常に実行できないからである
+    clearintdisableflag
+    add e,systemcall_address_list
+    mov memaddr,e
+    mov e,[memaddr+0]
+    call e
     switchusermode
-    hlt
     intret
 
 os_start:
@@ -97,6 +104,20 @@ os_start:
     num3= interrupt_handler_base_address+511
     mov memval,syscall_handler
     mov [memaddr+num3],memval
+
+    ; システムコールアドレステーブル設定
+    mov a,systemcall_address_list
+    mov memaddr,a
+
+    mov memval,input_user_string
+    mov [memaddr+0],memval
+    mov memval,compare_to_string
+    mov [memaddr+1],memval
+    mov memval,read_rom_data
+    mov [memaddr+2],memval
+    mov memval,output_string
+    mov [memaddr+3],memval
+
 
 main_loop:
     mov a,command_buffer

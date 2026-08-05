@@ -197,6 +197,15 @@
         mov [memaddr+0],memval
         jmp {opd}
     }
+    call {r1: regs} => asm{
+        lpc
+        add memval,0xa
+        ; push memval
+        sub sp,1
+        mov memaddr,sp
+        mov [memaddr+0],memval
+        jmp {r1}
+    }
     ret => asm{
         ; pop memval
         mov memaddr,sp
