@@ -5,13 +5,48 @@ jmp program_start
 message_1:
     #d "This is user program!\n\0"
     #align 16
+message_2:
+    #res 128
+    #align 16
+message_3:
+    #res 128
+    #align 16
+message_4:
+    #d "NOT_EQUALL\n"
+    #align 16
+message_5:
+    #d "EQUALL\n"
+    #align 16
+
 program_start:
     mov a,0xffff
     setoutaddr 1
     out a
 
+    mov a,message_2
+    mov e,0
+    syscall
+
+    mov a,message_3
+    mov e,0
+    syscall
+
+    mov a,message_2
+    mov b,message_3
+    mov e,1
+    syscall
+
+    cmp c,0
+    je not_equall
     mov a,tty_out_id
-    mov b,message_1
+    mov b,message_5
+    mov e,3
+    syscall
+    userret
+    
+not_equall:
+    mov a,tty_out_id
+    mov b,message_4
     mov e,3
     syscall
     userret
