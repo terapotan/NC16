@@ -3,5 +3,9 @@
 mov a,0xffff
 setoutaddr 1
 out a
-hlt
+mov a,0
+;hlt
+syscall
+setoutaddr 1
+out 0xff00
 userret

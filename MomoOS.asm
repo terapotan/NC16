@@ -29,7 +29,9 @@ os_message_4:
 os_message_5:
     #d "Load complete.\n\0"
     #align 16
-
+os_message_6:
+    #d "SYSCALL_CALLED.\n\0"
+    #align 16
 
 command_buffer_addr:
     #d 0x0000 ;キーボード入力された文字列を格納するためのメモリ領域（コマンドバッファ）のアドレス
@@ -66,6 +68,14 @@ os_command_not_found:
 interrupt_handler_base_address = 0x5000
 program_data_address = 0x5600
 
+syscall_handler:
+    mov a,tty_out_id
+    mov b,os_message_6
+    call output_string
+    switchusermode
+    hlt
+    intret
+
 os_start:
     setoutaddr 1
     out 0xffff
@@ -83,6 +93,10 @@ os_start:
     num2 = interrupt_handler_base_address+keyboard_int_id
     mov memval,keyboard_int_handler
     mov [memaddr+num2],memval
+
+    num3= interrupt_handler_base_address+511
+    mov memval,syscall_handler
+    mov [memaddr+num3],memval
 
 main_loop:
     mov a,command_buffer
@@ -145,7 +159,6 @@ os_command_load_rom3_process:
     jmp load_program_data_from_rom
 
 os_command_run_process:
-    hlt
     usercall program_data_address
     jmp main_loop
 
