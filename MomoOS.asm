@@ -30,7 +30,7 @@ os_message_5:
     #d "Load complete.\n\0"
     #align 16
 os_message_6:
-    #d "SYSCALL_CALLED.\n\0"
+    #d "MomoOS>\0"
     #align 16
 
 command_buffer_addr:
@@ -120,6 +120,10 @@ os_start:
 
 
 main_loop:
+    mov a,tty_out_id
+    mov b,os_message_6
+    call output_string
+
     mov a,command_buffer
     call input_user_string
 
@@ -428,8 +432,7 @@ keyboard_int_handler:
 
     setinaddr keyboard_in_id
     in b ;キーボードから入力文字取り込み
-    setoutaddr tty_out_id
-    out b ;TTYへ入力文字出力
+
 
     ;入力文字列がEnterKeyであれば、コマンドバッファの内容をTTYに出力する
     cmp b,keyboard_int_handler_enterkey
@@ -441,6 +444,9 @@ keyboard_int_handler:
     je keyboard_int_handler_input_backspacekey
 
     ;コマンドバッファへ追記する
+
+    setoutaddr tty_out_id
+    out b ;TTYへ入力文字出力
 
     ;コマンドバッファとコマンドバッファポインタから
     ;次追記すべきメモリアドレスを算出する
@@ -473,6 +479,8 @@ keyboard_int_handler:
         mov c,[memaddr+0] ;コマンドバッファポインタの値をcレジスタに格納
         cmp c,0x0000 ;コマンドバッファポインタが0なら何もしない
         je keyboard_int_handler_intret
+        out b ;TTYへ入力文字出力
+
         sub c,1
         mov memval,c
         mov [memaddr+0],memval ;読みだした値に1減算した値を再度コマンドバッファポインタに格納
@@ -480,6 +488,9 @@ keyboard_int_handler:
 
 
     keyboard_int_handler_input_enterkey:
+            setoutaddr tty_out_id
+            out b ;TTYへ入力文字出力
+            
             ;コマンドバッファのアドレスを読み出す
             mov memaddr,command_buffer_addr
             mov c,[memaddr+0]
