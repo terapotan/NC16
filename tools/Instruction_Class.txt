@@ -858,3 +858,4 @@
 0xxx10010100111111111 00000110 # userret
 0xxx10010101011111111 00000010 # switchusermode
 1xxxxxxxxxxxxxxxxxxxx 00000000 # Interrupt
+xxxxxxxxxxxxxxxxxxxxx 11111111 # Undefined Instruction

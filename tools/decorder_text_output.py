@@ -120,7 +120,7 @@ def export_IMBD_ITSD_MicrocodeROM():
             microcode_list.append(line_list[1])
             continue   
 
-
+    Instruction_Class_file.write("xxxxxxxxxxxxxxxxxxxxx 11111111 # Undefined Instruction")
 if __name__ == "__main__":
     expand_registers()
     export_IMBD_ITSD_MicrocodeROM()
