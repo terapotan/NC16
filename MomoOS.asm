@@ -322,8 +322,18 @@ compare_to_string:
 ; cレジスタ：読み込むデータ長を指定する。
 ; dレジスタ：どのアドレスに読み込んだデータを書き込むか。
 
+;戻り値
+; eレジスタ：正常終了時は0、不正な引数が渡された場合に1を返す。
+
 ; eレジスタをbuffer_full検知用レジスタとして使用する。1のときbuffer_full割り込みが起きたことを示す
 read_rom_data:
+
+    ;データの書き込み先として0x5600(ユーザーモードのプログラムがアクセスしてはならないメモリ領域)より小さいメモリアドレスを指定していないかチェック
+    cmp d,0x5600
+    jl read_rom_data_error
+
+;OSがread_rom_dataの機能を利用する場合はこちらをcallする
+__read_rom_data:
     ;bufferレジスタ関連の初期化処理を行う
     setzerobufferpointer
     setbuffersize c
@@ -356,7 +366,13 @@ read_rom_data:
         incbufferpointer
         cmp a,c
         jl read_rom_data_loop_2
+    mov e,0
     ret
+
+read_rom_data_error:
+    mov e,1
+    ret
+
 
 buffer_full_int_handler:
     ;割り込みが発生したことを通知
@@ -475,6 +491,7 @@ keyboard_int_handler:
         intret
 
     keyboard_int_handler_input_backspacekey:
+
         mov memaddr,command_buffer_pointer
         mov c,[memaddr+0] ;コマンドバッファポインタの値をcレジスタに格納
         cmp c,0x0000 ;コマンドバッファポインタが0なら何もしない

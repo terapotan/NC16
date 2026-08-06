@@ -10,7 +10,7 @@
 - INT：割り込み通知用ピンです。INTに1を入力すると、NC-16に割り込みが通知されます。
 - INT_NUM：割り込み番号通知用ピンです。
 - RESET：リセット信号を入力します。リセット信号を1にすると、NC-16の初期化処理が実行されます。
-- cpu_status：CPUの現在の状態を表示します。HLT命令実行中、通常実行中、アボートによるCPU強制停止等です。
+- cpu_status：CPUの現在の状態を表示します。ステータスの詳細については[CPUステータス詳細](./CPU_status_specification.md)をご覧ください。
 - int_ret：割り込み処理からの復帰を伝えます。割り込み処理から復帰直後1クロックだけ1を出力します。それ以外は0を出力します。
 ## NC-16 Block diagram
 ![BlockDiagram](./BlockDiagram.png)
