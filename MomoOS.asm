@@ -70,6 +70,7 @@ systemcall_address_list:
 
 interrupt_handler_base_address = 0x5000
 program_data_address = 0x5600
+systemcall_address = 0x5121
 
 syscall_handler:
     ;ふつう割り込みハンドラ処理中は割り込み禁止だが
@@ -80,8 +81,8 @@ syscall_handler:
     mov memaddr,e
     mov e,[memaddr+0]
     call e
-    switchusermode
-    intret
+    ;hlt
+    sysret
 
 os_start:
     setoutaddr 1
@@ -117,6 +118,12 @@ os_start:
     mov [memaddr+2],memval
     mov memval,output_string
     mov [memaddr+3],memval
+
+    ; システムコールハンドラアドレス設定
+    mov memaddr,systemcall_address
+    mov memval,syscall_handler
+    mov [memaddr+0],memval
+
 
 
 main_loop:
@@ -203,7 +210,7 @@ load_program_data_from_rom:
     mov b,0x0000
     mov c,3
     mov d,program_header
-    call read_rom_data
+    call __read_rom_data
     
     ; 識別子チェック
     mov b,program_header
@@ -217,11 +224,13 @@ load_program_data_from_rom:
     ; プログラムのサイズを読み出す
     mov c,[b+2] 
 
+
     mov memaddr,os_load_romnum
     mov a,[memaddr+0]
     mov b,0x0003
     mov d,program_data_address
-    call read_rom_data
+    nop ;nop命令を挿入するとread_rom_dataが正常に動作する。なぜこの修正で動作するのかは不明である。
+    call __read_rom_data
 
     mov a,tty_out_id
     mov b,os_message_5
@@ -233,8 +242,6 @@ program_load_faild:
     mov b,os_message_4
     call output_string
     jmp main_loop
-
-
 
 hlt
 

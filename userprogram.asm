@@ -1,27 +1,9 @@
 #include "nc16_assemble_USERPROGRAM.asm"
 tty_out_id = 0
-jmp program_start
-
-message_1:
-    #d "This is user program!\n\0"
-    #align 16
-message_2:
-    #res 128
-    #align 16
-message_3:
-    #res 128
-    #align 16
-message_4:
-    #d "NOT_EQUALL\n"
-    #align 16
-message_5:
-    #d "EQUALL\n"
-    #align 16
-
 program_start:
-    mov a,0xffff
-    setoutaddr 1
-    out a
+    ;mov a,0xffff
+    ;setoutaddr 1
+    ;out a
 
     mov a,message_2
     mov e,0
@@ -50,3 +32,19 @@ not_equall:
     mov e,3
     syscall
     userret
+
+message_1:
+    #d "This is user program!\n\0"
+    #align 16
+message_2:
+    #res 128
+    #align 16
+message_3:
+    #res 128
+    #align 16
+message_4:
+    #d "NOT_EQUALL\n"
+    #align 16
+message_5:
+    #d "EQUALL \n"
+    #align 16
