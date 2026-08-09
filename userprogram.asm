@@ -4,7 +4,8 @@ program_start:
     ;mov a,0xffff
     ;setoutaddr 1
     ;out a
-    jmp 0x0000
+    mov memaddr,0x0900
+    mov memval,[memaddr+0]
 
     mov a,message_2
     mov e,0
