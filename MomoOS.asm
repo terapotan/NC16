@@ -229,7 +229,6 @@ load_program_data_from_rom:
     mov a,[memaddr+0]
     mov b,0x0003
     mov d,program_data_address
-    ;nop ;nop命令を挿入するとread_rom_dataが正常に動作する。なぜこの修正で動作するのかは不明である。
     call __read_rom_data
 
     mov a,tty_out_id
