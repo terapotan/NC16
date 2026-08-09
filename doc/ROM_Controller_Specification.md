@@ -78,10 +78,18 @@ stateDiagram-v2
 base_addr_receive<br>00001 --> base_addr_receive<br>00001 : X0
 base_addr_receive<br>00001 --> data_size_receive<br>00010 : X1
 data_size_receive<br>00010 --> data_size_receive<br>00010 : X0
-data_size_receive<br>00010 --> data_send<br>01100 : X1
+data_size_receive<br>00010 --> data_send_initsend<br>01000 : X1
+data_send_initsend<br>01000 --> data_send_count<br>00100 :XX
 
-data_send<br>01100 --> data_send<br>01100 : 0X
-data_send<br>01100 --> rom_controller_reset<br>10000 :1X
+data_send_send<br>01000 --> data_send_count<br>00100 : 0X
+data_send_count<br>00100 --> data_send_wait1<br>00000 :XX
+
+data_send_wait1<br>00000 --> data_send_send<br>01000 : XX
+
+
+
+data_send_send<br>01000 --> 
+rom_controller_reset<br>10000 :1X
 rom_controller_reset<br>10000 --> base_addr_receive<br>00001 :XX
 ```
 
@@ -90,5 +98,8 @@ rom_controller_reset<br>10000 --> base_addr_receive<br>00001 :XX
 |:--:|:--:|
 |base_addr_receive|0|
 |data_size_receive|1|
-|data_send|2|
+|data_send_count|2|
 |rom_controller_reset|3|
+|data_send_send|4|
+|data_send_sendinit|5|
+|data_send_wait1|6|

@@ -1,13 +1,19 @@
 # 状態と値の対応
 # base_addr_receive 00000000
 # data_size_receive 00000001
-# data_send 00000010
+# data_send_count 00000010
 # rom_controller_reset 00000011
+# data_send_send 00000100
+# data_send_initsend 00000101
+# data_send_wait1 00000110
 
 x000000000 00000000 # base_addr_receive stay
 x100000000 00000001 # base_addr_receive -> data_size_receive
 x000000001 00000001 # data_size_receive stay
-x100000001 00000010 # data_size_receive -> data_send
-0x00000010 00000010 # data_send stay
-1x00000010 00000011 # data_send -> rom_controller_reset
+x100000001 00000101 # data_size_receive -> data_send_initsend
+xx00000101 00000110 # data_send_initsend -> data_send_wait1
+xx00000110 00000010 # data_send_wait1 -> data_send_count
+xx00000010 00000100 # data_send_count -> data_send_send
+0x00000100 00000010 # data_send_send -> data_send_count
+1x00000100 00000011 # data_send_send -> rom_controller_reset
 xx00000011 00000000 # rom_controller_reset -> base_addr_receive

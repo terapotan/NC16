@@ -4,6 +4,7 @@ program_start:
     ;mov a,0xffff
     ;setoutaddr 1
     ;out a
+    jmp 0x0000
 
     mov a,message_2
     mov e,0
@@ -43,8 +44,8 @@ message_3:
     #res 128
     #align 16
 message_4:
-    #d "NOT_EQUALL\n"
+    #d "NOT_EQUALL\n\0"
     #align 16
 message_5:
-    #d "EQUALL \n"
+    #d "EQUALL\n\0"
     #align 16

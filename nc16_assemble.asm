@@ -238,4 +238,4 @@
 
 nc16_assemble_start:
 ; 初期化
-mov sp,0xffff
+;mov sp,0xffff

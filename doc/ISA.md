@@ -108,7 +108,7 @@ FuncInput2
 |clearintdisableflag     |0x26|×|
 |syscall                 |0x27|〇|
 |usercall      |0x28|×|
-|userret                 |0x29|×|
+|userret                 |0x29|〇|
 |sysret          |0x2a|×|
 
 
