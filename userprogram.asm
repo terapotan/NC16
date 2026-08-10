@@ -1,34 +1,33 @@
 #include "nc16_assemble_USERPROGRAM.asm"
 tty_out_id = 0
+input_user_string=0
+compare_to_string=1
+read_rom_data=2
+output_string=3
+ascii_to_int=4
+int_to_ascii=5
+
 program_start:
     mov a,message_2
-    mov e,0
-    syscall
-
-    mov a,message_3
-    mov e,0
+    mov e,input_user_string
     syscall
 
     mov a,message_2
+    mov e,ascii_to_int
+    syscall
+
+
+    mov a,b
     mov b,message_3
-    mov e,1
+    mov e,int_to_ascii
     syscall
 
-    cmp c,0
-    je not_equall
     mov a,tty_out_id
-    mov b,message_5
-    mov e,3
+    mov b,message_3
+    mov e,output_string
     syscall
-    userret
-    
-not_equall:
-    mov a,tty_out_id
-    mov b,message_4
-    mov e,3
-    syscall
-    userret
 
+    userret
 message_1:
     #d "This is user program!\n\0"
     #align 16

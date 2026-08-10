@@ -66,7 +66,7 @@ os_command_not_found:
     #align 16
 
 systemcall_address_list:
-    #res 4
+    #res 6 ; システムコール追加/削除時、ここの値も変更すること！
 
 interrupt_handler_base_address = 0x5000
 program_data_address = 0x5600
@@ -81,7 +81,6 @@ syscall_handler:
     mov memaddr,e
     mov e,[memaddr+0]
     call e
-    ;hlt
     sysret
 
 os_start:
@@ -118,6 +117,10 @@ os_start:
     mov [memaddr+2],memval
     mov memval,output_string
     mov [memaddr+3],memval
+    mov memval,ascii_to_int
+    mov [memaddr+4],memval
+    mov memval,int_to_ascii
+    mov [memaddr+5],memval
 
     ; システムコールハンドラアドレス設定
     mov memaddr,systemcall_address
@@ -372,6 +375,7 @@ __read_rom_data:
         incbufferpointer
         cmp a,c
         jl read_rom_data_loop_2
+
     mov e,0
     ret
 
@@ -563,6 +567,270 @@ keyboard_int_handler:
 
                 mov bp,0 ;キーボード入力処理終了を通知する
                 jmp keyboard_int_handler_intret
+
+
+
+; ----------------------------------------------------------
+; ascii_to_int
+; 数字のASCII文字列（10進数、'0'～'9'のみ。符号には非対応）を
+; 数値に変換する。文字列はNULL文字(0x00)で終端されていること。
+;
+; 引数
+; aレジスタ：変換したい文字列の先頭アドレス
+;
+; 戻り値
+; bレジスタ：変換された数値
+; cレジスタ：処理結果
+;              0 ：成功
+;              1 ：'0'～'9'以外の文字が含まれていた（数字として不正）
+;              2 ：文字列が空だった（1文字も数字が見つからなかった）
+;              3 : aレジスタに指定されたアドレスを読み込む権限がない
+;
+; 備考
+; ・変換結果が65535を超える場合の動作は未定義とする（オーバーフロー検出は行わない）。
+; ----------------------------------------------------------
+ascii_to_int:
+
+    ;データの読み込み元として0x5600(ユーザーモードのプログラムがアクセスしてはならないメモリ領域)より小さいメモリアドレスを指定していないかチェック
+    cmp a,program_data_address
+    jl ascii_to_int_error
+
+    __ascii_to_int:
+    push d
+    push e
+    push bp
+
+    mov b,0  ; 変換結果の積算用（戻り値）
+    mov d,a  ; 文字列読み出し用のワードアドレスポインタ
+    mov bp,0 ; 数字を1文字でも読み込めたかどうかのフラグ(0:未検出 1:検出済み)
+
+    ascii_to_int_loop:
+        mov memaddr,d
+        mov e,[memaddr+0] ; 1ワード(2文字分)読み出し
+
+        ; ---- 上位8bit(1文字目)の処理 ----
+        mov c,e
+        and c,0xff00
+        shr c,8
+
+        cmp c,0x0000
+        je ascii_to_int_end ; 上位8bitがNULL文字＝文字列終端
+
+        ;与えられた文字が数字を表す文字（0,1,2,3,4,5,6,7,8,9）のいずれかであるかどうかチェック
+        ;数字を表す文字ではない場合、不正文字が入力されたとして処理を中断。
+        cmp c,0x30
+        jl ascii_to_int_invalid_char ; '0'未満
+        cmp c,0x39
+        ja ascii_to_int_invalid_char ; '9'超過
+
+
+        ; 347という文字列を数値に変換することを考える
+        ; bレジスタには3が入っているとする
+        ; 手順1:bレジスタに10をかけて元々あった数字を左に一つずらす
+        ; 手順2:空いた位に今読み込んだ値を足す。ここでは4が足される
+        ; これで十の位まで読めたことになる。同様の手順で一の位も読みだせば、347という文字列が数値に変換される。
+        sub c,0x30
+        mul b,10
+        add b,c
+        mov bp,1
+
+        ; ---- 下位8bit(2文字目)の処理 ----
+        mov c,e
+        and c,0x00ff
+
+        cmp c,0x0000
+        je ascii_to_int_end ; 下位8bitがNULL文字＝文字列終端
+
+        ;与えられた文字が数字を表す文字（0,1,2,3,4,5,6,7,8,9）のいずれかであるかどうかチェック
+        ;数字を表す文字ではない場合、不正文字が入力されたとして処理を中断。
+        cmp c,0x30
+        jl ascii_to_int_invalid_char
+        cmp c,0x39
+        ja ascii_to_int_invalid_char
+
+        sub c,0x30
+        mul b,10
+        add b,c
+        mov bp,1
+
+        add d,1
+        jmp ascii_to_int_loop
+
+    ascii_to_int_end:
+        cmp bp,0
+        je ascii_to_int_empty
+        mov c,0
+        jmp ascii_to_int_exit
+
+    ascii_to_int_invalid_char:
+        mov c,1
+        jmp ascii_to_int_exit
+
+    ascii_to_int_empty:
+        mov c,2
+
+    ascii_to_int_exit:
+        pop bp
+        pop e
+        pop d
+    ascii_to_int_ret_exit:
+        ret
+
+    ascii_to_int_error:
+        mov c,3
+        jmp ascii_to_int_ret_exit
+
+; ----------------------------------------------------------
+; int_to_ascii
+; 数値を10進数のASCII文字列に変換する。
+; 変換結果は指定したメモリ領域に、2文字/ワードの形式
+; （上位8bitに1文字目、下位8bitに2文字目）で格納し、
+; 文字列の終端にはNULL文字(0x00)を格納する。
+;
+; 引数
+; aレジスタ：文字列に変換したい数値（0～65535の符号なし整数として扱う）
+; bレジスタ：変換した文字列を格納するメモリ領域の先頭アドレス
+;            （"65535"+NULL文字を格納できるよう、最低3ワード分の
+;            空き領域を確保しておくこと）
+;
+; 戻り値
+; cレジスタ：処理結果。
+;           0:成功
+;           1:bレジスタに指定したアドレスに対し書き込む権限が存在しない
+; ----------------------------------------------------------
+int_to_ascii_place_table:
+    #d 0x2710 ; 10000
+    #d 0x03e8 ; 1000
+    #d 0x0064 ; 100
+    #d 0x000a ; 10
+    #d 0x0001 ; 1
+int_to_ascii_started:
+    #d 0x0000 ; 1文字でも出力済みかどうかのフラグ（先頭の0を省略するために使用）
+int_to_ascii_pending:
+    #d 0xffff ; 書き込み待ちの文字(上位8bit分)。0xffffは「保留中の文字なし」を表す
+
+int_to_ascii:
+    
+    ;データの書き込み先として0x5600(ユーザーモードのプログラムがアクセスしてはならないメモリ領域)より小さいメモリアドレスを指定していないかチェック
+    cmp b,program_data_address
+    jl int_to_ascii_error
+
+
+__int_to_ascii:
+    push d
+    push e
+    push bp
+
+    mov bp,0 ; 位取りテーブルの添字（0:10000の位 ～ 4:1の位）
+
+    int_to_ascii_outer_loop:
+        ; 現在の位取りの値をテーブルから読み出す
+        add bp,int_to_ascii_place_table
+        mov memaddr,bp
+        mov d,[memaddr+0]
+
+        ; aレジスタから位取りの値(dレジスタ)を繰り返し減算し、その桁の数字をeレジスタに求める
+        mov e,0
+        int_to_ascii_div_loop:
+            ; d（位取りの値）よりa（文字列に変換したい数値）が小さいなら
+            ; その位取りの値が表す桁は出力する必要がないので処理を中断する
+            ; 542という数字を例にして考える。542は10000と比べて小さい。542に10000の位は必要ないから処理を中断する。
+            ; 542は100と比べて大きい。よって除算を実行する。542割る100の商は5であるから、百の位として5を出力する
+            cmp a,d
+            jl int_to_ascii_div_done
+            sub a,d
+            add e,1
+            jmp int_to_ascii_div_loop
+        int_to_ascii_div_done:
+
+
+        ; eレジスタの値が0になったとして、必ずしもその桁を出力する必要がないわけではない
+        ; 例えば5602という値において、十の位は0だが、この0は出力しなければならない。
+        ; こういった場合に対応するため、次のロジックで該当の桁を出力すべきか、そうでないか判定する。
+        ; 1. 現在文字列の出力を開始しているならば、0であっても出力する。桁の途中に0があるようなケースが該当する。
+        ; 2. 1の位の0は必ず出力する
+        ; 3. 0でないなら普通に出力。その際、文字列出力中のフラグを1にする。
+
+        ; この桁を出力すべきか判定する（先頭の0は省略。ただし1の位は必ず出力する）
+        cmp e,0
+        jne int_to_ascii_will_output
+
+        mov memaddr,int_to_ascii_started
+        mov c,[memaddr+0]
+        cmp c,1
+        je int_to_ascii_output_digit ; 既に出力を開始しているなら0も出力する
+
+        cmp bp,4
+        je int_to_ascii_output_digit ; 1の位は0であっても必ず出力する
+
+        jmp int_to_ascii_next_digit ; 先頭の0なので出力しない
+
+        int_to_ascii_will_output:
+            mov memaddr,int_to_ascii_started
+            mov memval,1
+            mov [memaddr+0],memval
+
+        int_to_ascii_output_digit:
+            add e,0x30 ; 数値をASCII文字コードへ変換
+
+            mov memaddr,int_to_ascii_pending
+            mov c,[memaddr+0]
+            cmp c,0xffff
+            je int_to_ascii_store_pending
+
+            ; 保留中の文字(上位8bit)と今回の文字(下位8bit)を結合して1ワード書き込む
+            mul c,256 ;左に8bitシフト
+            or c,e
+            mov memval,c
+            mov memaddr,b
+            mov [memaddr+0],memval
+            add b,1
+
+            mov memaddr,int_to_ascii_pending
+            mov memval,0xffff
+            mov [memaddr+0],memval
+            jmp int_to_ascii_next_digit
+
+        int_to_ascii_store_pending:
+            mov memaddr,int_to_ascii_pending
+            mov memval,e
+            mov [memaddr+0],memval
+
+        int_to_ascii_next_digit:
+            add bp,1
+            cmp bp,5
+            jl int_to_ascii_outer_loop
+
+    ; 最後にNULL文字を書き込んで文字列を終端する
+    mov memaddr,int_to_ascii_pending
+    mov c,[memaddr+0]
+    cmp c,0xffff
+    je int_to_ascii_write_null_only
+
+    ; 保留中の文字が残っている場合、その文字を上位8bit、NULL文字を下位8bitとして書き込む
+    mul c,256 ;左に8bitシフト
+    mov memval,c
+    mov memaddr,b
+    mov [memaddr+0],memval
+    jmp int_to_ascii_success
+
+    int_to_ascii_write_null_only:
+        mov memval,0x0000
+        mov memaddr,b
+        mov [memaddr+0],memval
+
+    int_to_ascii_success:
+        mov c,0
+
+    pop bp
+    pop e
+    pop d
+    int_to_ascii_ret:
+    ret
+
+    int_to_ascii_error:
+        mov c,1
+        jmp int_to_ascii_ret
 
 STOP:
     hlt
