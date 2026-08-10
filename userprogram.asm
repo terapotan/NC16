@@ -1,12 +1,6 @@
 #include "nc16_assemble_USERPROGRAM.asm"
 tty_out_id = 0
 program_start:
-    ;mov a,0xffff
-    ;setoutaddr 1
-    ;out a
-    mov memaddr,0x0900
-    mov memval,[memaddr+0]
-
     mov a,message_2
     mov e,0
     syscall
