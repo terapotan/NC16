@@ -710,12 +710,20 @@ int_to_ascii_pending:
     #d 0xffff ; 書き込み待ちの文字(上位8bit分)。0xffffは「保留中の文字なし」を表す
 
 int_to_ascii:
-    
     ;データの書き込み先として0x5600(ユーザーモードのプログラムがアクセスしてはならないメモリ領域)より小さいメモリアドレスを指定していないかチェック
     cmp b,program_data_address
     jl int_to_ascii_error
 
-
+    ; 状態初期化
+    ; 呼び出し2回目以降は前回の呼び出しで使った値が残っている
+    ; ので初期化しておく必要がある
+    mov memaddr,int_to_ascii_started
+    mov memval,0x0000
+    mov [memaddr+0],memval
+ 
+    mov memaddr,int_to_ascii_pending
+    mov memval,0xffff
+    mov [memaddr+0],memval
 __int_to_ascii:
     push d
     push e
@@ -725,8 +733,9 @@ __int_to_ascii:
 
     int_to_ascii_outer_loop:
         ; 現在の位取りの値をテーブルから読み出す
-        add bp,int_to_ascii_place_table
-        mov memaddr,bp
+        mov e,bp
+        add e,int_to_ascii_place_table
+        mov memaddr,e
         mov d,[memaddr+0]
 
         ; aレジスタから位取りの値(dレジスタ)を繰り返し減算し、その桁の数字をeレジスタに求める

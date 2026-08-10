@@ -11,19 +11,20 @@ program_start:
     mov a,message_2
     mov e,input_user_string
     syscall
-
     mov a,message_2
     mov e,ascii_to_int
     syscall
-
-
+    add b,10
     mov a,b
     mov b,message_3
     mov e,int_to_ascii
     syscall
-
     mov a,tty_out_id
     mov b,message_3
+    mov e,output_string
+    syscall
+    mov a,tty_out_id
+    mov b,enter_str
     mov e,output_string
     syscall
 
@@ -42,4 +43,7 @@ message_4:
     #align 16
 message_5:
     #d "EQUALL\n\0"
+    #align 16
+enter_str:
+    #d "\n\0"
     #align 16

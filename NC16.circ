@@ -154,7 +154,7 @@
       <a name="addrWidth" val="16"/>
       <a name="appearance" val="logisim_evolution"/>
       <a name="contents">addr/data: 16 16
-ff21 8f2a 5f0 11ff 689 a48 656c 6c6f
+ff21 8f2a 5fe 11ff 689 a48 656c 6c6f
 2c20 4d6f 6d6f 4f53 2057 6f72 6c64 2021
 a52 6561 6479 2066 6f72 2063 6f6d 6d61
 6e64 2e0a 0 6571 7561 6c6c 2100 6e6f
@@ -289,28 +289,30 @@ a1f 82f 1 11ff a1f 82f 2 8a6
 0 6f 1 8a6 0 839 0 6f
 1 8a6 0 8b9 0 6f 1 11bf
 0 82f 3 11ff a31 2710 3e8 64
-a 1 0 ffff 121f 5600 1aff aea
-16f 1 8b3 0 8a6 0 8aa 0
-16f 1 8b4 0 8a6 0 8aa 0
-16f 1 8b5 0 8a6 0 8aa 0
-85f 0 5f a3d 8a5 0 839 0
-84f 0 1203 0 1aff a74 103 0
-4f 1 11ff a6a 124f 0 17ff a86
-8af a42 829 0 122f 1 16ff a8c
-125f 4 16ff a8c 11ff ab0 8af a42
-8bf 1 8aa 0 4f 30 8af a43
-829 0 122f ffff 16ff aaa 22f 100
-424 0 8b2 0 8a1 0 8aa 0
-1f 1 8af a43 8bf ffff 8aa 0
-11ff ab0 8af a43 8b4 0 8aa 0
-5f 1 125f 5 1aff a62 8af a43
-829 0 122f ffff 16ff ac8 22f 100
-8b2 0 8a1 0 8aa 0 11ff ace
-8bf 0 8a1 0 8aa 0 82f 0
-8a6 0 859 0 6f 1 8a6 0
-849 0 6f 1 8a6 0 839 0
-6f 1 8a6 0 8b9 0 6f 1
-11bf 0 82f 1 11ff ae2 13ff
+a 1 0 ffff 121f 5600 1aff af8
+8af a42 8bf 0 8aa 0 8af a43
+8bf ffff 8aa 0 16f 1 8b3 0
+8a6 0 8aa 0 16f 1 8b4 0
+8a6 0 8aa 0 16f 1 8b5 0
+8a6 0 8aa 0 85f 0 845 0
+4f a3d 8a4 0 839 0 84f 0
+1203 0 1aff a82 103 0 4f 1
+11ff a78 124f 0 17ff a94 8af a42
+829 0 122f 1 16ff a9a 125f 4
+16ff a9a 11ff abe 8af a42 8bf 1
+8aa 0 4f 30 8af a43 829 0
+122f ffff 16ff ab8 22f 100 424 0
+8b2 0 8a1 0 8aa 0 1f 1
+8af a43 8bf ffff 8aa 0 11ff abe
+8af a43 8b4 0 8aa 0 5f 1
+125f 5 1aff a6e 8af a43 829 0
+122f ffff 16ff ad6 22f 100 8b2 0
+8a1 0 8aa 0 11ff adc 8bf 0
+8a1 0 8aa 0 82f 0 8a6 0
+859 0 6f 1 8a6 0 849 0
+6f 1 8a6 0 839 0 6f 1
+8a6 0 8b9 0 6f 1 11bf 0
+82f 1 11ff af0 13ff
 </a>
       <a name="dataWidth" val="16"/>
       <a name="label" val="OS_ROM"/>
@@ -320,13 +322,14 @@ a 1 0 ffff 121f 5600 1aff aea
       <a name="addrWidth" val="16"/>
       <a name="appearance" val="logisim_evolution"/>
       <a name="contents">addr/data: 16 16
-ff02 2019 134 80f 562a 84f 0 27ff
-0 80f 562a 84f 4 27ff 0 801
-0 81f 56aa 84f 5 27ff 0 80f
-0 81f 56aa 84f 3 27ff 0 29ff
+ff02 2019 13d 80f 5632 84f 0 27ff
+0 80f 5632 84f 4 27ff 0 801
+0 81f 56b2 84f 5 27ff 0 80f
+0 81f 56b2 84f 3 27ff 0 80f
+0 81f 573c 84f 3 27ff 0 29ff
 0 5468 6973 2069 7320 7573 6572 2070
 726f 6772 616d 210a 257*0 4e4f 545f 4551
-5541 4c4c a00 4551 5541 4c4c a00
+5541 4c4c a00 4551 5541 4c4c a00 a00
 </a>
       <a name="dataWidth" val="16"/>
       <a name="label" val="ROM_1"/>
@@ -4716,7 +4719,9 @@ a3f 0 34f ff 124f 0 16ff 8c9
       <a name="appearance" val="NewPins"/>
       <a name="label" val="RESET"/>
     </comp>
-    <comp lib="0" loc="(830,2600)" name="Constant"/>
+    <comp lib="0" loc="(830,2600)" name="Constant">
+      <a name="value" val="0x0"/>
+    </comp>
     <comp lib="0" loc="(840,2540)" name="Constant">
       <a name="value" val="0x5604"/>
       <a name="width" val="16"/>
