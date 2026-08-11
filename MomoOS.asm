@@ -11,6 +11,7 @@ buffer_full_int_id = 2
 keyboard_int_id = 1
 tty_out_id = 0
 keyboard_in_id = 0
+systemcall_max_number = 6
 
 jmp os_start
 
@@ -45,9 +46,10 @@ command_buffer:
     #res 256
 program_header:
     #res 3
+keyboard_int_mask:
+    #d 0x0000 ;0x0000のときキーボード割り込みを無効化、0x0001のとき有効にする
 os_command_help:
     #d "help\0"
-    
     #align 16
 os_command_load_rom1:
     #d "load rom1\0"
@@ -66,13 +68,17 @@ os_command_not_found:
     #align 16
 
 systemcall_address_list:
-    #res 6 ; システムコール追加/削除時、ここの値も変更すること！
+    #res systemcall_max_number ; システムコール追加/削除時、ここの値も変更すること！
 
 interrupt_handler_base_address = 0x5000
 program_data_address = 0x5600
 systemcall_address = 0x5121
 
 syscall_handler:
+
+    ;与えられたシステムコール番号が動作定義済みのシステムコール番号であるかどうかチェック
+    ;cmp 
+
     ;ふつう割り込みハンドラ処理中は割り込み禁止だが
     ;システムコールによる割り込み処理中は割り込みOKとする
     ;そうしないと、各種処理が正常に実行できないからである
@@ -123,6 +129,11 @@ os_start:
     ; システムコールハンドラアドレス設定
     mov memaddr,systemcall_address
     mov memval,syscall_handler
+    mov [memaddr+0],memval
+
+    ; キーボード割り込みハンドラ無効化
+    mov memaddr,keyboard_int_mask
+    mov memval,0x0000
     mov [memaddr+0],memval
 
 
@@ -267,8 +278,14 @@ __input_user_string:
     mov memval,a
     mov [memaddr+0],memval ;command_buffer_addrに文字列を格納すべきメモリ領域のアドレスを格納
 
-    mov bp,1 ;キーボード割り込みハンドラを有効化
+    ;キーボード割り込みハンドラを有効化
+    mov memaddr,keyboard_int_mask
+    mov memval,0x0001
+    mov [memaddr+0],memval
+    
     input_user_str_loop:
+        mov memaddr,keyboard_int_mask
+        mov bp,[memaddr+0]
         cmp bp,0 ;キーボード割り込み処理が終わった
         jne input_user_str_loop
     
@@ -476,6 +493,8 @@ output_string_error:
 ; bpレジスタが1であるとき、このハンドラを有効化する
 ; それ以外の値であるとき、このハンドラは実行されない
 keyboard_int_handler:
+    mov memaddr,keyboard_int_mask
+    mov bp,[memaddr+0]
     cmp bp,1
     jne keyboard_int_handler_skip
 
@@ -596,7 +615,10 @@ keyboard_int_handler:
                 mov memval,0x0000
                 mov [memaddr+0],memval
 
-                mov bp,0 ;キーボード入力処理終了を通知する
+                ;キーボード入力処理終了を通知する
+                mov memaddr,keyboard_int_mask
+                mov memval,0x0000
+                mov [memaddr+0],memval
                 jmp keyboard_int_handler_intret
 
 

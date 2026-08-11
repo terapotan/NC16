@@ -8,7 +8,38 @@ ascii_to_int=4
 int_to_ascii=5
 
 program_start:
-    setoutaddr 1
+
+;    mov b,message_1
+;    mov e,output_string
+;    syscall
+;
+;    cmp c,0
+;    je success_show
+;    cmp c,1
+;    je failed_show
+;
+;    ;userret
+;
+;
+;success_show:
+;    mov b,success
+;    mov e,output_string
+;    syscall
+;    userret
+;
+;failed_show:
+;    mov b,failed
+;    mov e,output_string
+;    syscall
+;    userret
+
+
+
+
+
+
+
+;    setoutaddr 1
     mov a,message_2
     mov e,input_user_string
     syscall
@@ -39,11 +70,11 @@ message_2:
 message_3:
     #res 128
     #align 16
-message_4:
-    #d "NOT_EQUALL\n\0"
+success:
+    #d "Systemcall Success!\n\0"
     #align 16
-message_5:
-    #d "EQUALL\n\0"
+failed:
+    #d "Systemcall failed!\n\0"
     #align 16
 enter_str:
     #d "\n\0"
