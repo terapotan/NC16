@@ -8,6 +8,7 @@ ascii_to_int=4
 int_to_ascii=5
 
 program_start:
+    setoutaddr 1
     mov a,message_2
     mov e,input_user_string
     syscall

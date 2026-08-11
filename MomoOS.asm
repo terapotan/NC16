@@ -86,7 +86,7 @@ syscall_handler:
 os_start:
     mov a,tty_out_id
     mov b,os_message_1
-    call output_string
+    call __output_string
 
     mov memaddr,0x0000
 
@@ -130,39 +130,39 @@ os_start:
 main_loop:
     mov a,tty_out_id
     mov b,os_message_6
-    call output_string
+    call __output_string
 
     mov a,command_buffer
-    call input_user_string
+    call __input_user_string
 
     ;各コマンド文字列との比較
     mov a,command_buffer
     mov b,os_command_help
-    call compare_to_string
+    call __compare_to_string
     cmp c,1
     je os_command_help_process
 
     mov a,command_buffer
     mov b,os_command_load_rom1
-    call compare_to_string
+    call __compare_to_string
     cmp c,1
     je os_command_load_rom1_process
 
     mov a,command_buffer
     mov b,os_command_load_rom2
-    call compare_to_string
+    call __compare_to_string
     cmp c,1
     je os_command_load_rom2_process
 
     mov a,command_buffer
     mov b,os_command_load_rom3
-    call compare_to_string
+    call __compare_to_string
     cmp c,1
     je os_command_load_rom3_process
 
     mov a,command_buffer
     mov b,os_command_run
-    call compare_to_string
+    call __compare_to_string
     cmp c,1
     je os_command_run_process
 
@@ -171,7 +171,7 @@ main_loop:
 os_command_help_process:
     mov a,tty_out_id
     mov b,os_command_help
-    call output_string
+    call __output_string
     jmp main_loop
 os_command_load_rom1_process:
     mov memaddr,os_load_romnum
@@ -198,7 +198,7 @@ os_command_run_process:
 os_command_not_found_process:
     mov a,tty_out_id
     mov b,os_command_not_found
-    call output_string
+    call __output_string
     jmp main_loop
 
 
@@ -234,13 +234,13 @@ load_program_data_from_rom:
 
     mov a,tty_out_id
     mov b,os_message_5
-    call output_string
+    call __output_string
     jmp main_loop
 
 program_load_faild:
     mov a,tty_out_id
     mov b,os_message_4
-    call output_string
+    call __output_string
     jmp main_loop
 
 hlt
@@ -250,7 +250,7 @@ hlt
 ; input_user_string
 ; ユーザーからのキーボード入力を取得する
 ; aレジスタ：キーボード入力を保持するメモリ領域のアドレス
-
+; aレジスタにOS領域や割り込みハンドラ領域のメモリアドレスを指定した場合、1を返して入力処理を実行せずに終了します。
 ;FIXME:input_user_stringには最大入力可能文字数のチェック機構が存在しない。aレジスタで指定した入力文字列
 ;を保持するメモリ領域が256文字までしか格納できなかったとする。このとき256文字以上は入力できないようにするべきだが
 ;現状のプログラムでは入力できてしまう。256文字以上入力すると何が起きるかというと、無関係のメモリ領域を破壊してしまう。
@@ -258,6 +258,11 @@ hlt
 ;早急に修正すること。
 
 input_user_string:
+    ;データの書き込み先として0x5600(ユーザーモードのプログラムがアクセスしてはならないメモリ領域)より小さいメモリアドレスを指定していないかチェック
+    cmp a,program_data_address
+    jl input_user_string_error
+
+__input_user_string:
     mov memaddr,command_buffer_addr
     mov memval,a
     mov [memaddr+0],memval ;command_buffer_addrに文字列を格納すべきメモリ領域のアドレスを格納
@@ -267,16 +272,28 @@ input_user_string:
         cmp bp,0 ;キーボード割り込み処理が終わった
         jne input_user_str_loop
     
+    mov b,0
+    input_user_exit:
     ret
 
+input_user_string_error:
+    mov b,1
+    jmp input_user_exit
 
 ;compare_to_string
 ;二つの文字列を比較する
 
 ; aレジスタ：比較したい文字列が確保されているメモリ領域の先頭アドレス
 ; bレジスタ：比較したい文字列が確保されているメモリ領域の先頭アドレス
-; cレジスタ：二つの文字列が等しければ1、等しくなければ0を返す。
+; cレジスタ：二つの文字列が等しければ1、等しくなければ0を返す。aレジスタもしくはbレジスタにOS領域や割り込みハンドラ領域のメモリアドレスを指定した場合、2を返して入力処理を実行せずに終了する。
 compare_to_string:
+    ;データの書き込み先として0x5600(ユーザーモードのプログラムがアクセスしてはならないメモリ領域)より小さいメモリアドレスを指定していないかチェック
+    cmp a,program_data_address
+    jl compare_to_string_error 
+    cmp b,program_data_address
+    jl compare_to_string_error 
+
+__compare_to_string:
 
     compare_to_string_loop:
         mov memaddr,a
@@ -320,6 +337,10 @@ compare_to_string:
         compare_to_string_string_eq:
             mov c,1
             ret
+
+compare_to_string_error:
+    mov c,2
+    ret
 
 
 ; read_rom_data
@@ -391,10 +412,17 @@ buffer_full_int_handler:
 ; output_string:TTY上に文字列を表示する。表示する文字列はメモリ上に格納する。
 ; 文字列は\0(NULL文字)で終わらせること。
 ; 引数
-; aレジスタ：TTYの出力アドレス
 ; bレジスタ：表示する文字列が格納されているメモリ番地
+; cレジスタ：処理結果。0は正常終了、1は書き込む権限のないアドレスを指定して処理が中断したときに返される。
 
 output_string:
+    ;データの書き込み先として0x5600(ユーザーモードのプログラムがアクセスしてはならないメモリ領域)より小さいメモリアドレスを指定していないかチェック
+    cmp b,program_data_address
+    jl output_string_error
+
+    mov a,tty_out_id
+
+__output_string:
     ; カウント用にcレジスタを使うため、cレジスタをスタックに退避させる
     ; メモリからのデータ読み出し用にdレジスタを使うため、dレジスタをスタックに退避させる
     push c
@@ -434,11 +462,16 @@ output_string:
         jmp output_string_loop
 
     output_string_exit:
+        mov c,0
         pop e
         pop d
         pop c
+    output_string_ret:
         ret
 
+output_string_error:
+    mov c,1
+    jmp output_string_ret
 
 ; bpレジスタが1であるとき、このハンドラを有効化する
 ; それ以外の値であるとき、このハンドラは実行されない
