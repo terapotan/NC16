@@ -84,8 +84,6 @@ syscall_handler:
     sysret
 
 os_start:
-    setoutaddr 1
-    out 0xffff
     mov a,tty_out_id
     mov b,os_message_1
     call output_string
