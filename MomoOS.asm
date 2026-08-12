@@ -68,7 +68,7 @@ os_command_not_found:
     #align 16
 
 systemcall_address_list:
-    #res systemcall_max_number ; システムコール追加/削除時、ここの値も変更すること！
+    #res systemcall_max_number + 1 ; システムコール追加/削除時、ここの値も変更すること！
 
 interrupt_handler_base_address = 0x5000
 program_data_address = 0x5600
@@ -76,8 +76,11 @@ systemcall_address = 0x5121
 
 syscall_handler:
 
+    mov bp,1
     ;与えられたシステムコール番号が動作定義済みのシステムコール番号であるかどうかチェック
-    ;cmp 
+    cmp e,systemcall_max_number
+    ja syscall_handler_error
+
 
     ;ふつう割り込みハンドラ処理中は割り込み禁止だが
     ;システムコールによる割り込み処理中は割り込みOKとする
@@ -87,6 +90,11 @@ syscall_handler:
     mov memaddr,e
     mov e,[memaddr+0]
     call e
+    mov bp,0
+    sysret
+
+syscall_handler_error:
+    mov bp,1
     sysret
 
 os_start:
@@ -125,6 +133,8 @@ os_start:
     mov [memaddr+4],memval
     mov memval,int_to_ascii
     mov [memaddr+5],memval
+    mov memval,divide
+    mov [memaddr+6],memval
 
     ; システムコールハンドラアドレス設定
     mov memaddr,systemcall_address
@@ -893,6 +903,71 @@ __int_to_ascii:
     int_to_ascii_error:
         mov c,1
         jmp int_to_ascii_ret
+
+;----------------------------------------------------------
+; divide
+; 符号なし16bit整数同士の除算を行う。
+;
+; 引数
+; aレジスタ：被除数（割られる数）
+; bレジスタ：除数（割る数）
+;
+; 戻り値
+; cレジスタ：商
+; dレジスタ：余り
+; eレジスタ：処理結果
+;              0 ：成功
+;              1 ：ゼロ除算エラー（bレジスタが0だった場合。この場合c,dは0を返す）
+;
+; ----------------------------------------------------------
+divide:
+    push bp
+ 
+    ; ---- ゼロ除算チェック ----
+    cmp b,0
+    jne divide_start
+    mov c,0
+    mov d,0
+    mov e,1 ; ゼロ除算エラー
+    jmp divide_exit
+ 
+    divide_start:
+        mov c,0      ; 商。1bitずつ確定させながら組み立てていく
+        mov d,0      ; 余り
+        mov e,0x8000 ; 被除数のどのbitに着目しているかを表すマスク（MSBから開始）
+ 
+        divide_loop:
+            ; ---- 余りを1bit左シフトし、被除数の着目bitを最下位に継ぎ足す ----
+            mul d,2 ; d = d << 1
+ 
+            mov bp,a
+            and bp,e ; 被除数(a)のうち、現在着目しているbitだけを取り出す
+            cmp bp,0
+            je divide_skip_setbit
+            or d,1   ; 着目bitが1であれば、余りの最下位bitに立てる
+            divide_skip_setbit:
+ 
+            ; ---- 商も1bit左シフトしておく（このあと該当bitを確定させる） ----
+            mul c,2 ; c = c << 1
+ 
+            ; ---- 余りが除数以上なら引き算し、商の最下位bit(今回の桁)を1にする ----
+            cmp d,b
+            jl divide_skip_subtract
+            sub d,b
+            or c,1
+            divide_skip_subtract:
+ 
+            ; ---- 着目するbit位置を1つ下位にずらす ----
+            shr e,1
+            cmp e,0
+            jne divide_loop ; マスクが0になるまで（16bit分処理し終わるまで）繰り返す
+ 
+        mov e,0 ; 成功
+ 
+    divide_exit:
+        pop bp
+        ret
+
 
 STOP:
     hlt
