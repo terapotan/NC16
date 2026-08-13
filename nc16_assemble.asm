@@ -89,6 +89,8 @@
     ; メモリ書き込みはmemaddrレジスタ固定仕様
     mov memaddr,{r1: regs} => 0x08 @ 0xa @ r1 @ 0x0000
     mov memval,{r1: regs} => 0x08 @ 0xb @ r1 @ 0x0000
+    mov {r1: regs},memval => 0x08 @ r1 @ 0xb @ 0x0000
+
     mov [memaddr+{opd: u16}],memval => 0x08 @ 0xa @ 0xa @ opd
     mov memval,{opd: u16}         => 0x08 @ 0xb @ 0xf @ opd
     mov memaddr,{opd: u16}         => 0x08 @ 0xa @ 0xf @ opd

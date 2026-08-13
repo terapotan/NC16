@@ -132,6 +132,7 @@ FuncInput2
 |mov r1,[memaddr+opd]|r1|memaddr|opd|[memaddrレジスタの値にopdを加算した値]番地にあるメモリの値をr1レジスタに転送します※1|
 |mov memval,[memaddr+opd]|r1|memaddr|opd|[memaddrレジスタの値にopdを加算した値]番地にあるメモリの値をmemvalレジスタに転送します※1|
 |mov memval,r1|memval|r1|0x0000|r1レジスタの値をmemvalレジスタに転送します|
+|mov r1,memval|memval|r1|0x0000|r1レジスタの値ををmemvalレジスタに転送します
 |mov [memaddr+opd],memval|memaddr|memval|opd|memvalレジスタの値を[memaddrレジスタの値にopdを加算した値]番地にあるメモリに転送します。※2|
 |mov memval,opd|memval|0xf|opd|opdをmemvalレジスタに転送します|
 |mov memaddr,opd|memaddr|0xf|opd|opdをmemaddrレジスタに転送します|
