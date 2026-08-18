@@ -7,6 +7,8 @@ output_string=3
 ascii_to_int=4
 int_to_ascii=5
 divide=6
+random=7
+
 
 program_start:
 
@@ -22,6 +24,25 @@ program_start:
 ;    ;userret
 ;
 ;
+
+loop:
+    mov e,random
+    syscall
+
+    mov b,message_2
+    mov e,int_to_ascii
+    syscall
+
+    mov b,message_2
+    mov e,output_string
+    syscall
+
+    mov b,enter_str
+    mov e,output_string
+    syscall
+
+    jmp loop   
+
 
     mov a,message_2
     mov e,input_user_string

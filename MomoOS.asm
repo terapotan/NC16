@@ -11,7 +11,8 @@ buffer_full_int_id = 2
 keyboard_int_id = 1
 tty_out_id = 0
 keyboard_in_id = 0
-systemcall_max_number = 6
+random_generator_id = 6
+systemcall_max_number = 7 ; システムコール追加/削除時、ここの値も変更すること！
 
 jmp os_start
 
@@ -68,7 +69,7 @@ os_command_not_found:
     #align 16
 
 systemcall_address_list:
-    #res systemcall_max_number + 1 ; システムコール追加/削除時、ここの値も変更すること！
+    #res systemcall_max_number + 1 
 
 interrupt_handler_base_address = 0x5000
 program_data_address = 0x5600
@@ -135,6 +136,8 @@ os_start:
     mov [memaddr+5],memval
     mov memval,divide
     mov [memaddr+6],memval
+    mov memval,random
+    mov [memaddr+7],memval
 
     ; システムコールハンドラアドレス設定
     mov memaddr,systemcall_address
@@ -968,6 +971,10 @@ divide:
         pop bp
         ret
 
+random:
+    setinaddr random_generator_id
+    in a
+    ret
 
 STOP:
     hlt
