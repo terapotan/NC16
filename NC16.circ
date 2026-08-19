@@ -82,7 +82,9 @@
     <a name="appearance" val="logisim_evolution"/>
     <a name="circuit" val="main"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
-    <a name="simulationFrequency" val="2048000.0"/>
+    <a name="simulationFrequency" val="128.0"/>
+    <comp lib="0" loc="(1120,2370)" name="Constant"/>
+    <comp lib="0" loc="(1190,2450)" name="Constant"/>
     <comp lib="0" loc="(1450,1680)" name="Bit Extender">
       <a name="in_width" val="16"/>
       <a name="out_width" val="7"/>
@@ -121,11 +123,15 @@
     </comp>
     <comp lib="1" loc="(720,2170)" name="AND Gate"/>
     <comp lib="2" loc="(650,2190)" name="Multiplexer"/>
+    <comp lib="5" loc="(1120,2330)" name="Random">
+      <a name="appearance" val="logisim_evolution"/>
+      <a name="width" val="16"/>
+    </comp>
     <comp lib="5" loc="(2150,3860)" name="ROM">
       <a name="addrWidth" val="16"/>
       <a name="appearance" val="logisim_evolution"/>
       <a name="contents">addr/data: 16 16
-ff21 8f2a 690 11ff 697 a48 656c 6c6f
+ff21 8f2a 6a1 11ff 698 a48 656c 6c6f
 2c20 4d6f 6d6f 4f53 2057 6f72 6c64 2021
 a52 6561 6479 2066 6f72 2063 6f6d 6d61
 6e64 2e0a 0 6571 7561 6c6c 2100 6e6f
@@ -138,169 +144,171 @@ a52 6561 6479 2066 6f72 2063 6f6d 6d61
 6164 2072 6f6d 3100 6c6f 6164 2072 6f6d
 3200 6c6f 6164 2072 6f6d 3300 7275 6e00
 636f 6d6d 616e 6420 6e6f 7420 666f 756e
-642e a00 7*0 85f 1 124f 6 18ff
-693 26ff 0 4f 66e 8a4 0 849
+642e a00 8*0 85f 1 124f 7 18ff
+694 26ff 0 4f 66e 8a4 0 849
 0 15ff 0 bf a 16f 1 8a6
 0 8aa 0 114f 0 85f 0 2aff
 0 85f 1 2aff 0 80f 0 81f
 502 15ff 0 bf a 16f 1 8a6
-0 8aa 0 11ff 8d5 8af 0 8bf
-8cb 8aa 5002 8bf 92f 8aa 5001 8bf
-675 8aa 51ff 80f 66e 8a0 0 8bf
-80b 8aa 0 8bf 831 8aa 1 8bf
-885 8aa 2 8bf 8cf 8aa 3 8bf
-a01 8aa 4 8bf a90 8aa 5 8bf
-b48 8aa 6 8af 5121 8bf 675 8aa
-0 8af 64f 8bf 0 8aa 0 80f
-0 81f 544 15ff 0 bf a 16f
-1 8a6 0 8aa 0 11ff 8d5 80f
-54c 15ff 0 bf a 16f 1 8a6
-0 8aa 0 11ff 80f 80f 54c 81f
-650 15ff 0 bf a 16f 1 8a6
-0 8aa 0 11ff 839 122f 1 16ff
-765 80f 54c 81f 653 15ff 0 bf
-a 16f 1 8a6 0 8aa 0 11ff
-839 122f 1 16ff 777 80f 54c 81f
-658 15ff 0 bf a 16f 1 8a6
-0 8aa 0 11ff 839 122f 1 16ff
-77f 80f 54c 81f 65d 15ff 0 bf
-a 16f 1 8a6 0 8aa 0 11ff
-839 122f 1 16ff 787 80f 54c 81f
-662 15ff 0 bf a 16f 1 8a6
-0 8aa 0 11ff 839 122f 1 16ff
-78f 11ff 793 80f 0 81f 650 15ff
+0 8aa 0 11ff 8da 8af 0 8bf
+8d0 8aa 5002 8bf 934 8aa 5001 8bf
+676 8aa 51ff 80f 66e 8a0 0 8bf
+810 8aa 0 8bf 836 8aa 1 8bf
+88a 8aa 2 8bf 8d4 8aa 3 8bf
+a06 8aa 4 8bf a95 8aa 5 8bf
+b4d 8aa 6 8bf b93 8aa 7 8af
+5121 8bf 676 8aa 0 8af 64f 8bf
+0 8aa 0 80f 0 81f 544 15ff
 0 bf a 16f 1 8a6 0 8aa
-0 11ff 8d5 11ff 6e1 8af 54b 8bf
-3 8aa 0 11ff 7a5 8af 54b 8bf
-4 8aa 0 11ff 7a5 8af 54b 8bf
-5 8aa 0 11ff 7a5 28ff 5600 11ff
-6e1 80f 0 81f 664 15ff 0 bf
+0 11ff 8da 80f 54c 15ff 0 bf
 a 16f 1 8a6 0 8aa 0 11ff
-8d5 11ff 6e1 8af 54b 809 0 81f
-0 82f 3 83f 64c 15ff 0 bf
+814 80f 54c 81f 650 15ff 0 bf
 a 16f 1 8a6 0 8aa 0 11ff
-889 81f 64c 8a1 0 809 0 120f
-ff02 17ff 7f7 8a1 0 809 1 120f
-2019 17ff 7f7 8a1 0 829 2 8af
-54b 809 0 81f 3 83f 5600 15ff
-0 bf a 16f 1 8a6 0 8aa
-0 11ff 889 80f 0 81f 53c 15ff
-0 bf a 16f 1 8a6 0 8aa
-0 11ff 8d5 11ff 6e1 80f 0 81f
-522 15ff 0 bf a 16f 1 8a6
-0 8aa 0 11ff 8d5 11ff 6e1 13ff
-0 120f 5600 1aff 82d 8af 548 8b0
-0 8aa 0 8af 64f 8bf 1 8aa
-0 8af 64f 859 0 125f 0 17ff
-81b 81f 0 8a6 0 8b9 0 6f
-1 11bf 0 81f 1 11ff 825 120f
-5600 1aff 87b 121f 5600 1aff 87b 8a0
-0 839 0 8a1 0 849 0 853
-0 35f ff00 125f 0 16ff 84f 1234
-0 16ff 859 17ff 867 854 0 35f
-ff00 125f 0 16ff 871 17ff 867 853
-0 35f ff 125f 0 16ff 871 f
-1 1f 1 11ff 839 82f 0 8a6
+83e 122f 1 16ff 76a 80f 54c 81f
+653 15ff 0 bf a 16f 1 8a6
+0 8aa 0 11ff 83e 122f 1 16ff
+77c 80f 54c 81f 658 15ff 0 bf
+a 16f 1 8a6 0 8aa 0 11ff
+83e 122f 1 16ff 784 80f 54c 81f
+65d 15ff 0 bf a 16f 1 8a6
+0 8aa 0 11ff 83e 122f 1 16ff
+78c 80f 54c 81f 662 15ff 0 bf
+a 16f 1 8a6 0 8aa 0 11ff
+83e 122f 1 16ff 794 11ff 798 80f
+0 81f 650 15ff 0 bf a 16f
+1 8a6 0 8aa 0 11ff 8da 11ff
+6e6 8af 54b 8bf 3 8aa 0 11ff
+7aa 8af 54b 8bf 4 8aa 0 11ff
+7aa 8af 54b 8bf 5 8aa 0 11ff
+7aa 28ff 5600 11ff 6e6 80f 0 81f
+664 15ff 0 bf a 16f 1 8a6
+0 8aa 0 11ff 8da 11ff 6e6 8af
+54b 809 0 81f 0 82f 3 83f
+64c 15ff 0 bf a 16f 1 8a6
+0 8aa 0 11ff 88e 81f 64c 8a1
+0 809 0 120f ff02 17ff 7fc 8a1
+0 809 1 120f 2019 17ff 7fc 8a1
+0 829 2 8af 54b 809 0 81f
+3 83f 5600 15ff 0 bf a 16f
+1 8a6 0 8aa 0 11ff 88e 80f
+0 81f 53c 15ff 0 bf a 16f
+1 8a6 0 8aa 0 11ff 8da 11ff
+6e6 80f 0 81f 522 15ff 0 bf
+a 16f 1 8a6 0 8aa 0 11ff
+8da 11ff 6e6 13ff 0 120f 5600 1aff
+832 8af 548 8b0 0 8aa 0 8af
+64f 8bf 1 8aa 0 8af 64f 859
+0 125f 0 17ff 820 81f 0 8a6
+0 8b9 0 6f 1 11bf 0 81f
+1 11ff 82a 120f 5600 1aff 880 121f
+5600 1aff 880 8a0 0 839 0 8a1
+0 849 0 853 0 35f ff00 125f
+0 16ff 854 1234 0 16ff 85e 17ff
+86c 854 0 35f ff00 125f 0 16ff
+876 17ff 86c 853 0 35f ff 125f
+0 16ff 876 f 1 1f 1 11ff
+83e 82f 0 8a6 0 8b9 0 6f
+1 11bf 0 82f 1 8a6 0 8b9
+0 6f 1 11bf 0 82f 2 8a6
+0 8b9 0 6f 1 11bf 0 123f
+5600 1aff 8c6 21ff 0 232f 0 25ff
+0 1d0f 0 1e0f 0 84f 0 1fff
+0 a1f 0 a2f 0 26ff 0 124f
+1 1aff 8a2 20ff 0 21ff 0 80f
+0 24ff 0 8a3 0 8aa 0 3f
+1 f 1 22ff 0 1202 0 1aff
+8ac 84f 0 8a6 0 8b9 0 6f
+1 11bf 0 84f 1 8a6 0 8b9
+0 6f 1 11bf 0 84f 1 1cff
+0 121f 5600 1aff 930 80f 0 16f
+1 8b2 0 8a6 0 8aa 0 16f
+1 8b3 0 8a6 0 8aa 0 16f
+1 8b4 0 8a6 0 8aa 0 821
+0 8a2 0 839 0 843 0 33f
+ff00 73f 8 123f 0 16ff 914 1e0f
+0 a3f 0 34f ff 124f 0 16ff
+914 1e0f 0 a4f 0 2f 1 11ff
+8f4 82f 0 8a6 0 849 0 6f
+1 8a6 0 839 0 6f 1 8a6
+0 829 0 6f 1 8a6 0 8b9
+0 6f 1 11bf 0 82f 1 11ff
+928 8af 64f 859 0 125f 1 17ff
+9aa 16f 1 8b0 0 8a6 0 8aa
+0 16f 1 8b1 0 8a6 0 8aa
+0 16f 1 8b2 0 8a6 0 8aa
+0 16f 1 8b3 0 8a6 0 8aa
+0 16f 1 8b4 0 8a6 0 8aa
+0 1dff 0 91f 0 121f a 16ff
+9be 121f 8 16ff 9ac 1eff 0 a1f
+0 8af 548 829 0 8af 549 29
+0 8a2 0 8b1 0 8aa 0 8af
+549 829 0 2f 1 8b2 0 8aa
+0 8a6 0 849 0 6f 1 8a6
+0 839 0 6f 1 8a6 0 829
+0 6f 1 8a6 0 819 0 6f
+1 8a6 0 809 0 6f 1 1cff
+0 8af 549 829 0 122f 0 16ff
+98c a1f 0 12f 1 8b2 0 8aa
+0 11ff 98c 1eff 0 a1f 0 8af
+548 829 0 842 0 8af 549 29
+0 8a2 0 8bf 0 8aa 0 14f
+1 834 0 14f 1 804 0 842
+0 f 2 3f 1 1204 0 18ff
+9f8 8a0 0 819 0 829 1 21f
+100 32f ff 412 0 8b1 0 8a3
+0 8aa 0 11ff 9dc 8af 549 8bf
+0 8aa 0 8af 64f 8bf 0 8aa
+0 11ff 98c 120f 5600 1aff a8a 16f
+1 8b3 0 8a6 0 8aa 0 16f
+1 8b4 0 8a6 0 8aa 0 16f
+1 8b5 0 8a6 0 8aa 0 81f
+0 830 0 85f 0 8a3 0 849
+0 824 0 32f ff00 72f 8 122f
+0 16ff a62 122f 30 1aff a6a 122f
+39 18ff a6a 12f 30 21f a 12
+0 85f 1 824 0 32f ff 122f
+0 16ff a62 122f 30 1aff a6a 122f
+39 18ff a6a 12f 30 21f a 12
+0 85f 1 3f 1 11ff a28 125f
+0 16ff a6e 82f 0 11ff a70 82f
+1 11ff a70 82f 2 8a6 0 859
+0 6f 1 8a6 0 849 0 6f
+1 8a6 0 839 0 6f 1 8a6
 0 8b9 0 6f 1 11bf 0 82f
-1 8a6 0 8b9 0 6f 1 11bf
-0 82f 2 8a6 0 8b9 0 6f
-1 11bf 0 123f 5600 1aff 8c1 21ff
-0 232f 0 25ff 0 1d0f 0 1e0f
-0 84f 0 1fff 0 a1f 0 a2f
-0 26ff 0 124f 1 1aff 89d 20ff
-0 21ff 0 80f 0 24ff 0 8a3
-0 8aa 0 3f 1 f 1 22ff
-0 1202 0 1aff 8a7 84f 0 8a6
-0 8b9 0 6f 1 11bf 0 84f
-1 8a6 0 8b9 0 6f 1 11bf
-0 84f 1 1cff 0 121f 5600 1aff
-92b 80f 0 16f 1 8b2 0 8a6
-0 8aa 0 16f 1 8b3 0 8a6
-0 8aa 0 16f 1 8b4 0 8a6
-0 8aa 0 821 0 8a2 0 839
-0 843 0 33f ff00 73f 8 123f
-0 16ff 90f 1e0f 0 a3f 0 34f
-ff 124f 0 16ff 90f 1e0f 0 a4f
-0 2f 1 11ff 8ef 82f 0 8a6
-0 849 0 6f 1 8a6 0 839
-0 6f 1 8a6 0 829 0 6f
-1 8a6 0 8b9 0 6f 1 11bf
-0 82f 1 11ff 923 8af 64f 859
-0 125f 1 17ff 9a5 16f 1 8b0
-0 8a6 0 8aa 0 16f 1 8b1
-0 8a6 0 8aa 0 16f 1 8b2
-0 8a6 0 8aa 0 16f 1 8b3
-0 8a6 0 8aa 0 16f 1 8b4
-0 8a6 0 8aa 0 1dff 0 91f
-0 121f a 16ff 9b9 121f 8 16ff
-9a7 1eff 0 a1f 0 8af 548 829
-0 8af 549 29 0 8a2 0 8b1
-0 8aa 0 8af 549 829 0 2f
-1 8b2 0 8aa 0 8a6 0 849
-0 6f 1 8a6 0 839 0 6f
-1 8a6 0 829 0 6f 1 8a6
-0 819 0 6f 1 8a6 0 809
-0 6f 1 1cff 0 8af 549 829
-0 122f 0 16ff 987 a1f 0 12f
-1 8b2 0 8aa 0 11ff 987 1eff
-0 a1f 0 8af 548 829 0 842
-0 8af 549 29 0 8a2 0 8bf
-0 8aa 0 14f 1 834 0 14f
-1 804 0 842 0 f 2 3f
-1 1204 0 18ff 9f3 8a0 0 819
-0 829 1 21f 100 32f ff 412
-0 8b1 0 8a3 0 8aa 0 11ff
-9d7 8af 549 8bf 0 8aa 0 8af
-64f 8bf 0 8aa 0 11ff 987 120f
-5600 1aff a85 16f 1 8b3 0 8a6
-0 8aa 0 16f 1 8b4 0 8a6
-0 8aa 0 16f 1 8b5 0 8a6
-0 8aa 0 81f 0 830 0 85f
-0 8a3 0 849 0 824 0 32f
-ff00 72f 8 122f 0 16ff a5d 122f
-30 1aff a65 122f 39 18ff a65 12f
-30 21f a 12 0 85f 1 824
-0 32f ff 122f 0 16ff a5d 122f
-30 1aff a65 122f 39 18ff a65 12f
-30 21f a 12 0 85f 1 3f
-1 11ff a23 125f 0 16ff a69 82f
-0 11ff a6b 82f 1 11ff a6b 82f
-2 8a6 0 859 0 6f 1 8a6
-0 849 0 6f 1 8a6 0 839
-0 6f 1 8a6 0 8b9 0 6f
-1 11bf 0 82f 3 11ff a7d 2710
-3e8 64 a 1 0 ffff 121f 5600
-1aff b44 8af a8e 8bf 0 8aa 0
-8af a8f 8bf ffff 8aa 0 16f 1
-8b3 0 8a6 0 8aa 0 16f 1
-8b4 0 8a6 0 8aa 0 16f 1
-8b5 0 8a6 0 8aa 0 85f 0
-845 0 4f a89 8a4 0 839 0
-84f 0 1203 0 1aff ace 103 0
-4f 1 11ff ac4 124f 0 17ff ae0
-8af a8e 829 0 122f 1 16ff ae6
-125f 4 16ff ae6 11ff b0a 8af a8e
-8bf 1 8aa 0 4f 30 8af a8f
-829 0 122f ffff 16ff b04 22f 100
-424 0 8b2 0 8a1 0 8aa 0
-1f 1 8af a8f 8bf ffff 8aa 0
-11ff b0a 8af a8f 8b4 0 8aa 0
-5f 1 125f 5 1aff aba 8af a8f
-829 0 122f ffff 16ff b22 22f 100
-8b2 0 8a1 0 8aa 0 11ff b28
-8bf 0 8a1 0 8aa 0 82f 0
-8a6 0 859 0 6f 1 8a6 0
-849 0 6f 1 8a6 0 839 0
-6f 1 8a6 0 8b9 0 6f 1
-11bf 0 82f 1 11ff b3c 16f 1
-8b5 0 8a6 0 8aa 0 121f 0
-17ff b5c 82f 0 83f 0 84f 1
-11ff b80 82f 0 83f 0 84f 8000
-23f 2 850 0 354 0 125f 0
-16ff b6e 43f 1 22f 2 1231 0
-1aff b78 131 0 42f 1 74f 1
-124f 0 17ff b62 84f 0 8a6 0
-859 0 6f 1 8a6 0 8b9 0
+3 11ff a82 2710 3e8 64 a 1
+0 ffff 121f 5600 1aff b49 8af a93
+8bf 0 8aa 0 8af a94 8bf ffff
+8aa 0 16f 1 8b3 0 8a6 0
+8aa 0 16f 1 8b4 0 8a6 0
+8aa 0 16f 1 8b5 0 8a6 0
+8aa 0 85f 0 845 0 4f a8e
+8a4 0 839 0 84f 0 1203 0
+1aff ad3 103 0 4f 1 11ff ac9
+124f 0 17ff ae5 8af a93 829 0
+122f 1 16ff aeb 125f 4 16ff aeb
+11ff b0f 8af a93 8bf 1 8aa 0
+4f 30 8af a94 829 0 122f ffff
+16ff b09 22f 100 424 0 8b2 0
+8a1 0 8aa 0 1f 1 8af a94
+8bf ffff 8aa 0 11ff b0f 8af a94
+8b4 0 8aa 0 5f 1 125f 5
+1aff abf 8af a94 829 0 122f ffff
+16ff b27 22f 100 8b2 0 8a1 0
+8aa 0 11ff b2d 8bf 0 8a1 0
+8aa 0 82f 0 8a6 0 859 0
+6f 1 8a6 0 849 0 6f 1
+8a6 0 839 0 6f 1 8a6 0
+8b9 0 6f 1 11bf 0 82f 1
+11ff b41 16f 1 8b5 0 8a6 0
+8aa 0 121f 0 17ff b61 82f 0
+83f 0 84f 1 11ff b85 82f 0
+83f 0 84f 8000 23f 2 850 0
+354 0 125f 0 16ff b73 43f 1
+22f 2 1231 0 1aff b7d 131 0
+42f 1 74f 1 124f 0 17ff b67
+84f 0 8a6 0 859 0 6f 1
+8a6 0 8b9 0 6f 1 11bf 0
+1dff 6 90f 0 8a6 0 8b9 0
 6f 1 11bf 0 13ff
 </a>
       <a name="dataWidth" val="16"/>
@@ -311,29 +319,228 @@ ff00 72f 8 122f 0 16ff a5d 122f
       <a name="addrWidth" val="16"/>
       <a name="appearance" val="logisim_evolution"/>
       <a name="contents">addr/data: 16 16
-ff02 2019 1dd 80f 5690 84f 0 27ff
-0 80f 5710 84f 0 27ff 0 80f
-5690 84f 4 27ff 0 8af 5790 8b1
-0 8aa 0 80f 5710 84f 4 27ff
-0 8af 5791 8b1 0 8aa 0 8af
-5790 809 0 8af 5791 819 0 84f
-6 27ff 0 8af 5792 8b2 0 8aa
-0 8af 5793 8b3 0 8aa 0 802
-0 81f 5794 84f 5 27ff 0 8af
-5793 809 0 81f 57a8 84f 5 27ff
-0 81f 57d1 84f 3 27ff 0 81f
-5794 84f 3 27ff 0 81f 57dc 84f
-3 27ff 0 81f 57d6 84f 3 27ff
-0 81f 57a8 84f 3 27ff 0 81f
-57dc 84f 3 27ff 0 29ff 0 81f
-57bc 84f 3 27ff 0 29ff 0 81f
-57c7 84f 3 27ff 0 29ff 0 5468
-6973 2069 7320 7573 6572 2070 726f 6772
-616d 210a 301*0 5379 7374 656d 6361 6c6c
-2053 7563 6365 7373 210a 0 5379 7374
-656d 6361 6c6c 2066 6169 6c65 6421 a00
-7175 6f74 6965 6e74 3a00 7265 6d61 696e
-6465 723a 0 a00
+ff02 2019 6e9 15ff 0 bf a 16f
+1 8a6 0 8aa 0 11ff 5a64 29ff
+0 16f 1 8b5 0 8a6 0 8aa
+0 856 0 16f 3 80f 0 8b0
+0 805 0 10f 1 8a0 0 8aa
+0 80f 0 8b0 0 805 0 10f
+2 8a0 0 8aa 0 80f 0 8b0
+0 805 0 10f 3 8a0 0 8aa
+0 805 0 10f 1 16f 1 8b0
+0 8a6 0 8aa 0 80f 0 8b0
+0 8a6 0 809 0 6f 1 8a0
+0 8aa 0 80b 0 805 0 10f
+1 8a0 0 809 0 16f 1 8b0
+0 8a6 0 8aa 0 805 0 f
+3 8a0 0 809 0 16f 1 8b0
+0 8a6 0 8aa 0 80f 1 810
+0 8a6 0 809 0 6f 1 101
+0 810 0 8a6 0 809 0 6f
+1 60f 8000 61f 8000 1201 0 1aff
+569a 80f 0 11ff 569c 80f 1 120f
+0 16ff 58fa 805 0 10f 2 16f
+1 8b0 0 8a6 0 8aa 0 80f
+0 8b0 0 8a6 0 809 0 6f
+1 8a0 0 8aa 0 80b 0 805
+0 10f 2 8a0 0 809 0 16f
+1 8b0 0 8a6 0 8aa 0 805
+0 f 3 8a0 0 809 0 16f
+1 8b0 0 8a6 0 8aa 0 80f
+1 810 0 8a6 0 809 0 6f
+1 101 0 810 0 8a6 0 809
+0 6f 1 60f 8000 61f 8000 1201
+0 1aff 56fc 80f 0 11ff 56fe 80f
+1 120f 0 16ff 58c2 805 0 f
+2 8a0 0 809 0 16f 1 8b0
+0 8a6 0 8aa 0 805 0 10f
+2 8a0 0 809 0 16f 1 8b0
+0 8a6 0 8aa 0 80f 1 810
+0 8a6 0 809 0 6f 1 1
+0 810 0 8a6 0 809 0 6f
+1 1 0 8a0 0 809 0 16f
+1 8b0 0 8a6 0 8aa 0 805
+0 f 2 8a0 0 809 0 16f
+1 8b0 0 8a6 0 8aa 0 805
+0 10f 2 8a0 0 809 0 810
+0 8a6 0 809 0 6f 1 1
+0 8a0 0 809 0 810 0 8a6
+0 809 0 6f 1 60f 8000 61f
+8000 1201 0 1aff 577e 80f 0 11ff
+5780 80f 1 120f 0 16ff 588a 805
+0 10f 3 16f 1 8b0 0 8a6
+0 8aa 0 805 0 f 2 8a0
+0 809 0 16f 1 8b0 0 8a6
+0 8aa 0 805 0 10f 2 8a0
+0 809 0 810 0 8a6 0 809
+0 6f 1 1 0 8a0 0 809
+0 8b0 0 8a6 0 809 0 6f
+1 8a0 0 8aa 0 80b 0 805
+0 f 2 8a0 0 809 0 16f
+1 8b0 0 8a6 0 8aa 0 805
+0 10f 2 8a0 0 809 0 810
+0 8a6 0 809 0 6f 1 1
+0 16f 1 8b0 0 8a6 0 8aa
+0 805 0 f 2 8a0 0 809
+0 16f 1 8b0 0 8a6 0 8aa
+0 805 0 10f 2 8a0 0 809
+0 16f 1 8b0 0 8a6 0 8aa
+0 80f 1 810 0 8a6 0 809
+0 6f 1 1 0 810 0 8a6
+0 809 0 6f 1 1 0 8a0
+0 809 0 8b0 0 8a6 0 809
+0 6f 1 8a0 0 8aa 0 80b
+0 805 0 f 2 8a0 0 809
+0 16f 1 8b0 0 8a6 0 8aa
+0 805 0 10f 2 8a0 0 809
+0 16f 1 8b0 0 8a6 0 8aa
+0 80f 1 810 0 8a6 0 809
+0 6f 1 1 0 810 0 8a6
+0 809 0 6f 1 1 0 16f
+1 8b0 0 8a6 0 8aa 0 805
+0 10f 3 8a0 0 809 0 8b0
+0 8a6 0 809 0 6f 1 8a0
+0 8aa 0 80b 0 805 0 10f
+2 16f 1 8b0 0 8a6 0 8aa
+0 805 0 10f 2 8a0 0 809
+0 16f 1 8b0 0 8a6 0 8aa
+0 80f 1 810 0 8a6 0 809
+0 6f 1 1 0 8b0 0 8a6
+0 809 0 6f 1 8a0 0 8aa
+0 80b 0 11ff 56bc 805 0 10f
+1 16f 1 8b0 0 8a6 0 8aa
+0 805 0 10f 1 8a0 0 809
+0 16f 1 8b0 0 8a6 0 8aa
+0 80f 1 810 0 8a6 0 809
+0 6f 1 1 0 8b0 0 8a6
+0 809 0 6f 1 8a0 0 8aa
+0 80b 0 11ff 565a 865 0 8a6
+0 859 0 6f 1 8a6 0 8b9
+0 6f 1 11bf 0 16f 1 8b5
+0 8a6 0 8aa 0 856 0 16f
+11 80f 0 8b0 0 805 0 10f
+11 8a0 0 8aa 0 805 0 10f
+11 8a0 0 809 0 16f 1 8b0
+0 8a6 0 8aa 0 805 0 f
+3 8a0 0 809 0 810 0 8a6
+0 809 0 6f 1 60f 8000 61f
+8000 1201 0 1aff 594e 80f 0 11ff
+5950 80f 1 120f 0 16ff 5a30 805
+0 f 2 8a0 0 809 0 16f
+1 8b0 0 8a6 0 8aa 0 805
+0 10f 11 8a0 0 809 0 810
+0 8a6 0 809 0 6f 1 1
+0 8a0 0 809 0 16f 1 8b0
+0 8a6 0 8aa 0 805 0 10f
+10 16f 1 8b0 0 8a6 0 8aa
+0 8a6 0 819 0 6f 1 8a6
+0 809 0 6f 1 16f 1 8b5
+0 8a6 0 8aa 0 84f 5 27ff
+0 8a6 0 859 0 6f 1 802
+0 805 0 10f 10 16f 1 8b0
+0 8a6 0 8aa 0 8a6 0 819
+0 6f 1 16f 1 8b5 0 8a6
+0 8aa 0 84f 3 27ff 0 8a6
+0 859 0 6f 1 802 0 80f
+5cb2 16f 1 8b0 0 8a6 0 8aa
+0 8a6 0 819 0 6f 1 16f
+1 8b5 0 8a6 0 8aa 0 84f
+3 27ff 0 8a6 0 859 0 6f
+1 802 0 805 0 10f 11 16f
+1 8b0 0 8a6 0 8aa 0 805
+0 10f 11 8a0 0 809 0 16f
+1 8b0 0 8a6 0 8aa 0 80f
+1 810 0 8a6 0 809 0 6f
+1 1 0 8b0 0 8a6 0 809
+0 6f 1 8a0 0 8aa 0 80b
+0 11ff 5922 80f 5cb3 16f 1 8b0
+0 8a6 0 8aa 0 8a6 0 819
+0 6f 1 16f 1 8b5 0 8a6
+0 8aa 0 84f 3 27ff 0 8a6
+0 859 0 6f 1 802 0 865
+0 8a6 0 859 0 6f 1 8a6
+0 8b9 0 6f 1 11bf 0 16f
+1 8b5 0 8a6 0 8aa 0 856
+0 16f 1a 80f 0 8b0 0 805
+0 10f 19 8a0 0 8aa 0 80f
+5cb4 16f 1 8b0 0 8a6 0 8aa
+0 8a6 0 819 0 6f 1 16f
+1 8b5 0 8a6 0 8aa 0 84f
+3 27ff 0 8a6 0 859 0 6f
+1 802 0 80f 5cbb 16f 1 8b0
+0 8a6 0 8aa 0 8a6 0 819
+0 6f 1 16f 1 8b5 0 8a6
+0 8aa 0 84f 3 27ff 0 8a6
+0 859 0 6f 1 802 0 80f
+0 8b0 0 805 0 10f 1a 8a0
+0 8aa 0 805 0 10f 1a 8a0
+0 809 0 16f 1 8b0 0 8a6
+0 8aa 0 80f 8 810 0 8a6
+0 809 0 6f 1 60f 8000 61f
+8000 1201 0 1aff 5af6 80f 0 11ff
+5af8 80f 1 120f 0 16ff 5bea 80f
+5cd1 16f 1 8b0 0 8a6 0 8aa
+0 8a6 0 819 0 6f 1 16f
+1 8b5 0 8a6 0 8aa 0 84f
+3 27ff 0 8a6 0 859 0 6f
+1 802 0 805 0 10f 18 16f
+1 8b0 0 8a6 0 8aa 0 8a6
+0 809 0 6f 1 16f 1 8b5
+0 8a6 0 8aa 0 84f 0 27ff
+0 8a6 0 859 0 6f 1 801
+0 805 0 10f 19 16f 1 8b0
+0 8a6 0 8aa 0 805 0 10f
+18 16f 1 8b5 0 8a6 0 8aa
+0 84f 4 27ff 0 8a6 0 859
+0 6f 1 8a6 0 839 0 6f
+1 8a3 0 8b1 0 8aa 0 802
+0 805 0 10f 8 16f 1 8b0
+0 8a6 0 8aa 0 805 0 10f
+1a 8a0 0 809 0 810 0 8a6
+0 809 0 6f 1 1 0 16f
+1 8b0 0 8a6 0 8aa 0 805
+0 10f 19 8a0 0 809 0 8b0
+0 8a6 0 809 0 6f 1 8a0
+0 8aa 0 80b 0 805 0 10f
+1a 16f 1 8b0 0 8a6 0 8aa
+0 805 0 10f 1a 8a0 0 809
+0 16f 1 8b0 0 8a6 0 8aa
+0 80f 1 810 0 8a6 0 809
+0 6f 1 1 0 8b0 0 8a6
+0 809 0 6f 1 8a0 0 8aa
+0 80b 0 11ff 5ad0 80f 5cd9 16f
+1 8b0 0 8a6 0 8aa 0 8a6
+0 819 0 6f 1 16f 1 8b5
+0 8a6 0 8aa 0 84f 3 27ff
+0 8a6 0 859 0 6f 1 802
+0 80f 8 16f 1 8b0 0 8a6
+0 8aa 0 805 0 10f 8 16f
+1 8b0 0 8a6 0 8aa 0 15ff
+0 bf a 16f 1 8a6 0 8aa
+0 11ff 590a 6f 2 80f 8 16f
+1 8b0 0 8a6 0 8aa 0 805
+0 10f 8 16f 1 8b0 0 8a6
+0 8aa 0 15ff 0 bf a 16f
+1 8a6 0 8aa 0 11ff 560e 6f
+2 80f 5ce1 16f 1 8b0 0 8a6
+0 8aa 0 8a6 0 819 0 6f
+1 16f 1 8b5 0 8a6 0 8aa
+0 84f 3 27ff 0 8a6 0 859
+0 6f 1 802 0 80f 8 16f
+1 8b0 0 8a6 0 8aa 0 805
+0 10f 8 16f 1 8b0 0 8a6
+0 8aa 0 15ff 0 bf a 16f
+1 8a6 0 8aa 0 11ff 590a 6f
+2 80f 0 11ff 5ca2 865 0 8a6
+0 859 0 6f 1 8a6 0 8b9
+0 6f 1 11bf 0 2000 a00 4275
+6262 6c65 2073 6f72 740a 0 536f 7274
+2074 6865 2067 6976 656e 206e 756d 6265
+7273 2069 6e20 6173 6365 6e64 696e 6720
+6f72 6465 722e a00 496e 7075 7420 6120
+6e75 6d62 6572 2e00 4265 666f 7265 2073
+6f72 7469 6e67 a00 4166 7465 7220 736f
+7274 696e 6720 a00
 </a>
       <a name="dataWidth" val="16"/>
       <a name="label" val="ROM_1"/>
@@ -343,128 +550,9 @@ ff02 2019 1dd 80f 5690 84f 0 27ff
       <a name="addrWidth" val="16"/>
       <a name="appearance" val="logisim_evolution"/>
       <a name="contents">addr/data: 16 16
-ff02 2019 3dd 15ff 0 bf a 16f
-1 8a6 0 8aa 0 11ff 5686 29ff
-0 16f 1 8b5 0 8a6 0 8aa
-0 856 0 805 0 f 2 8a0
-0 809 0 16f 1 8b0 0 8a6
-0 8aa 0 805 0 f 3 8a0
-0 809 0 16f 1 8b0 0 8a6
-0 8aa 0 80f 2 810 0 8a6
-0 809 0 6f 1 201 0 810
-0 8a6 0 809 0 6f 1 1
-0 16f 1 8b0 0 8a6 0 8aa
-0 80f a 810 0 8a6 0 809
-0 6f 1 16f 1 8b5 0 8a6
-0 8aa 0 84f 6 27ff 0 8a6
-0 859 0 6f 1 802 0 11ff
-5676 865 0 8a6 0 859 0 6f
-1 8a6 0 8b9 0 6f 1 11bf
-0 16f 1 8b5 0 8a6 0 8aa
-0 856 0 16f 2a 80f 0 8b0
-0 805 0 10f 1 8a0 0 8aa
-0 805 0 10f 26 16f 1 8b0
-0 8a6 0 8aa 0 80f 0 810
-0 8a6 0 809 0 6f 1 1
-0 16f 1 8b0 0 8a6 0 8aa
-0 80f c8 8b0 0 8a6 0 809
-0 6f 1 8a0 0 8aa 0 80b
-0 805 0 10f 26 16f 1 8b0
-0 8a6 0 8aa 0 80f 1 810
-0 8a6 0 809 0 6f 1 1
-0 16f 1 8b0 0 8a6 0 8aa
-0 80f 8 8b0 0 8a6 0 809
-0 6f 1 8a0 0 8aa 0 80b
-0 805 0 10f 26 16f 1 8b0
-0 8a6 0 8aa 0 80f 2 810
-0 8a6 0 809 0 6f 1 1
-0 16f 1 8b0 0 8a6 0 8aa
-0 80f 2 8b0 0 8a6 0 809
-0 6f 1 8a0 0 8aa 0 80b
-0 805 0 10f 26 16f 1 8b0
-0 8a6 0 8aa 0 80f 3 810
-0 8a6 0 809 0 6f 1 1
-0 16f 1 8b0 0 8a6 0 8aa
-0 80f 6 8b0 0 8a6 0 809
-0 6f 1 8a0 0 8aa 0 80b
-0 805 0 10f 26 16f 1 8b0
-0 8a6 0 8aa 0 80f 4 810
-0 8a6 0 809 0 6f 1 1
-0 16f 1 8b0 0 8a6 0 8aa
-0 80f 3 8b0 0 8a6 0 809
-0 6f 1 8a0 0 8aa 0 80b
-0 80f 0 8b0 0 805 0 10f
-27 8a0 0 8aa 0 80f 0 8b0
-0 805 0 10f 28 8a0 0 8aa
-0 80f 0 8b0 0 805 0 10f
-29 8a0 0 8aa 0 80f 0 8b0
-0 805 0 10f 2a 8a0 0 8aa
-0 805 0 10f 1 16f 1 8b0
-0 8a6 0 8aa 0 80f 0 8b0
-0 8a6 0 809 0 6f 1 8a0
-0 8aa 0 80b 0 805 0 10f
-1 8a0 0 809 0 16f 1 8b0
-0 8a6 0 8aa 0 80f 5 810
-0 8a6 0 809 0 6f 1 60f
-8000 61f 8000 1201 0 1aff 5800 80f
-0 11ff 5802 80f 1 120f 0 16ff
-5894 805 0 10f 29 16f 1 8b0
-0 8a6 0 8aa 0 805 0 10f
-29 8a0 0 809 0 16f 1 8b0
-0 8a6 0 8aa 0 805 0 10f
-26 16f 1 8b0 0 8a6 0 8aa
-0 805 0 10f 1 8a0 0 809
-0 810 0 8a6 0 809 0 6f
-1 1 0 8a0 0 809 0 810
-0 8a6 0 809 0 6f 1 1
-0 8b0 0 8a6 0 809 0 6f
-1 8a0 0 8aa 0 80b 0 805
-0 10f 1 16f 1 8b0 0 8a6
-0 8aa 0 805 0 10f 1 8a0
-0 809 0 16f 1 8b0 0 8a6
-0 8aa 0 80f 1 810 0 8a6
-0 809 0 6f 1 1 0 8b0
-0 8a6 0 809 0 6f 1 8a0
-0 8aa 0 80b 0 11ff 57da 805
-0 10f 29 8a0 0 809 0 16f
-1 8b0 0 8a6 0 8aa 0 80f
-59c4 16f 1 8b0 0 8a6 0 8aa
-0 8a6 0 819 0 6f 1 8a6
-0 809 0 6f 1 16f 1 8b5
-0 8a6 0 8aa 0 84f 5 27ff
-0 8a6 0 859 0 6f 1 802
-0 80f 59c4 16f 1 8b0 0 8a6
-0 8aa 0 8a6 0 819 0 6f
-1 16f 1 8b5 0 8a6 0 8aa
-0 84f 3 27ff 0 8a6 0 859
-0 6f 1 802 0 80f 59d4 16f
-1 8b0 0 8a6 0 8aa 0 8a6
-0 819 0 6f 1 16f 1 8b5
-0 8a6 0 8aa 0 84f 3 27ff
-0 8a6 0 859 0 6f 1 802
-0 805 0 10f 29 8a0 0 809
-0 16f 1 8b0 0 8a6 0 8aa
-0 80f 32 810 0 8a6 0 809
-0 6f 1 60f 8000 61f 8000 1201
-0 1aff 593c 80f 0 11ff 593e 80f
-1 120f 0 16ff 5968 80f 59d5 16f
-1 8b0 0 8a6 0 8aa 0 8a6
-0 819 0 6f 1 16f 1 8b5
-0 8a6 0 8aa 0 84f 3 27ff
-0 8a6 0 859 0 6f 1 802
-0 11ff 598c 80f 59d9 16f 1 8b0
-0 8a6 0 8aa 0 8a6 0 819
-0 6f 1 16f 1 8b5 0 8a6
-0 8aa 0 84f 3 27ff 0 8a6
-0 859 0 6f 1 802 0 80f
-59d4 16f 1 8b0 0 8a6 0 8aa
-0 8a6 0 819 0 6f 1 16f
-1 8b5 0 8a6 0 8aa 0 84f
-3 27ff 0 8a6 0 859 0 6f
-1 802 0 80f 0 11ff 59b4 865
-0 8a6 0 859 0 6f 1 8a6
-0 8b9 0 6f 1 11bf 17*0 a00
-536d 616c 6c21 0 4269 6767 6572 2100
+ff02 2019 13 81f 560a 84f 3 27ff
+0 16f 3e8 29ff 0 5072 6f67 7261
+6d20 5374 6172 7465 6421 a00
 </a>
       <a name="dataWidth" val="16"/>
       <a name="label" val="ROM_2"/>
@@ -527,9 +615,11 @@ ff02 2019 3dd 15ff 0 bf a 16f
     <wire from="(1090,1940)" to="(1090,2090)"/>
     <wire from="(1110,1320)" to="(1120,1320)"/>
     <wire from="(1120,1320)" to="(1120,1340)"/>
+    <wire from="(1190,2450)" to="(1370,2450)"/>
     <wire from="(1200,1500)" to="(1200,1740)"/>
     <wire from="(1200,1500)" to="(1230,1500)"/>
     <wire from="(1200,1740)" to="(1480,1740)"/>
+    <wire from="(1200,2410)" to="(1510,2410)"/>
     <wire from="(1210,1510)" to="(1210,2160)"/>
     <wire from="(1210,1510)" to="(1230,1510)"/>
     <wire from="(1210,2160)" to="(1210,3820)"/>
@@ -550,6 +640,8 @@ ff02 2019 3dd 15ff 0 bf a 16f
     <wire from="(1370,1620)" to="(2960,1620)"/>
     <wire from="(1370,1680)" to="(1410,1680)"/>
     <wire from="(1370,1810)" to="(1370,1890)"/>
+    <wire from="(1370,2450)" to="(1370,2590)"/>
+    <wire from="(1370,2590)" to="(1660,2590)"/>
     <wire from="(1390,1940)" to="(1390,2220)"/>
     <wire from="(1390,2220)" to="(1390,3330)"/>
     <wire from="(1390,3330)" to="(1390,3800)"/>
@@ -576,6 +668,8 @@ ff02 2019 3dd 15ff 0 bf a 16f
     <wire from="(1490,3680)" to="(4410,3680)"/>
     <wire from="(1500,1930)" to="(1500,1980)"/>
     <wire from="(1500,1930)" to="(1660,1930)"/>
+    <wire from="(1510,1950)" to="(1510,2410)"/>
+    <wire from="(1510,1950)" to="(1660,1950)"/>
     <wire from="(1510,2550)" to="(1510,3590)"/>
     <wire from="(1510,2550)" to="(1660,2550)"/>
     <wire from="(1510,3590)" to="(3650,3590)"/>
@@ -771,7 +865,7 @@ ff02 2019 3dd 15ff 0 bf a 16f
     <wire from="(650,2190)" to="(670,2190)"/>
     <wire from="(690,2230)" to="(690,3350)"/>
     <wire from="(690,3350)" to="(2590,3350)"/>
-    <wire from="(720,2170)" to="(970,2170)"/>
+    <wire from="(720,2170)" to="(860,2170)"/>
     <wire from="(730,1390)" to="(1080,1390)"/>
     <wire from="(730,1390)" to="(730,1750)"/>
     <wire from="(730,1750)" to="(1910,1750)"/>
@@ -784,6 +878,9 @@ ff02 2019 3dd 15ff 0 bf a 16f
     <wire from="(850,1770)" to="(3030,1770)"/>
     <wire from="(850,1770)" to="(850,1940)"/>
     <wire from="(850,1940)" to="(980,1940)"/>
+    <wire from="(860,2170)" to="(860,2380)"/>
+    <wire from="(860,2170)" to="(970,2170)"/>
+    <wire from="(860,2380)" to="(1120,2380)"/>
     <wire from="(970,1980)" to="(970,2160)"/>
     <wire from="(970,1980)" to="(980,1980)"/>
     <wire from="(970,2160)" to="(1210,2160)"/>
@@ -805,10 +902,6 @@ ff02 2019 3dd 15ff 0 bf a 16f
     <comp lib="0" loc="(1310,2730)" name="Splitter">
       <a name="fanout" val="16"/>
       <a name="incoming" val="16"/>
-    </comp>
-    <comp lib="0" loc="(1330,2610)" name="Constant">
-      <a name="facing" val="west"/>
-      <a name="value" val="0x0"/>
     </comp>
     <comp lib="0" loc="(1330,2620)" name="Constant">
       <a name="facing" val="west"/>
@@ -1086,6 +1179,9 @@ ff02 2019 3dd 15ff 0 bf a 16f
     <wire from="(1100,1340)" to="(1100,1730)"/>
     <wire from="(1100,1340)" to="(1200,1340)"/>
     <wire from="(1100,1730)" to="(2920,1730)"/>
+    <wire from="(1100,1820)" to="(1100,2200)"/>
+    <wire from="(1100,1820)" to="(1660,1820)"/>
+    <wire from="(1100,2200)" to="(1210,2200)"/>
     <wire from="(1120,1860)" to="(1120,2160)"/>
     <wire from="(1120,1860)" to="(1550,1860)"/>
     <wire from="(1120,2160)" to="(1210,2160)"/>
@@ -1118,6 +1214,7 @@ ff02 2019 3dd 15ff 0 bf a 16f
     <wire from="(1330,2580)" to="(1390,2580)"/>
     <wire from="(1330,2590)" to="(1390,2590)"/>
     <wire from="(1330,2600)" to="(1390,2600)"/>
+    <wire from="(1330,2610)" to="(1390,2610)"/>
     <wire from="(1350,2260)" to="(1350,2500)"/>
     <wire from="(1350,2260)" to="(1450,2260)"/>
     <wire from="(1350,2530)" to="(1350,2570)"/>
@@ -1210,7 +1307,7 @@ ff02 2019 3dd 15ff 0 bf a 16f
     <wire from="(1550,1660)" to="(1550,1860)"/>
     <wire from="(1560,1360)" to="(1560,1640)"/>
     <wire from="(1560,1360)" to="(2100,1360)"/>
-    <wire from="(1560,1640)" to="(1740,1640)"/>
+    <wire from="(1560,1640)" to="(1660,1640)"/>
     <wire from="(1560,1650)" to="(1560,1980)"/>
     <wire from="(1560,1650)" to="(1740,1650)"/>
     <wire from="(1570,1350)" to="(1570,1630)"/>
@@ -1249,6 +1346,8 @@ ff02 2019 3dd 15ff 0 bf a 16f
     <wire from="(1650,1380)" to="(2100,1380)"/>
     <wire from="(1660,1460)" to="(1660,1570)"/>
     <wire from="(1660,1460)" to="(2100,1460)"/>
+    <wire from="(1660,1640)" to="(1660,1820)"/>
+    <wire from="(1660,1640)" to="(1740,1640)"/>
     <wire from="(1670,1470)" to="(1670,1550)"/>
     <wire from="(1670,1470)" to="(2100,1470)"/>
     <wire from="(1670,1960)" to="(1670,1980)"/>
@@ -4515,6 +4614,7 @@ ff02 2019 3dd 15ff 0 bf a 16f
       <circ-port dir="in" pin="2820,1360" x="370" y="160"/>
       <circ-port dir="in" pin="2820,1380" x="370" y="180"/>
       <circ-port dir="in" pin="440,2540" x="50" y="190"/>
+      <circ-port dir="in" pin="450,2730" x="50" y="200"/>
       <circ-port dir="in" pin="490,1030" x="50" y="150"/>
       <circ-port dir="in" pin="490,1750" x="50" y="160"/>
       <circ-port dir="in" pin="680,2410" x="50" y="180"/>
@@ -4599,6 +4699,10 @@ ff02 2019 3dd 15ff 0 bf a 16f
     </comp>
     <comp lib="0" loc="(2030,2530)" name="Constant">
       <a name="value" val="0x5600"/>
+      <a name="width" val="16"/>
+    </comp>
+    <comp lib="0" loc="(2040,2820)" name="Constant">
+      <a name="value" val="0xfc00"/>
       <a name="width" val="16"/>
     </comp>
     <comp lib="0" loc="(2050,1950)" name="Splitter">
@@ -4729,6 +4833,12 @@ ff02 2019 3dd 15ff 0 bf a 16f
     <comp lib="0" loc="(440,2540)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="label" val="OS_RESTART"/>
+    </comp>
+    <comp lib="0" loc="(450,2730)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="sp_in"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="16"/>
     </comp>
     <comp lib="0" loc="(4560,1180)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -6688,7 +6798,7 @@ xxxxxxxx 1 # undefined
       <a name="facing" val="north"/>
     </comp>
     <comp lib="1" loc="(3790,2590)" name="OR Gate">
-      <a name="inputs" val="4"/>
+      <a name="inputs" val="5"/>
     </comp>
     <comp lib="2" loc="(1280,1260)" name="Multiplexer">
       <a name="width" val="16"/>
@@ -6737,6 +6847,10 @@ xxxxxxxx 1 # undefined
       <a name="width" val="16"/>
     </comp>
     <comp lib="3" loc="(2090,2520)" name="Comparator">
+      <a name="mode" val="unsigned"/>
+      <a name="width" val="16"/>
+    </comp>
+    <comp lib="3" loc="(2100,2810)" name="Comparator">
       <a name="mode" val="unsigned"/>
       <a name="width" val="16"/>
     </comp>
@@ -7195,6 +7309,9 @@ a 16f 1 8a6 0 8aa 0 11ff
     <wire from="(2030,2530)" to="(2050,2530)"/>
     <wire from="(2040,1660)" to="(2040,1840)"/>
     <wire from="(2040,1660)" to="(2270,1660)"/>
+    <wire from="(2040,2730)" to="(2040,2800)"/>
+    <wire from="(2040,2800)" to="(2060,2800)"/>
+    <wire from="(2040,2820)" to="(2060,2820)"/>
     <wire from="(2070,2280)" to="(2070,2380)"/>
     <wire from="(2070,2280)" to="(2640,2280)"/>
     <wire from="(2070,2380)" to="(2100,2380)"/>
@@ -7206,6 +7323,7 @@ a 16f 1 8a6 0 8aa 0 11ff
     <wire from="(2100,2380)" to="(2100,2510)"/>
     <wire from="(2100,2380)" to="(2820,2380)"/>
     <wire from="(2100,2510)" to="(2160,2510)"/>
+    <wire from="(2100,2820)" to="(3390,2820)"/>
     <wire from="(2120,1750)" to="(2120,1820)"/>
     <wire from="(2120,1750)" to="(2960,1750)"/>
     <wire from="(2120,1820)" to="(2420,1820)"/>
@@ -7447,6 +7565,9 @@ a 16f 1 8a6 0 8aa 0 11ff
     <wire from="(3380,1500)" to="(3510,1500)"/>
     <wire from="(3390,1420)" to="(3390,1490)"/>
     <wire from="(3390,1490)" to="(3560,1490)"/>
+    <wire from="(3390,2580)" to="(3390,2820)"/>
+    <wire from="(3390,2580)" to="(3690,2580)"/>
+    <wire from="(3390,2820)" to="(3440,2820)"/>
     <wire from="(3400,1420)" to="(3400,1540)"/>
     <wire from="(3400,1600)" to="(3410,1600)"/>
     <wire from="(3410,1600)" to="(3410,1920)"/>
@@ -7458,6 +7579,8 @@ a 16f 1 8a6 0 8aa 0 11ff
     <wire from="(3440,1440)" to="(3440,1460)"/>
     <wire from="(3440,1460)" to="(3640,1460)"/>
     <wire from="(3440,1510)" to="(3440,1580)"/>
+    <wire from="(3440,2780)" to="(3440,2820)"/>
+    <wire from="(3440,2780)" to="(3750,2780)"/>
     <wire from="(3460,1200)" to="(3500,1200)"/>
     <wire from="(3460,1210)" to="(3500,1210)"/>
     <wire from="(3460,1220)" to="(3500,1220)"/>
@@ -7501,6 +7624,8 @@ a 16f 1 8a6 0 8aa 0 11ff
     <wire from="(3670,2570)" to="(3740,2570)"/>
     <wire from="(3670,2760)" to="(3750,2760)"/>
     <wire from="(3680,1020)" to="(3680,1180)"/>
+    <wire from="(3690,2580)" to="(3690,2590)"/>
+    <wire from="(3690,2590)" to="(3740,2590)"/>
     <wire from="(3700,2610)" to="(3700,2750)"/>
     <wire from="(3700,2610)" to="(3740,2610)"/>
     <wire from="(3700,2750)" to="(3750,2750)"/>
@@ -7544,6 +7669,7 @@ a 16f 1 8a6 0 8aa 0 11ff
     <wire from="(3820,1260)" to="(3880,1260)"/>
     <wire from="(3860,1270)" to="(3860,1570)"/>
     <wire from="(440,2540)" to="(550,2540)"/>
+    <wire from="(450,2730)" to="(2040,2730)"/>
     <wire from="(4560,1180)" to="(4560,1460)"/>
     <wire from="(490,1030)" to="(520,1030)"/>
     <wire from="(490,1750)" to="(510,1750)"/>
@@ -7716,14 +7842,6 @@ a 16f 1 8a6 0 8aa 0 11ff
       <a name="type" val="output"/>
       <a name="width" val="16"/>
     </comp>
-    <comp lib="0" loc="(2710,1690)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="facing" val="west"/>
-      <a name="label" val="sp_out"/>
-      <a name="radix" val="16"/>
-      <a name="type" val="output"/>
-      <a name="width" val="16"/>
-    </comp>
     <comp lib="0" loc="(2710,1840)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
@@ -7851,6 +7969,14 @@ a 16f 1 8a6 0 8aa 0 11ff
       <a name="facing" val="west"/>
       <a name="type" val="output"/>
     </comp>
+    <comp lib="0" loc="(3170,1690)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="sp_out"/>
+      <a name="radix" val="16"/>
+      <a name="type" val="output"/>
+      <a name="width" val="16"/>
+    </comp>
     <comp lib="1" loc="(1610,2980)" name="NOT Gate"/>
     <comp lib="1" loc="(1630,2170)" name="Controlled Buffer"/>
     <comp lib="1" loc="(1660,2190)" name="Controlled Buffer"/>
@@ -7952,11 +8078,6 @@ a 16f 1 8a6 0 8aa 0 11ff
       <a name="label" val="BP"/>
       <a name="width" val="16"/>
     </comp>
-    <comp lib="5" loc="(2530,1660)" name="Register">
-      <a name="appearance" val="logisim_evolution"/>
-      <a name="label" val="SP"/>
-      <a name="width" val="16"/>
-    </comp>
     <comp lib="5" loc="(2530,2800)" name="Register">
       <a name="appearance" val="logisim_evolution"/>
       <a name="label" val="inaddr"/>
@@ -8002,6 +8123,7 @@ a 16f 1 8a6 0 8aa 0 11ff
       <a name="label" val="FLAGS"/>
       <a name="width" val="16"/>
     </comp>
+    <comp loc="(2820,1690)" name="sixteen_register_sp"/>
     <wire from="(1030,2750)" to="(1580,2750)"/>
     <wire from="(1060,3230)" to="(1090,3230)"/>
     <wire from="(1090,2530)" to="(1090,3230)"/>
@@ -8258,7 +8380,7 @@ a 16f 1 8a6 0 8aa 0 11ff
     <wire from="(2210,1620)" to="(2210,1750)"/>
     <wire from="(2210,1620)" to="(2560,1620)"/>
     <wire from="(2210,1750)" to="(2210,1790)"/>
-    <wire from="(2210,1750)" to="(2560,1750)"/>
+    <wire from="(2210,1750)" to="(2520,1750)"/>
     <wire from="(2210,1790)" to="(2210,1930)"/>
     <wire from="(2210,1930)" to="(2210,2160)"/>
     <wire from="(2210,1930)" to="(2550,1930)"/>
@@ -8394,7 +8516,7 @@ a 16f 1 8a6 0 8aa 0 11ff
     <wire from="(2450,1600)" to="(2450,1730)"/>
     <wire from="(2450,1600)" to="(2530,1600)"/>
     <wire from="(2450,1730)" to="(2450,1880)"/>
-    <wire from="(2450,1730)" to="(2530,1730)"/>
+    <wire from="(2450,1730)" to="(2570,1730)"/>
     <wire from="(2450,1880)" to="(2450,2040)"/>
     <wire from="(2450,1880)" to="(2520,1880)"/>
     <wire from="(2450,2040)" to="(2450,2580)"/>
@@ -8442,7 +8564,7 @@ a 16f 1 8a6 0 8aa 0 11ff
     <wire from="(2500,1560)" to="(2500,1570)"/>
     <wire from="(2500,1560)" to="(2530,1560)"/>
     <wire from="(2500,1690)" to="(2500,1700)"/>
-    <wire from="(2500,1690)" to="(2530,1690)"/>
+    <wire from="(2500,1690)" to="(2550,1690)"/>
     <wire from="(2500,1860)" to="(2500,2480)"/>
     <wire from="(2500,1860)" to="(2520,1860)"/>
     <wire from="(2500,2480)" to="(2650,2480)"/>
@@ -8460,14 +8582,20 @@ a 16f 1 8a6 0 8aa 0 11ff
     <wire from="(2510,4020)" to="(2510,4090)"/>
     <wire from="(2510,4020)" to="(2770,4020)"/>
     <wire from="(2510,4090)" to="(2540,4090)"/>
+    <wire from="(2520,1680)" to="(2520,1750)"/>
+    <wire from="(2520,1680)" to="(2600,1680)"/>
     <wire from="(2520,2610)" to="(2520,2690)"/>
     <wire from="(2530,1010)" to="(2540,1010)"/>
     <wire from="(2530,1580)" to="(2540,1580)"/>
+    <wire from="(2530,1710)" to="(2530,1750)"/>
+    <wire from="(2530,1750)" to="(2600,1750)"/>
     <wire from="(2530,2850)" to="(2530,2860)"/>
     <wire from="(2530,750)" to="(2540,750)"/>
     <wire from="(2530,880)" to="(2540,880)"/>
     <wire from="(2540,2080)" to="(2540,2190)"/>
     <wire from="(2540,2080)" to="(2600,2080)"/>
+    <wire from="(2550,1690)" to="(2550,1740)"/>
+    <wire from="(2550,1740)" to="(2580,1740)"/>
     <wire from="(2550,1890)" to="(2550,1900)"/>
     <wire from="(2550,1900)" to="(2550,1930)"/>
     <wire from="(2550,2590)" to="(2550,2600)"/>
@@ -8477,8 +8605,12 @@ a 16f 1 8a6 0 8aa 0 11ff
     <wire from="(2560,2230)" to="(2560,2290)"/>
     <wire from="(2560,2890)" to="(2560,2900)"/>
     <wire from="(2560,3060)" to="(2560,3110)"/>
+    <wire from="(2570,1710)" to="(2570,1730)"/>
+    <wire from="(2570,1710)" to="(2600,1710)"/>
     <wire from="(2570,3330)" to="(2570,3350)"/>
     <wire from="(2570,4080)" to="(2580,4080)"/>
+    <wire from="(2580,1730)" to="(2580,1740)"/>
+    <wire from="(2580,1730)" to="(2600,1730)"/>
     <wire from="(2580,1840)" to="(2710,1840)"/>
     <wire from="(2580,2100)" to="(2580,2180)"/>
     <wire from="(2580,2100)" to="(2610,2100)"/>
@@ -8490,7 +8622,6 @@ a 16f 1 8a6 0 8aa 0 11ff
     <wire from="(2590,1320)" to="(2710,1320)"/>
     <wire from="(2590,1440)" to="(2710,1440)"/>
     <wire from="(2590,1560)" to="(2710,1560)"/>
-    <wire from="(2590,1690)" to="(2710,1690)"/>
     <wire from="(2590,2020)" to="(2590,2130)"/>
     <wire from="(2590,2130)" to="(2680,2130)"/>
     <wire from="(2590,2830)" to="(2710,2830)"/>
@@ -8498,6 +8629,7 @@ a 16f 1 8a6 0 8aa 0 11ff
     <wire from="(2590,730)" to="(2710,730)"/>
     <wire from="(2590,860)" to="(2710,860)"/>
     <wire from="(2590,990)" to="(2710,990)"/>
+    <wire from="(2600,1680)" to="(2600,1690)"/>
     <wire from="(2600,2080)" to="(2600,2150)"/>
     <wire from="(2600,2080)" to="(2610,2080)"/>
     <wire from="(2600,2150)" to="(2720,2150)"/>
@@ -8541,6 +8673,7 @@ a 16f 1 8a6 0 8aa 0 11ff
     <wire from="(2790,4280)" to="(2790,4300)"/>
     <wire from="(2790,4280)" to="(2800,4280)"/>
     <wire from="(2800,4290)" to="(2800,4320)"/>
+    <wire from="(2820,1690)" to="(3170,1690)"/>
     <wire from="(2820,2170)" to="(2820,2430)"/>
     <wire from="(2820,2170)" to="(2860,2170)"/>
     <wire from="(2820,2430)" to="(3530,2430)"/>
@@ -10693,5 +10826,269 @@ xx00000011 00000000 # rom_controller_reset -&gt; base_addr_receive
     <wire from="(950,1030)" to="(960,1030)"/>
     <wire from="(960,1020)" to="(1000,1020)"/>
     <wire from="(960,1020)" to="(960,1030)"/>
+  </circuit>
+  <circuit name="sixteen_register_sp">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="sixteen_register_sp"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="128.0"/>
+    <comp lib="0" loc="(420,1590)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="D"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="16"/>
+    </comp>
+    <comp lib="0" loc="(420,1680)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="WE"/>
+    </comp>
+    <comp lib="0" loc="(630,1960)" name="Splitter">
+      <a name="fanout" val="16"/>
+      <a name="incoming" val="16"/>
+    </comp>
+    <comp lib="0" loc="(660,1450)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="CLK"/>
+    </comp>
+    <comp lib="0" loc="(670,1170)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="RESET"/>
+    </comp>
+    <comp lib="0" loc="(700,1020)" name="Splitter">
+      <a name="fanout" val="16"/>
+      <a name="incoming" val="16"/>
+    </comp>
+    <comp lib="0" loc="(700,810)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="Q"/>
+      <a name="radix" val="16"/>
+      <a name="type" val="output"/>
+      <a name="width" val="16"/>
+    </comp>
+    <comp lib="2" loc="(540,1580)" name="Multiplexer">
+      <a name="width" val="16"/>
+    </comp>
+    <comp lib="5" loc="(1080,1290)" name="D Flip-Flop">
+      <a name="appearance" val="logisim_evolution"/>
+    </comp>
+    <comp lib="5" loc="(1220,1290)" name="D Flip-Flop">
+      <a name="appearance" val="logisim_evolution"/>
+    </comp>
+    <comp lib="5" loc="(1340,1290)" name="D Flip-Flop">
+      <a name="appearance" val="logisim_evolution"/>
+    </comp>
+    <comp lib="5" loc="(1490,1290)" name="D Flip-Flop">
+      <a name="appearance" val="logisim_evolution"/>
+    </comp>
+    <comp lib="5" loc="(1610,1290)" name="D Flip-Flop">
+      <a name="appearance" val="logisim_evolution"/>
+    </comp>
+    <comp lib="5" loc="(1740,1290)" name="D Flip-Flop">
+      <a name="appearance" val="logisim_evolution"/>
+    </comp>
+    <comp lib="5" loc="(1860,1290)" name="D Flip-Flop">
+      <a name="appearance" val="logisim_evolution"/>
+    </comp>
+    <comp lib="5" loc="(2000,1290)" name="D Flip-Flop">
+      <a name="appearance" val="logisim_evolution"/>
+    </comp>
+    <comp lib="5" loc="(2120,1290)" name="D Flip-Flop">
+      <a name="appearance" val="logisim_evolution"/>
+    </comp>
+    <comp lib="5" loc="(2260,1290)" name="D Flip-Flop">
+      <a name="appearance" val="logisim_evolution"/>
+    </comp>
+    <comp lib="5" loc="(2380,1290)" name="D Flip-Flop">
+      <a name="appearance" val="logisim_evolution"/>
+    </comp>
+    <comp lib="5" loc="(2510,1290)" name="D Flip-Flop">
+      <a name="appearance" val="logisim_evolution"/>
+    </comp>
+    <comp lib="5" loc="(2630,1290)" name="D Flip-Flop">
+      <a name="appearance" val="logisim_evolution"/>
+    </comp>
+    <comp lib="5" loc="(710,1290)" name="D Flip-Flop">
+      <a name="appearance" val="logisim_evolution"/>
+    </comp>
+    <comp lib="5" loc="(830,1290)" name="D Flip-Flop">
+      <a name="appearance" val="logisim_evolution"/>
+    </comp>
+    <comp lib="5" loc="(960,1290)" name="D Flip-Flop">
+      <a name="appearance" val="logisim_evolution"/>
+    </comp>
+    <wire from="(1010,880)" to="(1010,1300)"/>
+    <wire from="(1030,1300)" to="(1030,1830)"/>
+    <wire from="(1030,1300)" to="(1070,1300)"/>
+    <wire from="(1070,1340)" to="(1070,1450)"/>
+    <wire from="(1070,1450)" to="(1210,1450)"/>
+    <wire from="(1100,1170)" to="(1100,1290)"/>
+    <wire from="(1100,1170)" to="(1240,1170)"/>
+    <wire from="(1130,890)" to="(1130,1300)"/>
+    <wire from="(1160,1300)" to="(1160,1840)"/>
+    <wire from="(1160,1300)" to="(1210,1300)"/>
+    <wire from="(1210,1340)" to="(1210,1450)"/>
+    <wire from="(1210,1450)" to="(1330,1450)"/>
+    <wire from="(1240,1170)" to="(1240,1290)"/>
+    <wire from="(1240,1170)" to="(1360,1170)"/>
+    <wire from="(1270,900)" to="(1270,1300)"/>
+    <wire from="(1300,1300)" to="(1300,1850)"/>
+    <wire from="(1300,1300)" to="(1330,1300)"/>
+    <wire from="(1330,1340)" to="(1330,1450)"/>
+    <wire from="(1330,1450)" to="(1460,1450)"/>
+    <wire from="(1360,1170)" to="(1360,1290)"/>
+    <wire from="(1360,1170)" to="(1510,1170)"/>
+    <wire from="(1390,910)" to="(1390,1300)"/>
+    <wire from="(1420,1300)" to="(1420,1860)"/>
+    <wire from="(1420,1300)" to="(1480,1300)"/>
+    <wire from="(1460,1340)" to="(1460,1450)"/>
+    <wire from="(1460,1340)" to="(1480,1340)"/>
+    <wire from="(1460,1450)" to="(1580,1450)"/>
+    <wire from="(1510,1170)" to="(1510,1290)"/>
+    <wire from="(1510,1170)" to="(1630,1170)"/>
+    <wire from="(1540,920)" to="(1540,1300)"/>
+    <wire from="(1560,1300)" to="(1560,1870)"/>
+    <wire from="(1560,1300)" to="(1600,1300)"/>
+    <wire from="(1580,1340)" to="(1580,1450)"/>
+    <wire from="(1580,1340)" to="(1600,1340)"/>
+    <wire from="(1580,1450)" to="(1730,1450)"/>
+    <wire from="(1630,1170)" to="(1630,1290)"/>
+    <wire from="(1630,1170)" to="(1760,1170)"/>
+    <wire from="(1660,930)" to="(1660,1300)"/>
+    <wire from="(1700,1300)" to="(1700,1880)"/>
+    <wire from="(1700,1300)" to="(1730,1300)"/>
+    <wire from="(1730,1340)" to="(1730,1450)"/>
+    <wire from="(1730,1450)" to="(1850,1450)"/>
+    <wire from="(1760,1170)" to="(1760,1290)"/>
+    <wire from="(1760,1170)" to="(1880,1170)"/>
+    <wire from="(1790,940)" to="(1790,1300)"/>
+    <wire from="(1810,1300)" to="(1810,1890)"/>
+    <wire from="(1810,1300)" to="(1850,1300)"/>
+    <wire from="(1850,1340)" to="(1850,1450)"/>
+    <wire from="(1850,1450)" to="(1980,1450)"/>
+    <wire from="(1880,1170)" to="(1880,1290)"/>
+    <wire from="(1880,1170)" to="(2020,1170)"/>
+    <wire from="(1910,950)" to="(1910,1300)"/>
+    <wire from="(1950,1300)" to="(1950,1900)"/>
+    <wire from="(1950,1300)" to="(1990,1300)"/>
+    <wire from="(1980,1340)" to="(1980,1450)"/>
+    <wire from="(1980,1340)" to="(1990,1340)"/>
+    <wire from="(1980,1450)" to="(2100,1450)"/>
+    <wire from="(2020,1170)" to="(2020,1290)"/>
+    <wire from="(2020,1170)" to="(2140,1170)"/>
+    <wire from="(2050,1300)" to="(2070,1300)"/>
+    <wire from="(2070,960)" to="(2070,1300)"/>
+    <wire from="(2080,1300)" to="(2080,1910)"/>
+    <wire from="(2080,1300)" to="(2110,1300)"/>
+    <wire from="(2100,1340)" to="(2100,1450)"/>
+    <wire from="(2100,1340)" to="(2110,1340)"/>
+    <wire from="(2100,1450)" to="(2240,1450)"/>
+    <wire from="(2140,1170)" to="(2140,1290)"/>
+    <wire from="(2140,1170)" to="(2280,1170)"/>
+    <wire from="(2170,970)" to="(2170,1300)"/>
+    <wire from="(2220,1300)" to="(2220,1920)"/>
+    <wire from="(2220,1300)" to="(2250,1300)"/>
+    <wire from="(2240,1340)" to="(2240,1450)"/>
+    <wire from="(2240,1340)" to="(2250,1340)"/>
+    <wire from="(2240,1450)" to="(2360,1450)"/>
+    <wire from="(2280,1170)" to="(2280,1290)"/>
+    <wire from="(2280,1170)" to="(2390,1170)"/>
+    <wire from="(2310,980)" to="(2310,1300)"/>
+    <wire from="(2340,1300)" to="(2340,1930)"/>
+    <wire from="(2340,1300)" to="(2370,1300)"/>
+    <wire from="(2360,1340)" to="(2360,1450)"/>
+    <wire from="(2360,1340)" to="(2370,1340)"/>
+    <wire from="(2360,1450)" to="(2490,1450)"/>
+    <wire from="(2390,1170)" to="(2390,1270)"/>
+    <wire from="(2390,1170)" to="(2440,1170)"/>
+    <wire from="(2390,1270)" to="(2400,1270)"/>
+    <wire from="(2400,1270)" to="(2400,1290)"/>
+    <wire from="(2430,990)" to="(2430,1300)"/>
+    <wire from="(2440,1170)" to="(2440,1530)"/>
+    <wire from="(2440,1170)" to="(2530,1170)"/>
+    <wire from="(2450,1300)" to="(2450,1940)"/>
+    <wire from="(2450,1300)" to="(2500,1300)"/>
+    <wire from="(2490,1340)" to="(2490,1450)"/>
+    <wire from="(2490,1340)" to="(2500,1340)"/>
+    <wire from="(2490,1450)" to="(2610,1450)"/>
+    <wire from="(2500,1340)" to="(2510,1340)"/>
+    <wire from="(2530,1170)" to="(2530,1290)"/>
+    <wire from="(2530,1170)" to="(2650,1170)"/>
+    <wire from="(2560,1000)" to="(2560,1300)"/>
+    <wire from="(2580,1300)" to="(2580,1950)"/>
+    <wire from="(2580,1300)" to="(2620,1300)"/>
+    <wire from="(2610,1340)" to="(2610,1450)"/>
+    <wire from="(2610,1340)" to="(2620,1340)"/>
+    <wire from="(2620,1340)" to="(2630,1340)"/>
+    <wire from="(2650,1170)" to="(2650,1290)"/>
+    <wire from="(2680,1010)" to="(2680,1300)"/>
+    <wire from="(420,1590)" to="(510,1590)"/>
+    <wire from="(420,1680)" to="(520,1680)"/>
+    <wire from="(470,1020)" to="(470,1570)"/>
+    <wire from="(470,1020)" to="(580,1020)"/>
+    <wire from="(470,1570)" to="(510,1570)"/>
+    <wire from="(520,1600)" to="(520,1680)"/>
+    <wire from="(540,1580)" to="(560,1580)"/>
+    <wire from="(560,1580)" to="(560,1710)"/>
+    <wire from="(560,1710)" to="(630,1710)"/>
+    <wire from="(580,1020)" to="(700,1020)"/>
+    <wire from="(580,810)" to="(580,1020)"/>
+    <wire from="(580,810)" to="(700,810)"/>
+    <wire from="(630,1710)" to="(630,1960)"/>
+    <wire from="(650,1800)" to="(690,1800)"/>
+    <wire from="(650,1810)" to="(800,1810)"/>
+    <wire from="(650,1820)" to="(930,1820)"/>
+    <wire from="(650,1830)" to="(1030,1830)"/>
+    <wire from="(650,1840)" to="(1160,1840)"/>
+    <wire from="(650,1850)" to="(1300,1850)"/>
+    <wire from="(650,1860)" to="(1420,1860)"/>
+    <wire from="(650,1870)" to="(1560,1870)"/>
+    <wire from="(650,1880)" to="(1700,1880)"/>
+    <wire from="(650,1890)" to="(1810,1890)"/>
+    <wire from="(650,1900)" to="(1950,1900)"/>
+    <wire from="(650,1910)" to="(2080,1910)"/>
+    <wire from="(650,1920)" to="(2220,1920)"/>
+    <wire from="(650,1930)" to="(2340,1930)"/>
+    <wire from="(650,1940)" to="(2450,1940)"/>
+    <wire from="(650,1950)" to="(2580,1950)"/>
+    <wire from="(660,1450)" to="(700,1450)"/>
+    <wire from="(670,1170)" to="(730,1170)"/>
+    <wire from="(690,1300)" to="(690,1800)"/>
+    <wire from="(690,1300)" to="(700,1300)"/>
+    <wire from="(700,1340)" to="(700,1450)"/>
+    <wire from="(700,1450)" to="(820,1450)"/>
+    <wire from="(720,1000)" to="(2560,1000)"/>
+    <wire from="(720,1010)" to="(2680,1010)"/>
+    <wire from="(720,860)" to="(760,860)"/>
+    <wire from="(720,870)" to="(880,870)"/>
+    <wire from="(720,880)" to="(1010,880)"/>
+    <wire from="(720,890)" to="(1130,890)"/>
+    <wire from="(720,900)" to="(1270,900)"/>
+    <wire from="(720,910)" to="(1390,910)"/>
+    <wire from="(720,920)" to="(1540,920)"/>
+    <wire from="(720,930)" to="(1660,930)"/>
+    <wire from="(720,940)" to="(1790,940)"/>
+    <wire from="(720,950)" to="(1910,950)"/>
+    <wire from="(720,960)" to="(2070,960)"/>
+    <wire from="(720,970)" to="(2170,970)"/>
+    <wire from="(720,980)" to="(2310,980)"/>
+    <wire from="(720,990)" to="(2430,990)"/>
+    <wire from="(730,1170)" to="(730,1290)"/>
+    <wire from="(730,1170)" to="(850,1170)"/>
+    <wire from="(760,860)" to="(760,1300)"/>
+    <wire from="(800,1300)" to="(800,1810)"/>
+    <wire from="(800,1300)" to="(820,1300)"/>
+    <wire from="(820,1340)" to="(820,1450)"/>
+    <wire from="(820,1450)" to="(950,1450)"/>
+    <wire from="(850,1170)" to="(850,1290)"/>
+    <wire from="(850,1170)" to="(980,1170)"/>
+    <wire from="(880,870)" to="(880,1300)"/>
+    <wire from="(930,1300)" to="(930,1820)"/>
+    <wire from="(930,1300)" to="(950,1300)"/>
+    <wire from="(950,1340)" to="(950,1450)"/>
+    <wire from="(950,1450)" to="(1070,1450)"/>
+    <wire from="(970,1290)" to="(980,1290)"/>
+    <wire from="(980,1170)" to="(1100,1170)"/>
+    <wire from="(980,1170)" to="(980,1290)"/>
   </circuit>
 </project>
