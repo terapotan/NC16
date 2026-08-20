@@ -34,6 +34,9 @@ os_message_5:
 os_message_6:
     #d "MomoOS>\0"
     #align 16
+os_message_7:
+    #d "The file size is too large.\n\0"
+    #align 16
 
 command_buffer_addr:
     #d 0x0000 ;キーボード入力された文字列を格納するためのメモリ領域（コマンドバッファ）のアドレス
@@ -73,6 +76,7 @@ systemcall_address_list:
 
 interrupt_handler_base_address = 0x5000
 program_data_address = 0x5600
+stack_top_address = 0xFC00
 systemcall_address = 0x5121
 
 syscall_handler:
@@ -247,8 +251,14 @@ load_program_data_from_rom:
     jne program_load_faild
 
     ; プログラムのサイズを読み出す
-    mov c,[b+2] 
+    mov c,[b+2]
 
+    ; ファイルのサイズチェック
+    mov e,c
+    add e,program_data_address
+    jc program_load_too_large ;オーバーフロー対策
+    cmp e,stack_top_address
+    jae program_load_too_large
 
     mov memaddr,os_load_romnum
     mov a,[memaddr+0]
@@ -258,6 +268,13 @@ load_program_data_from_rom:
 
     mov a,tty_out_id
     mov b,os_message_5
+    call __output_string
+    jmp main_loop
+
+
+program_load_too_large:
+    mov a,tty_out_id
+    mov b,os_message_7
     call __output_string
     jmp main_loop
 
